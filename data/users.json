@@ -1,0 +1,31 @@
+{
+    "dataTitle": {
+        "last_guid": 4
+    },
+    "dataArray": {
+        "o1": {
+            "mail": "admin@admin.com",
+            "pwd": "admin",
+            "name": "Администратор",
+            "role": "admin"
+        },
+        "o2": {
+            "mail": "interpreter@interpreter.com",
+            "pwd": "user",
+            "name": "Пользователь",
+            "role": "user"
+        },
+        "o3": {
+            "mail": "",
+            "pwd": "guest",
+            "name": "Гость",
+            "role": "guest"
+        },
+        "o4": {
+            "mail": "admin@admin.com",
+            "pwd": "fake",
+            "name": "Гость",
+            "role": "fake"
+        }
+    }
+}

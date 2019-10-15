@@ -16,7 +16,7 @@ class FileAccessModel
      */
     public function __construct($jsonFileName)
     {
-        $this->fileName = Config::DATABASE_PATH.$jsonFileName.'.json';
+        $this->fileName = $_SERVER['DOCUMENT_ROOT'] . '/' . Config::DATABASE_PATH.$jsonFileName.'.json';
     }
 
     /**

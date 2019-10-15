@@ -1,4 +1,16 @@
 <?php
+
+require('autoload.php');
+require('config/SystemConfig.php');
+
+$users = new Users();
+
+print '<pre>';
+var_dump($users);
+print '</pre>';
+
+// require('../autoload.php');
+
 // if (isset($_POST)) {
 //     print '<pre>';
 //     var_dump($_POST);
@@ -19,7 +31,7 @@
     <div class="message">
 
     </div>
-    <script src="createRequest.js"></script>
+    <script src="/js/api/createRequest.js"></script>
     <script type="text/javascript">
     // var xhr = new XMLHttpRequest();
     // var data = {
@@ -76,7 +88,8 @@
       callback: (error, response) => {
         if (error === null) {
           console.log(response);
-          messageDiv.innerHTML = response.name;
+          messageDiv.innerHTML = response;
+          // messageDiv.innerHTML = response.name;
           // return response.name;
         }
         else {

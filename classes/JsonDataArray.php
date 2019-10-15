@@ -54,7 +54,7 @@ class JsonDataArray
      */
     public function save()
     {
-        $this->file->writeJSON([
+        $this->file->writeJson([
             'dataTitle' => $this->dataTitle,
             'dataArray' => $this->dataArray,
         ]);
