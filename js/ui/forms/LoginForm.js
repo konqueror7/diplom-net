@@ -7,7 +7,7 @@ class LoginForm extends AsyncForm {
   /**
    * Производит авторизацию с помощью User.login
    * После успешной авторизации, сбрасывает форму,
-   * 
+   *
    *
    * */
   onSubmit( options ) {
@@ -17,10 +17,12 @@ class LoginForm extends AsyncForm {
         this.element.reset();
         if (response.user['role'] === 'admin') {
           document.location.href = 'http://diplom-net/admin';
-        } else if (response.user['role'] === 'user') {
-          document.location.href = 'http://diplom-net/client';
-
         }
+        // } else if (response.user['role'] === 'user') {
+        //   document.location.href = 'http://diplom-net/client';
+        // }
+      } else {
+        document.location.href = 'http://diplom-net/client';
       }
     });
   }

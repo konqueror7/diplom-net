@@ -1,0 +1,3 @@
+class HallDeleteForm extends AsyncForm {
+
+}

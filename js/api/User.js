@@ -46,8 +46,10 @@ class User {
       method: 'GET',
       callback: (err, response) => {
         if (response && response.success === true && response.user) {
+          console.log(response);
           this.setCurrent(response.user);
         } else if (response && response.success === false && !response.user) {
+          console.log(response);
           this.unsetCurrent();
         }
 
@@ -65,8 +67,8 @@ class User {
    * */
   static login( data, callback = f => f ) {
     const xhr = createRequest({
-      url: '/php/login_submit.php',
-      // url: this.HOST + this.URL + '/login',
+      // url: '/php/login_submit.php',
+      url: this.HOST + this.URL + '/login_submit',
       data: data,
       responseType: 'json',
       method: 'GET',
@@ -129,5 +131,5 @@ class User {
   }
 }
 
-//User.URL = '/user';
-//User.HOST = Entity.HOST;
+User.URL = '';
+User.HOST = Entity.HOST;

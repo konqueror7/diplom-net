@@ -11,9 +11,9 @@
         },
         "o2": {
             "mail": "interpreter@interpreter.com",
-            "pwd": "user",
-            "name": "Пользователь",
-            "role": "user"
+            "pwd": "interpreter",
+            "name": "Администратор",
+            "role": "admin"
         },
         "o3": {
             "mail": "",

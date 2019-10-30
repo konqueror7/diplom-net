@@ -1,0 +1,99 @@
+{
+    "dataTitle": {
+        "last_guid": 15
+    },
+    "dataArray": {
+        "o1": {
+            "name": "Hall #1",
+            "rows": 20,
+            "places": 10,
+            "seats_arrow": {
+                "1": {
+                    "row": 7,
+                    "berth": 10,
+                    "status": "vip"
+                },
+                "2": {
+                    "row": 1,
+                    "berth": 1,
+                    "status": "blocked"
+                },
+                "3": {
+                    "row": 2,
+                    "berth": 2,
+                    "status": "standard"
+                }
+            }
+        },
+        "o2": {
+            "name": "Hall #2",
+            "rows": 15,
+            "places": 10,
+            "seats_arrow": {
+                "1": {
+                    "row": 8,
+                    "berth": 8,
+                    "status": "vip"
+                },
+                "2": {
+                    "row": 1,
+                    "berth": 2,
+                    "status": "blocked"
+                },
+                "3": {
+                    "row": 3,
+                    "berth": 5,
+                    "status": "standard"
+                }
+            }
+        },
+        "o3": {
+            "name": "Hall #300",
+            "rows": 45,
+            "places": 10,
+            "seats_arrow": null
+        },
+        "o9": {
+            "name": "Hall",
+            "rows": 0,
+            "places": 0,
+            "seats_arrow": null
+        },
+        "o10": {
+            "name": "Hall #666",
+            "rows": 0,
+            "places": 0,
+            "seats_arrow": null
+        },
+        "o11": {
+            "name": "Hall #789",
+            "rows": 0,
+            "places": 0,
+            "seats_arrow": null
+        },
+        "o12": {
+            "name": "Зал 223",
+            "rows": 0,
+            "places": 0,
+            "seats_arrow": null
+        },
+        "o13": {
+            "name": "Зал 444",
+            "rows": 0,
+            "places": 0,
+            "seats_arrow": null
+        },
+        "o14": {
+            "name": "Pfk 111",
+            "rows": 0,
+            "places": 0,
+            "seats_arrow": null
+        },
+        "o15": {
+            "name": "Зал 111",
+            "rows": 0,
+            "places": 0,
+            "seats_arrow": null
+        }
+    }
+}

@@ -18,19 +18,19 @@
   </header>
 
   <main class="conf-steps">
-    <section class="conf-step">
+    <section class="conf-step" id="halls">
       <header class="conf-step__header conf-step__header_opened">
         <h2 class="conf-step__title">Управление залами</h2>
       </header>
       <div class="conf-step__wrapper">
         <p class="conf-step__paragraph">Доступные залы:</p>
         <ul class="conf-step__list">
-          <li>Зал 1
+          <!-- <li>Зал 1
             <button class="conf-step__button conf-step__button-trash"></button>
           </li>
           <li>Зал 2
             <button class="conf-step__button conf-step__button-trash"></button>
-          </li>
+          </li> -->
         </ul>
         <button class="conf-step__button conf-step__button-accent">Создать зал</button>
       </div>
@@ -258,10 +258,236 @@
         <button class="conf-step__button conf-step__button-accent">Открыть продажу билетов</button>
       </div>
     </section>
+
   </main>
 
+<!-- Форма добавления зала -->
+  <div class="popup" id="modal-add-hall">
+    <div class="popup__container">
+      <div class="popup__content">
+        <div class="popup__header">
+          <h2 class="popup__title">
+            Добавление зала
+            <a class="popup__dismiss" href="#"><img src="i/close.png" alt="Закрыть"></a>
+          </h2>
+
+        </div>
+        <div class="popup__wrapper">
+          <form action="add_hall" method="post" accept-charset="utf-8" id="add-hall-form">
+            <label class="conf-step__label conf-step__label-fullsize" for="name">
+              Название зала
+              <input class="conf-step__input" type="text" placeholder="Например, &laquo;Зал 1&raquo;" name="name" required>
+            </label>
+            <div class="conf-step__buttons text-center">
+              <input type="submit" value="Добавить зал" name="name" class="conf-step__button conf-step__button-accent">
+              <button class="conf-step__button conf-step__button-regular">Отменить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Форма удаления зала -->
+  <div class="popup" id="modal-delete-hall">
+    <div class="popup__container">
+      <div class="popup__content">
+        <div class="popup__header">
+          <h2 class="popup__title">
+            Удаление зала
+            <a class="popup__dismiss" href="#"><img src="i/close.png" alt="Закрыть"></a>
+          </h2>
+
+        </div>
+        <div class="popup__wrapper">
+          <form action="delete_hall" method="post" accept-charset="utf-8" id="delete-hall-form">
+            <p class="conf-step__paragraph">Вы действительно хотите удалить зал <span></span>?</p>
+            <!-- В span будет подставляться название зала -->
+            <div class="conf-step__buttons text-center">
+              <input type="submit" value="Удалить" class="conf-step__button conf-step__button-accent">
+              <button class="conf-step__button conf-step__button-regular">Отменить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Форма добавления фильма -->
+  <div class="popup active"  id="modal-movie-add">
+    <div class="popup__container">
+      <div class="popup__content">
+        <div class="popup__header">
+          <h2 class="popup__title">
+            Добавление фильма
+            <a class="popup__dismiss" href="#"><img src="i/close.png" alt="Закрыть"></a>
+          </h2>
+
+        </div>
+        <div class="popup__wrapper">
+          <form action="add_movie" method="post" accept-charset="utf-8">
+            <label class="conf-step__label conf-step__label-fullsize" for="name">
+              Название фильма
+              <input class="conf-step__input" type="text" placeholder="Например, &laquo;Гражданин Кейн&raquo;" name="name" required>
+            </label>
+            <div class="conf-step__buttons text-center">
+              <input type="submit" value="Добавить фильм" class="conf-step__button conf-step__button-accent">
+              <button class="conf-step__button conf-step__button-regular">Отменить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Форма добавления сеанса -->
+  <div class="popup" id="modal-showtime-add">
+    <div class="popup__container">
+      <div class="popup__content">
+        <div class="popup__header">
+          <h2 class="popup__title">
+            Добавление сеанса
+            <a class="popup__dismiss" href="#"><img src="i/close.png" alt="Закрыть"></a>
+          </h2>
+
+        </div>
+        <div class="popup__wrapper">
+          <form action="add_showtime" method="post" accept-charset="utf-8">
+            <label class="conf-step__label conf-step__label-fullsize" for="hall">
+              Название зала
+              <select class="conf-step__input" name="hall" required>
+                <option value="1" selected>Зал 1</option>
+                <option value="2">Зал 2</option>
+              </select>
+            </label>
+            <label class="conf-step__label conf-step__label-fullsize" for="name">
+              Время начала
+              <input class="conf-step__input" type="time" value="00:00" name="start_time" required>
+            </label>
+
+            <label class="conf-step__label conf-step__label-fullsize" for="name">
+              Название фильма
+              <input class="conf-step__input" type="text" placeholder="Например, &laquo;Зал 1&raquo;" name="name" required>
+            </label>
+
+            <div class="conf-step__buttons text-center">
+              <input type="submit" value="Добавить" class="conf-step__button conf-step__button-accent">
+              <button class="conf-step__button conf-step__button-regular">Отменить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Форма удаления сеанса -->
+  <div class="popup" id="modal-showtime-delete">
+    <div class="popup__container">
+      <div class="popup__content">
+        <div class="popup__header">
+          <h2 class="popup__title">
+            Снятие с сеанса
+            <a class="popup__dismiss" href="#"><img src="i/close.png" alt="Закрыть"></a>
+          </h2>
+
+        </div>
+        <div class="popup__wrapper">
+          <form action="delete_showtime" method="post" accept-charset="utf-8">
+            <p class="conf-step__paragraph">Вы действительно хотите снять с сеанса фильм <span></span>?</p>
+            <!-- В span будет подставляться название фильма -->
+            <div class="conf-step__buttons text-center">
+              <input type="submit" value="Удалить" class="conf-step__button conf-step__button-accent">
+              <button class="conf-step__button conf-step__button-regular">Отменить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <script src="/js/accordeon.js"></script>
+  <script src="/js/api/createRequest.js"></script>
+  <script src="/js/api/Entity.js"></script>
+  <script src="/js/api/User.js"></script>
+  <script src="/js/api/Hall.js"></script>
+  <script src="/js/Admin.js"></script>
+  <script src="/js/ui/forms/AsyncForm.js"></script>
+  <script src="/js/ui/forms/HallAddForm.js"></script>
+  <script src="/js/ui/widgets/HallsWidget.js"></script>
+  <script src="/js/ui/Modal.js"></script>
+  <script type="text/javascript">
+    Admin.init();
+
+    // console.log(localStorage);
+
+    // User.fetch({});
+
+    // const hallsList = document.querySelector('ul.conf-step__list');
+
+    // console.log(hallsList);
+
+    // Hall.list({name: 'Hall #2'}, (error, response) => {
+    // // Hall.list({name: 'Hall #2'}, (error, response) => {
+    //   // console.log(response);
+    //   if (error === null && response.halls) {
+    //     console.log(response.halls);
+    //   // console.log(localStorage);
+    //     // for (let item of response.halls) {
+    //     //   hallsList.innerHTML += `<li>${item.name}<button class="conf-step__button conf-step__button-trash"></button></li>`;
+    //     // }
+    //   }
+    //   else if (error === null && response.error) {
+    //     console.log(response.error);
+    //   }
+    //   // for (let item of response.halls) {
+    //   //   hallsList.innerHTML += `<li>${item.name}<button class="conf-step__button conf-step__button-trash"></button></li>`;
+    //   // }
+    // });
+
+    // Hall.create({name: 'Hall #999'}, (error, response) => {
+    //   if (error === null) {
+    //       console.log(response);
+    //   } else {
+    //       console.log(error);
+    //   }
+    // });
+
+    // Hall.update(id = 'o3', {name: 'Hall #300', rows: 45, places: 10}, (error, response) => {
+    //     if (error === null) {
+    //         console.log(response);
+    //     } else {
+    //         console.log(error);
+    //     }
+    // });
+
+    // Hall.remove(id = 'o6', {}, (error, response) => {
+    //     if (error === null) {
+    //         console.log(response);
+    //     } else {
+    //         console.log(error);
+    //     }
+    // });
+
+    //
+    // Hall.get(id = 'o2', {}, (error, response) => {
+    //   console.log(response);
+    //   // for (let item of response) {
+    //   //   hallsList.innerHTML += `<li>${item.name}<button class="conf-step__button conf-step__button-trash"></button></li>`;
+    //   // }
+    // });
+
+
+    // User.fetch({}, (error, response) => {
+    //   if (error === null) {
+    //     console.log(response.user);
+    //     // console.log(localStorage);
+    //    }
+    //   else {
+    //    console.log(error);
+    //   }
+    // });
+  </script>
+  <!-- <script src="/js/ui/forms/LoginForm.js"></script> -->
 </body>
 </html>

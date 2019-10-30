@@ -1,0 +1,51 @@
+{
+    "dataTitle": {
+        "last_guid": 2
+    },
+    "dataArray": {
+        "o1": {
+            "hallname": "Hall #1",
+            "rows": 20,
+            "places": 10,
+            "seatsarrow": {
+                "1": {
+                    "row": 7,
+                    "bert": 10,
+                    "status": "vip"
+                },
+                "2": {
+                    "row": 1,
+                    "bert": 1,
+                    "status": "blocked"
+                },
+                "3": {
+                    "row": 2,
+                    "berth": 2,
+                    "status": "standard"
+                }
+            }
+        },
+        "o2": {
+            "hallname": "Hall #2",
+            "rows": 15,
+            "places": 10,
+            "seatsarrow": {
+                "1": {
+                    "row": 8,
+                    "bert": 8,
+                    "status": "vip"
+                },
+                "2": {
+                    "row": 1,
+                    "bert": 2,
+                    "status": "blocked"
+                },
+                "3": {
+                    "row": 3,
+                    "berth": 5,
+                    "status": "standard"
+                }
+            }
+        }
+    }
+}
