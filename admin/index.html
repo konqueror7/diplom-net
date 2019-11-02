@@ -36,21 +36,23 @@
       </div>
     </section>
 
-    <section class="conf-step">
+    <section class="conf-step" id="hall-config">
       <header class="conf-step__header conf-step__header_opened">
         <h2 class="conf-step__title">Конфигурация залов</h2>
       </header>
       <div class="conf-step__wrapper">
+        <form action="config_hall" method="post" accept-charset="utf-8" id="config-hall-form"></form>
         <p class="conf-step__paragraph">Выберите зал для конфигурации:</p>
         <ul class="conf-step__selectors-box">
           <li><input type="radio" class="conf-step__radio" name="chairs-hall" value="Зал 1" checked><span class="conf-step__selector">Зал 1</span></li>
           <li><input type="radio" class="conf-step__radio" name="chairs-hall" value="Зал 2"><span class="conf-step__selector">Зал 2</span></li>
         </ul>
+        <input type="hidden" name="update_id" form="config-hall-form">
         <p class="conf-step__paragraph">Укажите количество рядов и максимальное количество кресел в ряду:</p>
         <div class="conf-step__legend">
-          <label class="conf-step__label">Рядов, шт<input type="text" class="conf-step__input" placeholder="10" ></label>
+          <label class="conf-step__label">Рядов, шт<input type="text" name="rows" class="conf-step__input conf-step__input-rows" placeholder="10" form="config-hall-form"></label>
           <span class="multiplier">x</span>
-          <label class="conf-step__label">Мест, шт<input type="text" class="conf-step__input" placeholder="8" ></label>
+          <label class="conf-step__label">Мест, шт<input type="text" name="places" class="conf-step__input conf-step__input-places" placeholder="8" form="config-hall-form"></label>
         </div>
         <p class="conf-step__paragraph">Теперь вы можете указать типы кресел на схеме зала:</p>
         <div class="conf-step__legend">
@@ -135,8 +137,8 @@
         </div>
 
         <fieldset class="conf-step__buttons text-center">
-          <button class="conf-step__button conf-step__button-regular">Отмена</button>
-          <input type="submit" value="Сохранить" class="conf-step__button conf-step__button-accent">
+          <button class="conf-step__button conf-step__button-regular" form="config-hall-form">Отмена</button>
+          <input type="submit" value="Сохранить" class="conf-step__button conf-step__button-accent" form="config-hall-form">
         </fieldset>
       </div>
     </section>
@@ -414,7 +416,10 @@
   <script src="/js/Admin.js"></script>
   <script src="/js/ui/forms/AsyncForm.js"></script>
   <script src="/js/ui/forms/HallAddForm.js"></script>
+  <script src="/js/ui/forms/HallDeleteForm.js"></script>
+  <script src="/js/ui/forms/HallConfigForm.js"></script>
   <script src="/js/ui/widgets/HallsWidget.js"></script>
+  <script src="/js/ui/widgets/HallConfigWidget.js"></script>
   <script src="/js/ui/Modal.js"></script>
   <script type="text/javascript">
     Admin.init();

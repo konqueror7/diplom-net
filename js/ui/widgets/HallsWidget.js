@@ -18,7 +18,7 @@ class HallsWidget {
     this.element.addEventListener('click', (event) => {
       event.preventDefault();
       let target = event.target;
-      //console.log(target);
+      // console.log(target);
       if (target.classList.contains('conf-step__button-accent')) {
         Admin.getModal('add_hall').open();
         // console.log('Yes!');
@@ -26,9 +26,13 @@ class HallsWidget {
 
       if (target.classList.contains('conf-step__button-trash')) {
         event.preventDefault();
-        console.log('Yes!');
+        // console.log(event.target.value);
+        // console.log('Yes!');
         Admin.getModal('delete_hall').open();
+        // console.log(Admin.getModal('delete_hall'));
+        const removeHallForm = new HallDeleteForm(document.querySelector('#delete-hall-form'), event.target.value);
         // this.onSelectAccount(target.closest('.account'));
+        removeHallForm;
       }
     });
   }
@@ -57,7 +61,7 @@ class HallsWidget {
 
   clear() {
     const deletableHalls = this.element.querySelector('ul.conf-step__list');
-    console.log(deletableHalls);
+    // console.log(deletableHalls);
     deletableHalls.innerHTML = '';
   }
 
@@ -79,14 +83,16 @@ class HallsWidget {
       name,
     } = hall,
     id = key;
-    hallsList.innerHTML += this.getAccountHTML({id, name});
+    hallsList.innerHTML += this.getHalltHTML({id, name});
   }
 
-  getAccountHTML( item ) {
+  getHalltHTML( item ) {
     return `
     <li>${item.name}
-      <button class="conf-step__button conf-step__button-trash" data-id="${item.id}"></button>
+      <button class="conf-step__button conf-step__button-trash" name="remove_id" value="${item.id}" data-id="${item.id}" form="delete-hall-form"></button>
     </li>
     `;
+    // <button class="conf-step__button conf-step__button-trash" data-id="${item.id}"></button>
+    // <button class="conf-step__button conf-step__button-trash" form="delete-hall-form" data-id="${item.id}"></button>
   }
 }

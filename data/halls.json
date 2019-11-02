@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 15
+        "last_guid": 24
     },
     "dataArray": {
         "o1": {
@@ -54,9 +54,9 @@
             "seats_arrow": null
         },
         "o9": {
-            "name": "Hall",
-            "rows": 0,
-            "places": 0,
+            "name": "Hall #900",
+            "rows": 30,
+            "places": 30,
             "seats_arrow": null
         },
         "o10": {
@@ -65,32 +65,32 @@
             "places": 0,
             "seats_arrow": null
         },
-        "o11": {
-            "name": "Hall #789",
+        "o19": {
+            "name": "Зал 3D",
             "rows": 0,
             "places": 0,
             "seats_arrow": null
         },
-        "o12": {
-            "name": "Зал 223",
+        "o20": {
+            "name": "Зал 2D",
             "rows": 0,
             "places": 0,
             "seats_arrow": null
         },
-        "o13": {
-            "name": "Зал 444",
+        "o22": {
+            "name": "Зал 1D",
             "rows": 0,
             "places": 0,
             "seats_arrow": null
         },
-        "o14": {
-            "name": "Pfk 111",
+        "o23": {
+            "name": "Зал 4D",
             "rows": 0,
             "places": 0,
             "seats_arrow": null
         },
-        "o15": {
-            "name": "Зал 111",
+        "o24": {
+            "name": "Зал 5D",
             "rows": 0,
             "places": 0,
             "seats_arrow": null

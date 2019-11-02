@@ -17,6 +17,7 @@ class AsyncForm {
       throw new Error('Элемент не существует');
     }
     this.element = element;
+    console.log(this.element);
     this.registerEvents();
   }
 
@@ -26,8 +27,8 @@ class AsyncForm {
    * */
   registerEvents() {
     this.element.addEventListener('submit', event => {
+      console.log(event);
       if (this.element.checkValidity() === false) {
-        console.log(event);
         this.element.reset();
         return;
       }
@@ -50,7 +51,7 @@ class AsyncForm {
     for (let item of entries) {
       data[`${item[0]}`] = `${item[1]}`;
     }
-    // console.log(data);
+    console.log(data);
     return data
   }
 
