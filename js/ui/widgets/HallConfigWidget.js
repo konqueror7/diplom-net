@@ -12,6 +12,7 @@ class HallConfigWidget {
     this.element = element;
     this.registerEvents();
     this.update();
+    this.seats_arrow = {};
     // this.inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id')
   }
   registerEvents() {
@@ -63,6 +64,67 @@ class HallConfigWidget {
     // submitHallButton.addEventListener('submit', (event) => {
     //   console.log('Button pressed!');
     // });
+    const chairs = this.element.querySelector('.conf-step__hall-wrapper');
+    // const chairs = this.element.querySelector('.conf-step__hall-wrapper').getElementsByClassName('conf-step__chair');
+    // console.log(chairs);
+
+    chairs.addEventListener('click', (event) => {
+      event.preventDefault();
+      console.log(event.target);
+      let eventTarget = event.target;
+      if (eventTarget.classList.contains('conf-step__chair_standart')) {
+        eventTarget.classList.remove('conf-step__chair_standart');
+        eventTarget.classList.add('conf-step__chair_vip');
+      } else if (eventTarget.classList.contains('conf-step__chair_vip')) {
+        eventTarget.classList.remove('conf-step__chair_vip');
+        eventTarget.classList.add('conf-step__chair_disabled');
+      } else if (eventTarget.classList.contains('conf-step__chair_disabled')) {
+        eventTarget.classList.remove('conf-step__chair_disabled');
+        eventTarget.classList.add('conf-step__chair_standart');
+      }
+      // console.log(event.target);
+    });
+
+    // chairs.addEventListener('click', (event) => {
+    //   event.preventDefault();
+    //   console.log(event.target);
+    //   let eventTargetStand = event.target;
+    //   if (eventTargetStand.classList.contains('conf-step__chair_standart')) {
+    //     eventTargetStand.classList.remove('conf-step__chair_standart');
+    //     eventTargetStand.classList.add('conf-step__chair_vip');
+    //   }
+    //   eventTargetStand.addEventListener('click', (event) => {
+    //     event.preventDefault();
+    //     console.log(event.target);
+    //     let eventTargetVip = event.target;
+    //     if (eventTargetVip.classList.contains('conf-step__chair_vip')) {
+    //       eventTargetVip.classList.remove('conf-step__chair_vip');
+    //       eventTargetVip.classList.add('conf-step__chair_disabled');
+    //     }
+    //     eventTargetVip.addEventListener('click', (event) => {
+    //       event.preventDefault();
+    //       console.log(event.target);
+    //       let eventTargetDis = event.target;
+    //       if (eventTargetDis.classList.contains('conf-step__chair_disabled')) {
+    //         eventTargetDis.classList.remove('conf-step__chair_disabled');
+    //         eventTargetDis.classList.add('conf-step__chair_standart');
+    //       }
+    //     });
+    //   });
+    //   // console.log(event.target);
+    // });
+
+    // chairs.addEventListener('click', (event) => {
+    //   event.preventDefault();
+    //   let eventTarget = event.target;
+    //   if (eventTarget.classList.contains('conf-step__chair_vip')) {
+    //     eventTarget.classList.remove('conf-step__chair_vip');
+    //     eventTarget.classList.add('conf-step__chair_disabled');
+    //   }
+    //   // console.log(event.target);
+    // });
+    // for (var chair in chairs) {
+    // }
   }
 
   update() {
@@ -114,13 +176,53 @@ class HallConfigWidget {
       const placesHall = this.element.querySelector('.conf-step__input-places');
       rowsHall.value = response.hall['rows'];
       placesHall.value = response.hall['places'];
+      this.renderPlaces(rowsHall.value, placesHall.value);
     });
+  }
+
+  renderPlaces(rows, places) {
+    console.log(rows + ' x ' + places);
+    const renderRows = this.element.querySelector('.conf-step__hall-wrapper');
+    renderRows.innerHTML = '';
+    for (var i = 1; i <= rows; i++) {
+      const rendRow = this.getRowHTML();
+      // const rendRow = this.getRowHTML(i);
+      for (var y = 1; y <= places; y++) {
+        let rendPlace = this.getPlaceHTML(i, y);
+        rendRow.appendChild(rendPlace);
+      }
+      renderRows.appendChild(rendRow);
+      // renderRows.appendChild(this.getRowHTML(i));
+      // renderRows.innerHTML += this.getRowHTML(i);
+    }
+  }
+
+  getRowHTML() {
+  // getRowHTML(row) {
+    let rowHTML = document.createElement('div');
+    rowHTML.classList.add('conf-step__row');
+    // rowHTML.dataset.row = `${row}`;
+    return rowHTML;
+    // return `
+    //   <div class="conf-step__row" data-row="${row}"></div>
+    // `;
+  }
+
+  getPlaceHTML(row, place) {
+    let placeHTML = document.createElement('span');
+    placeHTML.classList.add('conf-step__chair', 'conf-step__chair_standart');
+    placeHTML.dataset.row=`${row}`;
+    placeHTML.dataset.place=`${place}`;
+    return placeHTML;
+
   }
 
   clear() {
     const deletableHalls = this.element.querySelector('ul.conf-step__selectors-box');
-    // console.log(deletableHalls);
     deletableHalls.innerHTML = '';
+    const deletableRows = this.element.querySelector('.conf-step__hall-wrapper');
+    // console.log(deletableHalls);
+    deletableRows.innerHTML = '';
   }
 
   renderItem( key, hall ) {
