@@ -12,7 +12,12 @@ class HallConfigWidget {
     this.element = element;
     this.registerEvents();
     this.update();
-    this.seats_arrow = {};
+    // this.seats_arrow = {
+    //   1: {
+    //     row: 1,
+    //     place: 2
+    //   }
+    // };
     // this.inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id')
   }
   registerEvents() {
@@ -125,6 +130,14 @@ class HallConfigWidget {
     // });
     // for (var chair in chairs) {
     // }
+
+    // const submitHallConfig = this.element.querySelector('#config-hall-form');
+    // const submitHallConfigButton = this.element.querySelector('.conf-step__button-accent');
+    // submitHallConfigButton.addEventListener('click', (event) => {
+    //   // event.preventDefault();
+    //   console.log('Pressed!');
+    //   // submitHallConfig.submit();
+    // });
   }
 
   update() {
@@ -169,6 +182,7 @@ class HallConfigWidget {
       if (err || !response) {
         return undefined;
       }
+      console.log(response.hall);
       // console.log(response.hall['rows'] + ' x ' + response.hall['places']);
       let inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id');
       inputUpdateId.value = hall_id;

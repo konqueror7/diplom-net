@@ -55,9 +55,14 @@
         },
         "o9": {
             "name": "Hall #900",
-            "rows": 5,
-            "places": 5,
-            "seats_arrow": null
+            "rows": 2,
+            "places": 10,
+            "seats_arrow": {
+                "1": {
+                    "row": 1,
+                    "place": 2
+                }
+            }
         },
         "o10": {
             "name": "Hall #666",

@@ -25,7 +25,7 @@ class Hall extends DataRecordModel
             $this->places = 0;
         }
         if (isset($_POST['seats_arrow'])) {
-            $this->seats_arrow = $_POST['seats_arrow'];
+            $this->seats_arrow = json_decode($_POST['seats_arrow']);
         } else {
             $this->seats_arrow = null;
         }

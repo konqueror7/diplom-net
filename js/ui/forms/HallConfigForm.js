@@ -14,6 +14,16 @@ class HallConfigForm extends AsyncForm {
     formData.append('name', formData.get('chairs-hall'));
     // let chairsHall = formData.get('chairs-hall');
     formData.delete('chairs-hall');
+    // let placesHTML = document.querySelector('.conf-step__hall-wrapper').getElementsByClassName('conf-step__chair');
+    // let seats_arrow = ["Яблоко", "Апельсин", "Слива"];
+    let seats_arrow = {
+      1: {
+        row: 1,
+        place: 2
+      }
+    };
+    formData.append('seats_arrow', JSON.stringify(seats_arrow));
+    // console.log(placesHTML);
     // formData.append('name', chairsHall);
     let entries = formData.entries();
     const data = {};
