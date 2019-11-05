@@ -126,7 +126,7 @@ if ($_POST['entity_method'] == 'REMOVEID') {
         $hallData = ['success' => true, 'message' => 'Данные о зале с ID = "'.$_POST['remove_id'].' '.'" удалены!'];
         echo json_encode($hallData);
     } else {
-        $noData = ['success' => false, 'error' => 'Нет записи о зале с таким ID. Удалять нечего!'];
+        $noData = ['success' => false, 'error' => 'Нет записи о зале с таким ID = '.$_POST['remove_id'].'. Удалять нечего!'];
         echo json_encode($noData);
     }
 }

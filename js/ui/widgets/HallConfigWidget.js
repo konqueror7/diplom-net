@@ -182,7 +182,8 @@ class HallConfigWidget {
       if (err || !response) {
         return undefined;
       }
-      console.log(response.hall);
+      // console.log(response.hall['vip']);
+      // console.log(response.hall['dis']);
       // console.log(response.hall['rows'] + ' x ' + response.hall['places']);
       let inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id');
       inputUpdateId.value = hall_id;
@@ -190,24 +191,35 @@ class HallConfigWidget {
       const placesHall = this.element.querySelector('.conf-step__input-places');
       rowsHall.value = response.hall['rows'];
       placesHall.value = response.hall['places'];
-      this.renderPlaces(rowsHall.value, placesHall.value);
+      this.renderPlaces(rowsHall.value, placesHall.value, response.hall['vip'], response.hall['dis']);
     });
   }
 
-  renderPlaces(rows, places) {
+  renderPlaces(rows, places, vip, dis) {
     console.log(rows + ' x ' + places);
     const renderRows = this.element.querySelector('.conf-step__hall-wrapper');
     renderRows.innerHTML = '';
-    for (var i = 1; i <= rows; i++) {
+    for (let i = 1; i <= rows; i++) {
       const rendRow = this.getRowHTML();
-      // const rendRow = this.getRowHTML(i);
-      for (var y = 1; y <= places; y++) {
+      for (let y = 1; y <= places; y++) {
         let rendPlace = this.getPlaceHTML(i, y);
+        for (let z = 0; z < vip.length; z++) {
+          if (vip[z][0] == i && vip[z][1] == y) {
+            rendPlace.classList.add('conf-step__chair_vip');
+            rendPlace.classList.remove('conf-step__chair_standart');
+            rendPlace.classList.remove('conf-step__chair_disabled');
+          }
+        }
+        for (let x = 0; x < dis.length; x++) {
+          if (dis[x][0] == i && dis[x][1] == y) {
+            rendPlace.classList.add('conf-step__chair_disabled');
+            rendPlace.classList.remove('conf-step__chair_vip');
+            rendPlace.classList.remove('conf-step__chair_standart');
+          }
+        }
         rendRow.appendChild(rendPlace);
       }
       renderRows.appendChild(rendRow);
-      // renderRows.appendChild(this.getRowHTML(i));
-      // renderRows.innerHTML += this.getRowHTML(i);
     }
   }
 
