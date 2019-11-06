@@ -13,7 +13,7 @@ session_start();
 
 $halls = new Halls();
 
-$hallkeys = array("name", "rows", "places", "seats_arrow");
+$hallkeys = array("name", "rows", "places", "vip", "dis", "vip_price", "std_price");
 // print '<pre>';
 // var_dump($hallkeys);
 // print '</pre>';
@@ -91,7 +91,8 @@ if ($_POST['entity_method'] == 'GETID') {
 
 if ($_POST['entity_method'] == 'CREATE') {
     $createsHall = new Hall();
-    $createsHall->addHallFromPost();
+    $createsHall->addNewHall();
+    // $createsHall->addHallFromPost();
     // $createsHall->name = $_POST['name'];
     $createsHall->commit();
     $hallData =  ['success' => true, 'message' => 'Запись о зале создана!'];
@@ -101,10 +102,40 @@ if ($_POST['entity_method'] == 'CREATE') {
 if ($_POST['entity_method'] == 'UPDATEID') {
     $hallGet = $halls->newQuery()->byguid($_POST['update_id'])->getObjs(false);
     if (count($hallGet) > 0) {
-        $updatesHall = new Hall($_POST['update_id']);
+        $halls->updateHallFromPost($_POST['update_id']);
+        // $updatesHall = $halls->getHall($_POST['update_id']);
+        // if (isset($_POST['name'])) {
+        //     $updatesHall->name = $_POST['name'];
+        // }
+        //
+        // if (isset($_POST['rows'])) {
+        //     $updatesHall->rows = intval($_POST['rows']);
+        // }
+        //
+        // if (isset($_POST['places'])) {
+        //     $updatesHall->places = intval($_POST['places']);
+        // }
+        //
+        // if (isset($_POST['vip'])) {
+        //     $updatesHall->vip = json_decode($_POST['vip']);
+        // }
+        //
+        // if (isset($_POST['dis'])) {
+        //     $updatesHall->dis = json_decode($_POST['dis']);
+        // }
+        //
+        // if (isset($_POST['vip_price'])) {
+        //     $updatesHall->vip_price = json_decode($_POST['vip_price']);
+        // }
+        //
+        // if (isset($_POST['std_price'])) {
+        //     $updatesHall->std_price = json_decode($_POST['std_price']);
+        // }
         // $updatesHall = new Hall($_POST['update_id']);
-        $updatesHall->addHallFromPost();
-        $updatesHall->commit();
+        // $updatesHall->updateHallFromPost();
+        // $updatesHall->addHallFromPost();
+        $halls->save();
+        // $updatesHall->commit();
         // $hallGetKeysAfter = array();
         // $hallGetAfther = $halls->newQuery()->byguid($_POST['update_id'])->getObjs(false);
         // foreach ($hallGetAfther[key($hallGetAfther)] as $key => $value) {
