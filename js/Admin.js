@@ -30,7 +30,8 @@ class Admin {
   static initForms() {
     this.forms = {
       add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
-      config_hall: new HallConfigForm(document.querySelector('#config-hall-form'))
+      config_hall: new HallConfigForm(document.querySelector('#config-hall-form')),
+      config_price: new PriceConfigForm(document.querySelector('#config-price-form'))
       // add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       // delete_hall: new HallDeleteForm(document.querySelector('#delete-hall-form'))
     };
@@ -40,7 +41,8 @@ class Admin {
     this.widgets = {
       // halls: new HallsWidget(document.querySelector('.conf-step__list'))
       halls: new HallsWidget(document.querySelector('#halls')),
-      hall_config: new HallConfigWidget(document.querySelector('#hall-config'))
+      hall_config: new HallConfigWidget(document.querySelector('#hall-config')),
+      price_config: new PriceConfigWidget(document.querySelector('#price-config'))
     };
   }
 
@@ -65,6 +67,7 @@ class Admin {
   static updateWidgets() {
     this.getWidget( 'halls' ).update();
     this.getWidget( 'hall_config' ).update();
+    this.getWidget( 'price_config' ).update();
   }
 
   // static updateForms() {

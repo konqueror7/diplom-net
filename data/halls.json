@@ -51,8 +51,8 @@
                     "5"
                 ]
             ],
-            "vip_price": 0,
-            "std_price": 0
+            "vip_price": 100,
+            "std_price": 50
         },
         "o2": {
             "name": "Hall #2",
@@ -148,30 +148,12 @@
         },
         "o9": {
             "name": "Hall #900",
-            "rows": 2,
-            "places": 8,
-            "vip": [
-                [
-                    "1",
-                    "1"
-                ],
-                [
-                    "1",
-                    "2"
-                ]
-            ],
-            "dis": [
-                [
-                    "1",
-                    "8"
-                ],
-                [
-                    "2",
-                    "8"
-                ]
-            ],
-            "vip_price": 0,
-            "std_price": 0
+            "rows": 0,
+            "places": 0,
+            "vip": [],
+            "dis": [],
+            "vip_price": 10,
+            "std_price": 5
         },
         "o10": {
             "name": "Hall #666",
