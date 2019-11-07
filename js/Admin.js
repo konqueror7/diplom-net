@@ -23,7 +23,8 @@ class Admin {
   static initModals() {
     this.modals = {
       add_hall: new Modal(document.querySelector('#modal-add-hall')),
-      delete_hall: new Modal(document.querySelector('#modal-delete-hall'))
+      delete_hall: new Modal(document.querySelector('#modal-delete-hall')),
+      add_movie: new Modal(document.querySelector('#modal-movie-add'))
     };
   }
 
@@ -31,7 +32,8 @@ class Admin {
     this.forms = {
       add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       config_hall: new HallConfigForm(document.querySelector('#config-hall-form')),
-      config_price: new PriceConfigForm(document.querySelector('#config-price-form'))
+      config_price: new PriceConfigForm(document.querySelector('#config-price-form')),
+      add_movie: new MovieAddForm(document.querySelector('#add-movie-form'))
       // add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       // delete_hall: new HallDeleteForm(document.querySelector('#delete-hall-form'))
     };
@@ -42,7 +44,8 @@ class Admin {
       // halls: new HallsWidget(document.querySelector('.conf-step__list'))
       halls: new HallsWidget(document.querySelector('#halls')),
       hall_config: new HallConfigWidget(document.querySelector('#hall-config')),
-      price_config: new PriceConfigWidget(document.querySelector('#price-config'))
+      price_config: new PriceConfigWidget(document.querySelector('#price-config')),
+      sessions_grid_config: new SessionsGridWidget(document.querySelector('#sessions-grid-config'))
     };
   }
 

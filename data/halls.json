@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 28
+        "last_guid": 31
     },
     "dataArray": {
         "o1": {
@@ -148,7 +148,7 @@
         },
         "o9": {
             "name": "Hall #900",
-            "rows": 3,
+            "rows": 4,
             "places": 8,
             "vip": [
                 [
@@ -170,8 +170,8 @@
                     "8"
                 ]
             ],
-            "vip_price": 40,
-            "std_price": 20
+            "vip_price": 60,
+            "std_price": 25
         },
         "o10": {
             "name": "Hall #666",
@@ -257,7 +257,16 @@
                 ]
             ],
             "vip_price": 60,
-            "std_price": 20
+            "std_price": 10
+        },
+        "o31": {
+            "name": "Зал 34D",
+            "rows": 3,
+            "places": 4,
+            "vip": [],
+            "dis": [],
+            "vip_price": 200,
+            "std_price": 100
         }
     }
 }

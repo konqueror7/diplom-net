@@ -22,6 +22,15 @@ class PriceConfigWidget {
         this.renderHall(target.dataset.id);
       }
     });
+
+    const resetButton = this.element.querySelector('.conf-step__button-regular');
+    resetButton.addEventListener('click', (event) => {
+      console.log('Reset!');
+      event.preventDefault();
+      this.element.querySelector('#config-price-form').reset();
+      this.update();
+      // document.forms['config-hall-form'].reset();
+    });
   }
 
   update() {

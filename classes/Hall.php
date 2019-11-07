@@ -12,10 +12,10 @@ class Hall extends DataRecordModel
     // public $places_array;
     // public $seats_arrow;
 
-    public function addNewHall()
+    public function addNewHall($name)
     {
-        if (isset($_POST['name'])) {
-            $this->name = $_POST['name'];
+        if (isset($name)) {
+            $this->name = $name;
         } else {
             $this->name = 'Hall';
         }
@@ -26,6 +26,8 @@ class Hall extends DataRecordModel
         $this->dis = [];
         $this->vip_price = 0;
         $this->std_price = 0;
+
+        $this->commit();
     }
 
     // public function updateHallFromPost()

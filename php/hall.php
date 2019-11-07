@@ -91,10 +91,10 @@ if ($_POST['entity_method'] == 'GETID') {
 
 if ($_POST['entity_method'] == 'CREATE') {
     $createsHall = new Hall();
-    $createsHall->addNewHall();
+    $createsHall->addNewHall($_POST['name']);
     // $createsHall->addHallFromPost();
     // $createsHall->name = $_POST['name'];
-    $createsHall->commit();
+    // $createsHall->commit();
     $hallData =  ['success' => true, 'message' => 'Запись о зале создана!'];
     echo json_encode($hallData);
 }
@@ -102,7 +102,8 @@ if ($_POST['entity_method'] == 'CREATE') {
 if ($_POST['entity_method'] == 'UPDATEID') {
     $hallGet = $halls->newQuery()->byguid($_POST['update_id'])->getObjs(false);
     if (count($hallGet) > 0) {
-        $halls->updateHallFromPost($_POST['update_id']);
+        $halls->updateHallFromPost($_POST);
+        // $halls->updateHallFromPost($_POST['update_id']);
         // $updatesHall = $halls->getHall($_POST['update_id']);
         // if (isset($_POST['name'])) {
         //     $updatesHall->name = $_POST['name'];
@@ -134,7 +135,9 @@ if ($_POST['entity_method'] == 'UPDATEID') {
         // $updatesHall = new Hall($_POST['update_id']);
         // $updatesHall->updateHallFromPost();
         // $updatesHall->addHallFromPost();
-        $halls->save();
+
+        // $halls->save();
+
         // $updatesHall->commit();
         // $hallGetKeysAfter = array();
         // $hallGetAfther = $halls->newQuery()->byguid($_POST['update_id'])->getObjs(false);

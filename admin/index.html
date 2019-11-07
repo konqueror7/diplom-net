@@ -172,7 +172,7 @@
       </div>
     </section>
 
-    <section class="conf-step">
+    <section class="conf-step" id="sessions-grid-config">
       <header class="conf-step__header conf-step__header_opened">
         <h2 class="conf-step__title">Сетка сеансов</h2>
       </header>
@@ -328,7 +328,7 @@
 
         </div>
         <div class="popup__wrapper">
-          <form action="add_movie" method="post" accept-charset="utf-8">
+          <form action="add_movie" method="post" accept-charset="utf-8" id="add-movie-form">
             <label class="conf-step__label conf-step__label-fullsize" for="name">
               Название фильма
               <input class="conf-step__input" type="text" placeholder="Например, &laquo;Гражданин Кейн&raquo;" name="name" required>
@@ -417,12 +417,14 @@
   <script src="/js/Admin.js"></script>
   <script src="/js/ui/forms/AsyncForm.js"></script>
   <script src="/js/ui/forms/HallAddForm.js"></script>
+  <script src="/js/ui/forms/MovieAddForm.js"></script>
   <script src="/js/ui/forms/HallDeleteForm.js"></script>
   <script src="/js/ui/forms/HallConfigForm.js"></script>
   <script src="/js/ui/forms/PriceConfigForm.js"></script>
   <script src="/js/ui/widgets/HallsWidget.js"></script>
   <script src="/js/ui/widgets/HallConfigWidget.js"></script>
   <script src="/js/ui/widgets/PriceConfigWidget.js"></script>
+  <script src="/js/ui/widgets/SessionsGridWidget.js"></script>
   <script src="/js/ui/Modal.js"></script>
   <script type="text/javascript">
     Admin.init();
