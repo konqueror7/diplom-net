@@ -1,0 +1,21 @@
+{
+    "dataTitle": {
+        "last_guid": 2
+    },
+    "dataArray": {
+        "o1": {
+            "name": "patronymos",
+            "content": "patronymos",
+            "image": "picture_of_the_day_penguin_uv_1.jpg",
+            "duration": 0,
+            "producer": ""
+        },
+        "o2": {
+            "name": "Великолепный Гоша",
+            "content": "Великолепный Гоша",
+            "image": "mIY2Q7ed00Y.jpg",
+            "duration": 0,
+            "producer": ""
+        }
+    }
+}

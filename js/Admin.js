@@ -71,6 +71,7 @@ class Admin {
     this.getWidget( 'halls' ).update();
     this.getWidget( 'hall_config' ).update();
     this.getWidget( 'price_config' ).update();
+    this.getWidget( 'sessions_grid_config' ).update();
   }
 
   // static updateForms() {

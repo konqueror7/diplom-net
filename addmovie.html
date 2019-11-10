@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="admin/CSS/normalize.css">
+    <link rel="stylesheet" href="admin/CSS/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+  </head>
+  <body>
+    <form enctype = "multipart/form-data" action="add_movie" method="post" accept-charset="utf-8" id="add-movie-form">
+      <label class="conf-step__label conf-step__label-fullsize" for="image">
+        Картинка
+        <input type="file" name="image" class="conf-step__input" value="" id="imagefile">
+      </label>
+      <div class="conf-step__buttons text-center">
+        <input type="submit" value="Добавить фильм" class="conf-step__button conf-step__button-accent">
+        <button class="conf-step__button conf-step__button-regular">Отменить</button>
+      </div>
+    </form>
+    <script type="text/javascript">
+    let form = document.forms['add-movie-form'];
+      // form.addEventListener('submit', (event) => {
+      //   event.preventDefault();
+      //   let image = document.getElementsByTagName('input').namedItem('image').files[0];
+      //   let imblob = new Blob([image], {type: 'img/png'});
+      //
+      //   let formData = new FormData();
+      //
+      //   formData.append('image', imblob);
+      //
+      //   let xhr = new XMLHttpRequest();
+      //   xhr.onload = function() {
+      //     console.log('Upload success!');
+      //   }
+      //
+      //   xhr.open('POST', 'add_movie.php', true);
+      //   xhr.send(formData);
+      // });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let formData = new FormData(form);
+        console.log(formData.get('image'));
+        // let imblob = new Blob([image]);
+
+        let image = document.getElementsByTagName('input').namedItem('image').files[0];
+        let imageName = image.name;
+        console.log(imageName);
+        let imblob = new Blob([image]);
+        // let imblob = new Blob([image], {type: 'img/png'});
+        // var content = '<a id="a"><b id="b">hey!</b></a>';
+        // formData.append('image', imblob);
+        // formData.append('image', image);
+        //
+        let entries = formData.entries();
+        const data = {};
+        for (let item of entries) {
+          if (item[0] === 'image') {
+            data[`${item[0]}`] = imblob;
+            data['image_name'] = imageName;
+          } else {
+            data[`${item[0]}`] = `${item[1]}`;
+          }
+          console.log(item);
+        }
+
+        let formDataXhr = new FormData();
+        for (let key in data) {
+          formDataXhr.append(key, data[key]);
+        }
+
+        console.log(formDataXhr.get('image'));
+        console.log(formDataXhr.get('image_name'));
+          // formDataXhr.append('image', formData.get('image'));
+
+        // let formDataXhr = Object.entries( data )
+        //   .reduce(( target, [ key, value ]) => {
+        //     target.append( key, value );
+        //     return target;
+        //   }, new FormData );
+
+
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          console.log('Upload success!');
+        }
+        xhr.open('POST', 'add_movie.php', true);
+        // xhr.setRequestHeader('Content-Type', 'false');
+        xhr.send(formDataXhr);
+        // xhr.send(formDataXhr);
+      });
+
+    </script>
+  </body>
+</html>

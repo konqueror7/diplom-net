@@ -328,10 +328,18 @@
 
         </div>
         <div class="popup__wrapper">
-          <form action="add_movie" method="post" accept-charset="utf-8" id="add-movie-form">
+          <form enctype = "multipart/form-data" action="add_movie" method="post" accept-charset="utf-8" id="add-movie-form">
             <label class="conf-step__label conf-step__label-fullsize" for="name">
               Название фильма
               <input class="conf-step__input" type="text" placeholder="Например, &laquo;Гражданин Кейн&raquo;" name="name" required>
+            </label>
+            <label class="conf-step__label conf-step__label-fullsize" for="name">
+              Содержание
+              <textarea name="content" class="conf-step__input" rows="8" cols="15"></textarea>
+            </label>
+            <label class="conf-step__label conf-step__label-fullsize" for="image">
+              Картинка
+              <input type="file" name="image" class="conf-step__input" value="" id="imagefile">
             </label>
             <div class="conf-step__buttons text-center">
               <input type="submit" value="Добавить фильм" class="conf-step__button conf-step__button-accent">
@@ -414,6 +422,7 @@
   <script src="/js/api/Entity.js"></script>
   <script src="/js/api/User.js"></script>
   <script src="/js/api/Hall.js"></script>
+  <script src="/js/api/Movie.js"></script>
   <script src="/js/Admin.js"></script>
   <script src="/js/ui/forms/AsyncForm.js"></script>
   <script src="/js/ui/forms/HallAddForm.js"></script>

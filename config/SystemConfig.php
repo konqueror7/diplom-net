@@ -10,5 +10,6 @@ class Config extends Singleton
     const ADMIN_ROLE = 'admin';
     const USER_ROLE = 'user';
     const GUEST_ROLE = 'guest';
+    const POSTERS_DIRECTORY = '/posters';
     // const TRANSLATION_LANG = ['ru', 'eng', 'de', 'fr', 'it', 'esp'];
 }
