@@ -333,13 +333,23 @@
               Название фильма
               <input class="conf-step__input" type="text" placeholder="Например, &laquo;Гражданин Кейн&raquo;" name="name" required>
             </label>
-            <label class="conf-step__label conf-step__label-fullsize" for="name">
+            <label class="conf-step__label conf-step__label-fullsize" for="duration">
+              Продолжительность, минут
+              <input class="conf-step__input" type="text" placeholder="Например, 100" name="duration" required>
+            </label>
+
+            <label class="conf-step__label conf-step__label-fullsize" for="producer">
+              Страна-производитель
+              <input class="conf-step__input" type="text" placeholder="Например, РФ" name="producer" required>
+            </label>
+
+            <label class="conf-step__label conf-step__label-fullsize" for="content">
               Содержание
               <textarea name="content" class="conf-step__input" rows="8" cols="15"></textarea>
             </label>
             <label class="conf-step__label conf-step__label-fullsize" for="image">
-              Картинка
-              <input type="file" name="image" class="conf-step__input" value="" id="imagefile">
+              Постер
+              <input type="file" name="poster" class="conf-step__input" value="" id="poster">
             </label>
             <div class="conf-step__buttons text-center">
               <input type="submit" value="Добавить фильм" class="conf-step__button conf-step__button-accent">

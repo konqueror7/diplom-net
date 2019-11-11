@@ -10,7 +10,9 @@ if (isset($_FILES['image'])) {
         var_dump(pathinfo($_FILES['image']['name']));
         echo '</pre>';
 
-        move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/admin/i/'.$_POST['image_name']);
+        move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/admin/i/'.$_FILES['image']['name']);
+
+        // move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/admin/i/'.$_POST['image_name']);
 
         // move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/admin/i/'.$pathParts['basename']);
     }

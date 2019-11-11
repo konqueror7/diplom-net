@@ -1,21 +1,35 @@
 {
     "dataTitle": {
-        "last_guid": 2
+        "last_guid": 4
     },
     "dataArray": {
         "o1": {
             "name": "patronymos",
             "content": "patronymos",
-            "image": "picture_of_the_day_penguin_uv_1.jpg",
+            "poster": "picture_of_the_day_penguin_uv_1.jpg",
             "duration": 0,
             "producer": ""
         },
         "o2": {
             "name": "Великолепный Гоша",
             "content": "Великолепный Гоша",
-            "image": "mIY2Q7ed00Y.jpg",
+            "poster": "mIY2Q7ed00Y.jpg",
             "duration": 0,
             "producer": ""
+        },
+        "o3": {
+            "name": "Интерконтент",
+            "content": "Коллектив исследователей отправляется в путешествие",
+            "poster": "intestell.jpg",
+            "duration": "195",
+            "producer": "США"
+        },
+        "o4": {
+            "name": "test",
+            "content": "qwerty",
+            "poster": "Synok.jpg",
+            "duration": "100",
+            "producer": "США"
         }
     }
 }

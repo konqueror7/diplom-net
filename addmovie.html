@@ -47,7 +47,8 @@
         let image = document.getElementsByTagName('input').namedItem('image').files[0];
         let imageName = image.name;
         console.log(imageName);
-        let imblob = new Blob([image]);
+        let imblob = new File([image], imageName);
+        // let imblob = new Blob([image]);
         // let imblob = new Blob([image], {type: 'img/png'});
         // var content = '<a id="a"><b id="b">hey!</b></a>';
         // formData.append('image', imblob);
@@ -58,7 +59,7 @@
         for (let item of entries) {
           if (item[0] === 'image') {
             data[`${item[0]}`] = imblob;
-            data['image_name'] = imageName;
+            // data['image_name'] = imageName;
           } else {
             data[`${item[0]}`] = `${item[1]}`;
           }
@@ -71,7 +72,7 @@
         }
 
         console.log(formDataXhr.get('image'));
-        console.log(formDataXhr.get('image_name'));
+        // console.log(formDataXhr.get('image_name'));
           // formDataXhr.append('image', formData.get('image'));
 
         // let formDataXhr = Object.entries( data )
