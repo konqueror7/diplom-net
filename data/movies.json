@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 4
+        "last_guid": 5
     },
     "dataArray": {
         "o1": {
@@ -30,6 +30,13 @@
             "poster": "Synok.jpg",
             "duration": "100",
             "producer": "США"
+        },
+        "o5": {
+            "name": "Приключения Электроника",
+            "content": "Приключения Электроника",
+            "poster": "13172846922688.jpg",
+            "duration": "160",
+            "producer": "СССР"
         }
     }
 }

@@ -20,6 +20,7 @@ class HallConfigWidget {
     // };
     // this.inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id')
   }
+  
   registerEvents() {
     // const checkedHall = this.element.getElementsByClassName('conf-step__radio');
     // console.log(inputUpdateId);

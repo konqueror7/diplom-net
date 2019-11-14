@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Сетка сеансов</title>
+    <!-- <link rel="stylesheet" href="admin/CSS/normalize.css">
+    <link rel="stylesheet" href="admin/CSS/styles.css"> -->
+    <link rel="stylesheet" href="/css/session-grid-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+  </head>
+  <body>
+    <!-- <header class="page-header">
+
+    </header>
+
+    <main class="conf-steps">
+
+    </main> -->
+    <div class="field">
+      <div class="ball">
+        <img src="/posters/ball.svg" alt="" class="ball-image">
+        <h3 class="ball-title">Футбольный мяч</h3>
+      </div>
+    </div>
+
+    <div class="border-gate">
+      <img src="/posters/soccer-gate.svg" alt="" class="gate droppable">
+    </div>
+    <script type="text/javascript">
+      let currentDroppable = null;
+
+      const ballista = document.querySelector('.ball');
+
+      ballista.addEventListener('mousedown', (event) => {
+        const ball = ballista.cloneNode(true);
+        let data = {};
+        data.ball_title = ball.querySelector('h3').innerText;
+        console.log(data);
+        let shiftX = event.clientX - ball.getBoundingClientRect().left;
+        let shiftY = event.clientY - ball.getBoundingClientRect().top;
+        ball.style.position = 'absolute';
+        ball.style.zIndex = 1000;
+        document.body.append(ball);
+
+        moveAt(event.pageX, event.pageY);
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        ball.onmouseup = function() {
+          document.removeEventListener('mousemove', onMouseMove);
+          ball.onmouseup = null;
+        };
+
+        function moveAt(pageX, pageY) {
+          ball.style.left = pageX - shiftX + 'px';
+          ball.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(event) {
+          moveAt(event.pageX, event.pageY);
+          ball.hidden = true;
+          let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+          ball.hidden = false;
+
+          if (!elemBelow) return;
+
+          let droppableBelow = elemBelow.closest('.droppable');
+
+          if (currentDroppable != droppableBelow) {
+            if (currentDroppable) {
+              leaveDroppable(currentDroppable);
+            }
+
+            currentDroppable = droppableBelow;
+
+            if (currentDroppable) {
+              enterDroppable(currentDroppable);
+              ball.remove();
+              console.log('Gool!');
+              document.querySelector('.border-gate').innerText = data.ball_title;
+            }
+          }
+        }
+      });
+
+
+
+
+      function enterDroppable(elem) {
+        elem.style.background = 'red';
+      }
+
+      function leaveDroppable(elem) {
+        elem.style.background = '';
+      }
+
+      ballista.ondragstart = function() {
+        return false;
+      };
+    </script>
+  </body>
+</html>
