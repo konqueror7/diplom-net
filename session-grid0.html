@@ -63,7 +63,6 @@
           <input type="time" name="start_time" value=""><br/>
           <label for="hall">Зал</label>
           <input type="text" name="hall" value=""><br/>
-          <input type="hidden" name="movie_id">
           <input type="submit" name="submit" value="Добавить">
         </form>
       </div>
@@ -72,40 +71,94 @@
     <script type="text/javascript">
       let currentDroppable = null;
       //Коллекция HTML-элементов с классом movie
-      // let movies = document.getElementsByClassName('movie');
-      const movies = document.querySelector('.movies');
-      movies.addEventListener('mousedown', (event) => {
-        let target = event.target;
-        if (target.classList.contains('movie')) {
-          let movieData = new Movie(target);
-          let movieDragg = target.cloneNode(true);
+      let movies = document.getElementsByClassName('movie');
+      // Назначение обработчика нажатия на левую клавишу мыши
+      // для каждого элемента из коллекции
+      for (let movie of movies) {
+        movie.addEventListener('mousedown', (event) => {
+          console.log(event);
+          //Создание копии элемента над которым произошло нажатие кнопки
+          const movieDragg = movie.cloneNode(true);
+
+          // movieDragg.style.marginLeft = 0;
+          // movieDragg.style.marginRight = 0;
+
+          // расстояние по оси X от курсора до левого края элемента
+
+
+          // let shiftX = window.pageXOffset;
+          // let shiftX = (movieDragg.getBoundingClientRect().right - movieDragg.getBoundingClientRect().left) / 2 + window.pageXOffset;
+          // let shiftX = event.clientX - movieDragg.getBoundingClientRect().left;
+
+          // расстояние по оси Y от курсора до верхнего края элемента
+          // let shiftY = window.pageYOffset ;
+          // let shiftY = (movieDragg.getBoundingClientRect().bottom - movieDragg.getBoundingClientRect().top) / 2 + window.pageYOffset ;
+          // let shiftY = event.clientY - movieDragg.getBoundingClientRect().top;
+
+          // назначение абсолютного положения копии элемента в html-структуре
           movieDragg.style.position = 'absolute';
+          // Вынос копии элемента на самый верх
           movieDragg.style.zIndex = 1000;
+          // Добавление копии элемента в HTML-структуру страницы
           document.body.append(movieDragg);
+          // console.log(movieDragg.getBoundingClientRect().right + ', ' +
+          // movieDragg.getBoundingClientRect().left + ', ' +
+          // window.pageXOffset);
 
+          // console.log(movieDragg.getBoundingClientRect().bottom + ', ' +
+          // movieDragg.getBoundingClientRect().top + ', ' +
+          // window.pageYOffset);
+          // Сдвиг копии элемента
           moveAt(event.pageX, event.pageY);
+          // moveAt(event.pageX, event.pageY);
 
+          // передвигаем копию элемента при событии mousemove
           document.addEventListener('mousemove', onMouseMove);
 
+          // отпустить копию элемента, удалить ненужные обработчики
           movieDragg.onmouseup = function() {
             document.removeEventListener('mousemove', onMouseMove);
             // return undefined;
             movieDragg.onmouseup = null;
-            movieDragg.remove();
+            // movieDragg.remove();
           };
+
+          // Функция переноса на координаты (pageX, pageY),
+          // дополнительно учитывая изначальный сдвиг относительно указателя мыши
           function moveAt(pageX, pageY) {
+            // movieDragg.style.left = pageX - 0 + 'px';
+            // movieDragg.style.top = pageY - 0 + 'px';
             //// Позиционирование копии элемента со сдвигом относительно указателя мыши
+            // movieDragg.style.left = pageX  - movieDragg.offsetWidth / 2 + 'px';
+            // movieDragg.style.top = pageY - movieDragg.offsetHeight / 2 + 'px';
+            // movieDragg.style.left = window.pageXOffset + 'px';
+            // movieDragg.style.top = window.pageYOffset + 'px';
+
             movieDragg.style.left = pageX - (movieDragg.getBoundingClientRect().right - movieDragg.getBoundingClientRect().left) / 2 + 'px';
+
+
             movieDragg.style.top = pageY - (movieDragg.getBoundingClientRect().bottom - movieDragg.getBoundingClientRect().top) / 2 + 'px';
+
+            // movieDragg.style.left = pageX - window.pageXOffset - (movieDragg.getBoundingClientRect().right - movieDragg.getBoundingClientRect().left) / 2 + 'px';
+            //
+            //
+            // movieDragg.style.top = pageY - window.pageYOffset - (movieDragg.getBoundingClientRect().bottom - movieDragg.getBoundingClientRect().top) / 2 + 'px';
+
+            // console.log(movieDragg.style.left + ', ' + movieDragg.style.top);
+            // movieDragg.style.left = pageX - shiftX + 'px';
+            // movieDragg.style.top = pageY - shiftY + 'px';
           }
 
           function onMouseMove(event) {
             moveAt(event.pageX, event.pageY);
-            // внутри обработчика события мыши прячем переносимый элемент
+            // внутри обработчика события мыши
+            // прячем переносимый элемент
             movieDragg.style.display = 'none';
+            // movieDragg.hidden = true;
             // elemBelow - возможная цель переноса
             let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
             movieDragg.style.display = 'block';
+            // movieDragg.hidden = false;
 
             // событие mousemove может произойти и когда указатель за пределами окна
             // (элемент перетащили за пределы экрана)
@@ -115,6 +168,7 @@
               return;
             }
             // потенциальные цели переноса помечены классом 'seances' (может быть и другая логика)
+            // let droppableBelow = elemBelow.querySelector('.seances-hall');
             let droppableBelow = elemBelow.closest('.seances');
 
             if (currentDroppable != droppableBelow) {
@@ -131,136 +185,28 @@
               currentDroppable = droppableBelow;
 
               if (currentDroppable) {
-                enterDroppable();
+                enterDroppable(currentDroppable);
                 movieDragg.remove();
                 console.log('Gool!');
+                // document.querySelector('.border-gate').innerText = data.ball_title;
               }
-
             }
-
           }
+        });
 
-          function enterDroppable() {
-            // elem.style.backgroundColor = 'red';
-            document.querySelector('.popup').classList.add('active');
-            document.forms.add_movie.elements.name.value = movieData.name;
-            document.forms.add_movie.elements.movie_id.value = movieData.movieId;
-            // console.log(document.forms.add_movie.elements.name.value);
-
-          }
-          function leaveDroppable(elem) {
-            elem.style.backgroundColor = '';
-          }
-
+        function enterDroppable(elem) {
+          elem.style.backgroundColor = 'red';
+          document.querySelector('.popup').classList.add('active');
         }
-          //Отключение обработчиков браузера
-          target.ondragstart = function() {
-            return false;
-          };
 
-
-      });
-
-      const addMovie = document.forms.add_movie;
-      addMovie.addEventListener('submit', () => {
-        event.preventDefault();
-        const formData = new FormData(addMovie);
-        console.log(formData.get('name'));
-        document.querySelector('.popup').classList.remove('active');
-      });
-
-      // // Назначение обработчика нажатия на левую клавишу мыши
-      // // для каждого элемента из коллекции
-      // for (let movie of movies) {
-      //   movie.addEventListener('mousedown', (event) => {
-      //     console.log(event);
-      //     //Создание копии элемента над которым произошло нажатие кнопки
-      //     const movieDragg = movie.cloneNode(true);
-      //
-      //     // назначение абсолютного положения копии элемента в html-структуре
-      //     movieDragg.style.position = 'absolute';
-      //     // Вынос копии элемента на самый верх
-      //     movieDragg.style.zIndex = 1000;
-      //     // Добавление копии элемента в HTML-структуру страницы
-      //     document.body.append(movieDragg);
-      //
-      //     // Сдвиг копии элемента
-      //     moveAt(event.pageX, event.pageY);
-      //     // moveAt(event.pageX, event.pageY);
-      //
-      //     // передвигаем копию элемента при событии mousemove
-      //     document.addEventListener('mousemove', onMouseMove);
-      //
-      //     // отпустить копию элемента, удалить ненужные обработчики
-      //     movieDragg.onmouseup = function() {
-      //       document.removeEventListener('mousemove', onMouseMove);
-      //       movieDragg.onmouseup = null;
-      //     };
-      //
-      //     // Функция переноса на координаты (pageX, pageY),
-      //     // дополнительно учитывая изначальный сдвиг относительно указателя мыши
-      //     function moveAt(pageX, pageY) {
-      //       //// Позиционирование копии элемента со сдвигом относительно указателя мыши
-      //
-      //       movieDragg.style.left = pageX - (movieDragg.getBoundingClientRect().right - movieDragg.getBoundingClientRect().left) / 2 + 'px';
-      //
-      //       movieDragg.style.top = pageY - (movieDragg.getBoundingClientRect().bottom - movieDragg.getBoundingClientRect().top) / 2 + 'px';
-      //     }
-      //
-      //     function onMouseMove(event) {
-      //       moveAt(event.pageX, event.pageY);
-      //       // внутри обработчика события мыши прячем переносимый элемент
-      //       movieDragg.style.display = 'none';
-      //       // elemBelow - возможная цель переноса
-      //       let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      //       movieDragg.style.display = 'block';
-      //
-      //       // событие mousemove может произойти и когда указатель за пределами окна
-      //       // (элемент перетащили за пределы экрана)
-      //       // если clientX/clientY за пределами окна, elementFromPoint вернёт null
-      //       if (!elemBelow) {
-      //         console.log('Attention!');
-      //         return;
-      //       }
-      //       // потенциальные цели переноса помечены классом 'seances' (может быть и другая логика)
-      //       let droppableBelow = elemBelow.closest('.seances');
-      //
-      //       if (currentDroppable != droppableBelow) {
-      //         // мы либо залетаем на цель, либо улетаем из неё
-      //         // внимание: оба значения могут быть null
-      //         // currentDroppable=null,
-      //         // если мы были не над droppable/seances до этого события (например, над пустым пространством)
-      //         // droppableBelow=null,
-      //         // если мы не над droppable/seances именно сейчас, во время этого события
-      //         if (currentDroppable) {
-      //           leaveDroppable(currentDroppable);
-      //         }
-      //
-      //         currentDroppable = droppableBelow;
-      //
-      //         if (currentDroppable) {
-      //           enterDroppable(currentDroppable);
-      //           movieDragg.remove();
-      //           console.log('Gool!');
-      //         }
-      //       }
-      //     }
-      //   });
-      //
-      //   function enterDroppable(elem) {
-      //     elem.style.backgroundColor = 'red';
-      //     document.querySelector('.popup').classList.add('active');
-      //   }
-      //
-      //   function leaveDroppable(elem) {
-      //     elem.style.backgroundColor = '';
-      //   }
-      //   //Отключение обработчиков браузера
-      //   movie.ondragstart = function() {
-      //     return false;
-      //   };
-      // }
-
+        function leaveDroppable(elem) {
+          elem.style.backgroundColor = '';
+        }
+        //Отключение обработчиков браузера
+        movie.ondragstart = function() {
+          return false;
+        };
+      }
       // movies.addEventListener('mousedown', (event) => {
       //   console.log(event);
       // });
