@@ -39,14 +39,14 @@
     </div>
 
     <div class="seances">
-      <div class="seances-hall">
+      <div class="seances-hall" data-id="o1">
         <h3 class="seances-title">Зал 1</h3>
         <div class="seances-timeline">
 
         </div>
       </div>
 
-      <div class="seances-hall">
+      <div class="seances-hall" data-id="o2">
         <h3 class="seances-title">Зал 2</h3>
         <div class="seances-timeline">
 
@@ -62,7 +62,12 @@
           <label for="start_time">Время</label>
           <input type="time" name="start_time" value=""><br/>
           <label for="hall">Зал</label>
-          <input type="text" name="hall" value=""><br/>
+          <select name="hall" id="select_hall">
+            <option disabled selected value="o">Выбор зала</option>
+            <option value="o0"></option>
+          </select>
+          <br/>
+          <!-- <input type="text" name="hall" value=""><br/> -->
           <input type="hidden" name="movie_id">
           <input type="submit" name="submit" value="Добавить">
         </form>
@@ -72,7 +77,6 @@
     <script type="text/javascript">
       let currentDroppable = null;
       //Коллекция HTML-элементов с классом movie
-      // let movies = document.getElementsByClassName('movie');
       const movies = document.querySelector('.movies');
       movies.addEventListener('mousedown', (event) => {
         let target = event.target;
@@ -87,12 +91,14 @@
 
           document.addEventListener('mousemove', onMouseMove);
 
-          movieDragg.onmouseup = function() {
+          movieDragg.addEventListener('mouseup', (event) => {
+            event.preventDefault();
+            console.log(event);
             document.removeEventListener('mousemove', onMouseMove);
-            // return undefined;
-            movieDragg.onmouseup = null;
             movieDragg.remove();
-          };
+            movieDragg.onmouseup = null;
+          });
+
           function moveAt(pageX, pageY) {
             //// Позиционирование копии элемента со сдвигом относительно указателя мыши
             movieDragg.style.left = pageX - (movieDragg.getBoundingClientRect().right - movieDragg.getBoundingClientRect().left) / 2 + 'px';
@@ -124,14 +130,13 @@
               // если мы были не над droppable/seances до этого события (например, над пустым пространством)
               // droppableBelow=null,
               // если мы не над droppable/seances именно сейчас, во время этого события
-              if (currentDroppable) {
-                leaveDroppable(currentDroppable);
-              }
 
               currentDroppable = droppableBelow;
 
               if (currentDroppable) {
-                enterDroppable();
+                enterDroppable(currentDroppable);
+                document.removeEventListener('mousemove', onMouseMove);
+
                 movieDragg.remove();
                 console.log('Gool!');
               }
@@ -140,203 +145,47 @@
 
           }
 
-          function enterDroppable() {
-            // elem.style.backgroundColor = 'red';
-            document.querySelector('.popup').classList.add('active');
+          function enterDroppable(elem) {
             document.forms.add_movie.elements.name.value = movieData.name;
             document.forms.add_movie.elements.movie_id.value = movieData.movieId;
-            // console.log(document.forms.add_movie.elements.name.value);
-
+            document.querySelector('.popup').classList.add('active');
           }
-          function leaveDroppable(elem) {
-            elem.style.backgroundColor = '';
-          }
-
         }
           //Отключение обработчиков браузера
           target.ondragstart = function() {
             return false;
           };
-
-
       });
 
       const addMovie = document.forms.add_movie;
+      const hallsList = document.getElementsByClassName('seances-hall');
+      const selectHall = document.querySelector('#select_hall');
+      selectHall.innerHTML = '';
+      for (let hall of hallsList) {
+        selectHall.innerHTML += `<option value="${hall.dataset.id}">${hall.innerText}</option>`;
+      }
+      console.log(hallsList);
+      const dataSession = {};
       addMovie.addEventListener('submit', () => {
         event.preventDefault();
         const formData = new FormData(addMovie);
-        console.log(formData.get('name'));
+        const entries = formData.entries();
+        for (let item of entries) {
+          dataSession[`${item[0]}`] = `${item[1]}`;
+        }
+        console.log(dataSession);
+        for (let hall of hallsList) {
+          if (hall.dataset.id === dataSession['hall']) {
+            const sessionMovie = document.createElement('div');
+            sessionMovie.innerText = dataSession['name'];
+            hall.querySelector('.seances-timeline').insertAdjacentElement('afterBegin', sessionMovie);
+          }
+        }
         document.querySelector('.popup').classList.remove('active');
+        console.log(formData.get('name') + ', ' + formData.get('movie_id') );
       });
 
-      // // Назначение обработчика нажатия на левую клавишу мыши
-      // // для каждого элемента из коллекции
-      // for (let movie of movies) {
-      //   movie.addEventListener('mousedown', (event) => {
-      //     console.log(event);
-      //     //Создание копии элемента над которым произошло нажатие кнопки
-      //     const movieDragg = movie.cloneNode(true);
-      //
-      //     // назначение абсолютного положения копии элемента в html-структуре
-      //     movieDragg.style.position = 'absolute';
-      //     // Вынос копии элемента на самый верх
-      //     movieDragg.style.zIndex = 1000;
-      //     // Добавление копии элемента в HTML-структуру страницы
-      //     document.body.append(movieDragg);
-      //
-      //     // Сдвиг копии элемента
-      //     moveAt(event.pageX, event.pageY);
-      //     // moveAt(event.pageX, event.pageY);
-      //
-      //     // передвигаем копию элемента при событии mousemove
-      //     document.addEventListener('mousemove', onMouseMove);
-      //
-      //     // отпустить копию элемента, удалить ненужные обработчики
-      //     movieDragg.onmouseup = function() {
-      //       document.removeEventListener('mousemove', onMouseMove);
-      //       movieDragg.onmouseup = null;
-      //     };
-      //
-      //     // Функция переноса на координаты (pageX, pageY),
-      //     // дополнительно учитывая изначальный сдвиг относительно указателя мыши
-      //     function moveAt(pageX, pageY) {
-      //       //// Позиционирование копии элемента со сдвигом относительно указателя мыши
-      //
-      //       movieDragg.style.left = pageX - (movieDragg.getBoundingClientRect().right - movieDragg.getBoundingClientRect().left) / 2 + 'px';
-      //
-      //       movieDragg.style.top = pageY - (movieDragg.getBoundingClientRect().bottom - movieDragg.getBoundingClientRect().top) / 2 + 'px';
-      //     }
-      //
-      //     function onMouseMove(event) {
-      //       moveAt(event.pageX, event.pageY);
-      //       // внутри обработчика события мыши прячем переносимый элемент
-      //       movieDragg.style.display = 'none';
-      //       // elemBelow - возможная цель переноса
-      //       let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      //       movieDragg.style.display = 'block';
-      //
-      //       // событие mousemove может произойти и когда указатель за пределами окна
-      //       // (элемент перетащили за пределы экрана)
-      //       // если clientX/clientY за пределами окна, elementFromPoint вернёт null
-      //       if (!elemBelow) {
-      //         console.log('Attention!');
-      //         return;
-      //       }
-      //       // потенциальные цели переноса помечены классом 'seances' (может быть и другая логика)
-      //       let droppableBelow = elemBelow.closest('.seances');
-      //
-      //       if (currentDroppable != droppableBelow) {
-      //         // мы либо залетаем на цель, либо улетаем из неё
-      //         // внимание: оба значения могут быть null
-      //         // currentDroppable=null,
-      //         // если мы были не над droppable/seances до этого события (например, над пустым пространством)
-      //         // droppableBelow=null,
-      //         // если мы не над droppable/seances именно сейчас, во время этого события
-      //         if (currentDroppable) {
-      //           leaveDroppable(currentDroppable);
-      //         }
-      //
-      //         currentDroppable = droppableBelow;
-      //
-      //         if (currentDroppable) {
-      //           enterDroppable(currentDroppable);
-      //           movieDragg.remove();
-      //           console.log('Gool!');
-      //         }
-      //       }
-      //     }
-      //   });
-      //
-      //   function enterDroppable(elem) {
-      //     elem.style.backgroundColor = 'red';
-      //     document.querySelector('.popup').classList.add('active');
-      //   }
-      //
-      //   function leaveDroppable(elem) {
-      //     elem.style.backgroundColor = '';
-      //   }
-      //   //Отключение обработчиков браузера
-      //   movie.ondragstart = function() {
-      //     return false;
-      //   };
-      // }
 
-      // movies.addEventListener('mousedown', (event) => {
-      //   console.log(event);
-      // });
-      // let currentDroppable = null;
-      // const movies = document.querySelector('.movies');
-      // console.log(movies);
-      // movies.addEventListener('mousedown', (event) => {
-      //   console.log(event);
-      //   let target = event.target;
-      //   if (target.classList.contains('movie')) {
-      //     // let movieDragg = new Movie(target);
-      //     // console.log(movieDragg.name + ' - ' + movieDragg.duration + ', ' + movieDragg.movieId);
-      //     const draggMovie = target.cloneNode();
-      //     console.log(target.clientX + ' ' + target.clientY);
-      //     let shiftX = target.clientX - draggMovie.getBoundingClientRect().left;
-      //     let shiftY = target.clientY - draggMovie.getBoundingClientRect().top;
-      //     draggMovie.style.position = 'absolute';
-      //     draggMovie.style.zIndex = 1000;
-      //     document.body.append(draggMovie);
-      //
-      //     moveAt(event.pageX, event.pageY);
-      //
-      //     document.addEventListener('mousemove', onMouseMove);
-      //
-      //     draggMovie.onmouseup = function() {
-      //       document.removeEventListener('mousemove', onMouseMove);
-      //       draggMovie.onmouseup = null;
-      //     };
-      //
-      //     function moveAt(pageX, pageY) {
-      //       draggMovie.style.left = pageX - shiftX + 'px';
-      //       draggMovie.style.top = pageY - shiftY + 'px';
-      //     }
-      //
-      //     function onMouseMove(target) {
-      //       moveAt(event.pageX, event.pageY);
-      //       draggMovie.hidden = true;
-      //       let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      //       draggMovie.hidden = false;
-      //
-      //       if (!elemBelow) return;
-      //
-      //       let droppableBelow = elemBelow.closest('.seances');
-      //
-      //       if (currentDroppable != droppableBelow) {
-      //         if (currentDroppable) {
-      //           leaveDroppable(currentDroppable);
-      //         }
-      //
-      //         currentDroppable = droppableBelow;
-      //
-      //         if (currentDroppable) {
-      //           enterDroppable(currentDroppable);
-      //           draggMovie.remove();
-      //           // console.log('Gool!');
-      //           // document.querySelector('.border-gate').innerText = data.ball_title;
-      //         }
-      //
-      //       }
-      //
-      //     }
-      //   }
-      //
-      // });
-      //
-      // function enterDroppable(elem) {
-      //   elem.style.background = 'red';
-      // }
-      //
-      // function leaveDroppable(elem) {
-      //   elem.style.background = '';
-      // }
-      //
-      // movies.ondragstart = function() {
-      //   return false;
-      // };
 
 
       class Movie {
