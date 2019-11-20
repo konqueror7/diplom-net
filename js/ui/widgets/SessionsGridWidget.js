@@ -125,8 +125,18 @@ class SessionsGridWidget {
         if (err || !response ) {
           return undefined;
         }
-        this.clear();
-        this.render(response.movies);
+        this.clearMovies();
+        this.renderMovies(response.movies);
+        // console.log(response);
+      });
+
+      Hall.list({name: '.+'}, (err, response) => {
+        if (err || !response ) {
+          return undefined;
+        }
+        console.log(response.halls);
+        this.clearHalls();
+        this.renderHalls(response.halls);
         // console.log(response);
       });
     } else if (!User.current()) {
@@ -134,18 +144,29 @@ class SessionsGridWidget {
     }
   }
 
-  render( movies ) {
+  renderMovies( movies ) {
     for (var key in movies) {
-      this.renderItem(key, movies[key]);
+      this.renderMoviesItem(key, movies[key]);
     }
   }
 
-  clear() {
+  renderHalls( halls ) {
+    for (var key in halls) {
+      this.renderHallItem(key, halls[key]);
+    }
+  }
+
+  clearMovies() {
     const deletableMovies = this.element.querySelector('.conf-step__movies');
     deletableMovies.innerHTML = '';
   }
 
-  renderItem( key, movie ) {
+  clearHalls() {
+    const deletableHalls = this.element.querySelector('.conf-step__seances');
+    deletableHalls.innerHTML = '';
+  }
+
+  renderMoviesItem( key, movie ) {
     // console.log(hall);
     const moviesList = this.element.querySelector('.conf-step__movies');
     let {
@@ -154,10 +175,20 @@ class SessionsGridWidget {
       duration
     } = movie,
     id = key;
-    moviesList.innerHTML += this.getHalltHTML({id, name, poster, duration});
+    moviesList.innerHTML += this.getMovieHTML({id, name, poster, duration});
   }
 
-  getHalltHTML(item) {
+  renderHallItem( key, hall ) {
+    // console.log(hall);
+    const hallsList = this.element.querySelector('.conf-step__seances');
+    let {
+      name
+    } = hall,
+    id = key;
+    hallsList.innerHTML += this.getHallHTML({id, name});
+  }
+
+  getMovieHTML(item) {
     return `
     <div class="conf-step__movie" data-id="${item.id}">
       <img class="conf-step__movie-poster" alt="poster" src="/posters/${item.poster}">
@@ -165,5 +196,24 @@ class SessionsGridWidget {
       <p class="conf-step__movie-duration">${item.duration} минут</p>
     </div>
     `;
+  }
+
+  getHallHTML(item) {
+    return `
+      <div class="conf-step__seances-hall" data-id="${item.id}">
+        <h3 class="conf-step__seances-title">${item.name}</h3>
+        <div class="conf-step__seances-timeline">
+        </div>
+      </div>
+    `;
+  }
+
+  static addSession(data) {
+    console.log(this.element);
+    this.renderSession(data.hall);
+  }
+
+  static renderSession(item) {
+    console.log(item);
   }
 }

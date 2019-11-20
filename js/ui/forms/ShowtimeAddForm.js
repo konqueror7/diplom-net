@@ -31,4 +31,9 @@ class ShowtimeAddForm extends AsyncForm {
         }
     });
   }
+
+  onSubmit(options) {
+    SessionsGridWidget.addSession(options.data);
+    Admin.getModal('add_showtime').close();
+  }
 }

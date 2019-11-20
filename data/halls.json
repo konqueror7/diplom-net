@@ -137,15 +137,6 @@
             "vip_price": 0,
             "std_price": 0
         },
-        "o3": {
-            "name": "Hall #300",
-            "rows": 8,
-            "places": 7,
-            "vip": [],
-            "dis": [],
-            "vip_price": 0,
-            "std_price": 0
-        },
         "o9": {
             "name": "Hall #900",
             "rows": 4,
@@ -172,33 +163,6 @@
             ],
             "vip_price": 60,
             "std_price": 25
-        },
-        "o10": {
-            "name": "Hall #666",
-            "rows": 8,
-            "places": 10,
-            "vip": [],
-            "dis": [],
-            "vip_price": 0,
-            "std_price": 0
-        },
-        "o19": {
-            "name": "Зал 3D",
-            "rows": 7,
-            "places": 8,
-            "vip": [],
-            "dis": [],
-            "vip_price": 0,
-            "std_price": 0
-        },
-        "o20": {
-            "name": "Зал 2D",
-            "rows": 4,
-            "places": 10,
-            "vip": [],
-            "dis": [],
-            "vip_price": 70,
-            "std_price": 35
         },
         "o28": {
             "name": "Зал 11D",
@@ -258,15 +222,6 @@
             ],
             "vip_price": 60,
             "std_price": 10
-        },
-        "o31": {
-            "name": "Зал 34D",
-            "rows": 3,
-            "places": 4,
-            "vip": [],
-            "dis": [],
-            "vip_price": 200,
-            "std_price": 100
         }
     }
 }
