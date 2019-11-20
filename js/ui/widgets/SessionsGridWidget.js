@@ -102,6 +102,7 @@ class SessionsGridWidget {
           // document.forms.add_movie.elements.name.value = filmData.name;
           // document.forms.add_movie.elements.movie_id.value = filmData.movieId;
           // document.querySelector('.popup').classList.add('active');
+          Admin.getForm('add_showtime').renderFilmName(filmData);
           Admin.getModal('add_showtime').open();
         }
 

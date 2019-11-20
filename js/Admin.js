@@ -66,7 +66,7 @@ class Admin {
   static update() {
     this.updateWidgets();
     // this.updatePages();
-    // this.updateForms();
+    this.updateForms();
   }
 
   static updateWidgets() {
@@ -76,9 +76,8 @@ class Admin {
     this.getWidget( 'sessions_grid_config' ).update();
   }
 
-  // static updateForms() {
-    // this.getForm( 'createIncome' ).update();
-    // this.getForm( 'createExpense' ).update();
-  // }
+  static updateForms() {
+    this.getForm( 'add_showtime' ).update();
+  }
 
 }

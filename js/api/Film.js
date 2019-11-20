@@ -15,6 +15,6 @@ class Film {
     return this.element.querySelector('.conf-step__movie-duration').innerText;
   }
   getMovieId() {
-    return this.element.dataset.movieId;
+    return this.element.dataset.id;
   }
 }
