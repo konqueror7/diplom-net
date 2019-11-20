@@ -59,6 +59,7 @@
         <form class="" action="" method="post" name="add_movie">
           <label for="name">Фильм</label>
           <input type="text" name="name" value=""><br/>
+          <input type="hidden" name="movie_id" value=""><br/>
           <label for="start_time">Время</label>
           <input type="time" name="start_time" value=""><br/>
           <label for="hall">Зал</label>
@@ -80,9 +81,9 @@
       const movies = document.querySelector('.movies');
       movies.addEventListener('mousedown', (event) => {
         let target = event.target;
-        if (target.classList.contains('movie')) {
-          let movieData = new Movie(target);
-          let movieDragg = target.cloneNode(true);
+        if (target.classList.contains('movie') || target.closest('.movie')) {
+          let movieData = new Movie(target.closest('.movie'));
+          let movieDragg = target.closest('.movie').cloneNode(true);
           movieDragg.style.position = 'absolute';
           movieDragg.style.zIndex = 1000;
           document.body.append(movieDragg);
@@ -177,6 +178,7 @@
         for (let hall of hallsList) {
           if (hall.dataset.id === dataSession['hall']) {
             const sessionMovie = document.createElement('div');
+            sessionMovie.dataset.movieId = dataSession['movie_id'];
             sessionMovie.innerText = dataSession['name'];
             hall.querySelector('.seances-timeline').insertAdjacentElement('afterBegin', sessionMovie);
           }

@@ -22,80 +22,100 @@ class SessionsGridWidget {
     });
 
     const moviesCollection = this.element.querySelector('.conf-step__movies');
+    let currentDroppable = null;
     moviesCollection.addEventListener('mousedown', (event) => {
-      event.preventDefault();
-      // dragObject = this;
-      // let target = event.target;
-      // if (target.classList.contains('conf-step__movie')) {
-      //   console.log('Drag-n-drop!');
-      //   target.style.position = 'absolute';
-      //   target.style.zIndex = 1000;
-      //   target.cloneNode();
-      //   document.body.append(target);
-      // }
-      // if (target.closest('.conf-step__movie')) {
-      //   console.log('Drag-n-drop!');
-      //   target.parentElement.style.position = 'absolute';
-      //   target.parentElement.style.zIndex = 1000;
-      //   target.parentElement.cloneNode();
-      //   document.body.append(target.parentElement);
-      // }
-      // if (target.classList.contains('conf-step__movie') || target.closest('.conf-step__movie')) {
-        // console.log('Drag-n-drop!');
-        // target.style.position = 'absolute';
-        // target.style.zIndex = 1000;
-        // target.cloneNode();
-        // document.body.append(target);
-      // }
+      let target = event.target;
+      if (target.classList.contains('conf-step__movie') || target.closest('.conf-step__movie')) {
+        let filmData = new Film(target.closest('.conf-step__movie'));
+        let filmDragg = target.closest('.conf-step__movie').cloneNode(true);
+        filmDragg.style.position = 'absolute';
+        filmDragg.style.zIndex = 1000;
+        document.body.append(filmDragg);
 
-      // moveAt(event.pageX, event.pageY);
-      //
-      // function moveAt(pageX, pageY) {
-      //   target.style.left = pageX - target.offsetWidth / 2 + 'px';
-      //   target.style.top = pageY - target.offsetHeight / 2 + 'px';
-      // }
-      // function onMouseMove(event) {
-      // moveAt(event.pageX, event.pageY);
-      // }
-      // document.addEventListener('mousemove', onMouseMove);
-      // target.onmouseup = function() {
-      // document.removeEventListener('mousemove', onMouseMove);
-      // target.onmouseup = null;
-      // };
-      // console.log(target);
-      // if (target.closest('.conf-step__movie')) {
-      // // if (target.classList.contains('conf-step__movie')) {
-      //   // Admin.getModal('add_movie').open();
-      //   console.log('Yes!');
-      //   target.parentElement.style.position = 'absolute';
-      //   target.parentElement.style.zIndex = 1000;
-      //   document.body.append(target.parentElement);
-      //   moveAt(event.pageX, event.pageY);
-      //
-      //   // передвинуть мяч под координаты курсора
-      //   // и сдвинуть на половину ширины/высоты для центрирования
-      //   function moveAt(pageX, pageY) {
-      //     target.parentElement.style.left = pageX - target.parentElement.offsetWidth / 2 + 'px';
-      //     target.parentElement.style.top = pageY - target.parentElement.offsetHeight / 2 + 'px';
-      //   }
-      //
-      //   function onMouseMove(event) {
-      //     moveAt(event.pageX, event.pageY);
-      //   }
-      //   // (3) перемещать по экрану
-      //   document.addEventListener('mousemove', onMouseMove);
-      //
-      //   // (4) положить мяч, удалить более ненужные обработчики событий
-      //   target.parentElement.onmouseup = function() {
-      //     document.removeEventListener('mousemove', onMouseMove);
-      //     target.parentElement.onmouseup = null;
-      //   };
-      // }
+        moveAt(event.pageX, event.pageY);
+
+        // document.addEventListener('mousemove', onMouseMove);
+        this.element.addEventListener('mousemove', onMouseMove);
+        console.log(this.element);
+
+        filmDragg.addEventListener('mouseup', (event) => {
+          event.preventDefault();
+          console.log(event);
+          // document.removeEventListener('mousemove', onMouseMove);
+          this.element.removeEventListener('mousemove', onMouseMove);
+          filmDragg.remove();
+          filmDragg.onmouseup = null;
+        });
+
+        function moveAt(pageX, pageY) {
+          //// Позиционирование копии элемента со сдвигом относительно указателя мыши
+          filmDragg.style.left = pageX - (filmDragg.getBoundingClientRect().right - filmDragg.getBoundingClientRect().left) / 2 + 'px';
+          filmDragg.style.top = pageY - (filmDragg.getBoundingClientRect().bottom - filmDragg.getBoundingClientRect().top) / 2 + 'px';
+        }
+
+        function onMouseMove(event) {
+          // console.log(this);
+          moveAt(event.pageX, event.pageY);
+          // внутри обработчика события мыши прячем переносимый элемент
+          filmDragg.style.display = 'none';
+          // elemBelow - возможная цель переноса
+          let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+          filmDragg.style.display = 'block';
+
+          // событие mousemove может произойти и когда указатель за пределами окна
+          // (элемент перетащили за пределы экрана)
+          // если clientX/clientY за пределами окна, elementFromPoint вернёт null
+          if (!elemBelow) {
+            console.log('Attention!');
+            return;
+          }
+          // потенциальные цели переноса помечены классом 'seances' (может быть и другая логика)
+          let droppableBelow = elemBelow.closest('.conf-step__seances');
+
+          if (currentDroppable != droppableBelow) {
+            // мы либо залетаем на цель, либо улетаем из неё
+            // внимание: оба значения могут быть null
+            // currentDroppable=null,
+            // если мы были не над droppable/seances до этого события (например, над пустым пространством)
+            // droppableBelow=null,
+            // если мы не над droppable/seances именно сейчас, во время этого события
+
+            currentDroppable = droppableBelow;
+
+            if (currentDroppable) {
+              // console.log(this.element);
+              enterDroppable(this);
+              // Admin.getModal('add_showtime').open();
+              // document.removeEventListener('mousemove', onMouseMove);
+              filmDragg.remove();
+              console.log('Gool!');
+            }
+
+          }
+
+        }
+
+        function enterDroppable(element) {
+          // console.log(element);
+          element.removeEventListener('mousemove', onMouseMove);
+          // this.element.removeEventListener('mousemove', onMouseMove);
+          // document.forms.add_movie.elements.name.value = filmData.name;
+          // document.forms.add_movie.elements.movie_id.value = filmData.movieId;
+          // document.querySelector('.popup').classList.add('active');
+          Admin.getModal('add_showtime').open();
+        }
+
+      }
+
+
+        //Отключение обработчиков браузера
+        target.ondragstart = function() {
+          return false;
+        };
     });
 
-    // if (target.classList.contains('conf-step__movie')) {
-    //   console.log('Drag-n-drop!');
-    // }
+
+
   }
 
   update() {

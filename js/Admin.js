@@ -24,7 +24,8 @@ class Admin {
     this.modals = {
       add_hall: new Modal(document.querySelector('#modal-add-hall')),
       delete_hall: new Modal(document.querySelector('#modal-delete-hall')),
-      add_movie: new Modal(document.querySelector('#modal-movie-add'))
+      add_movie: new Modal(document.querySelector('#modal-movie-add')),
+      add_showtime: new Modal(document.querySelector('#modal-showtime-add'))
     };
   }
 
@@ -33,7 +34,8 @@ class Admin {
       add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       config_hall: new HallConfigForm(document.querySelector('#config-hall-form')),
       config_price: new PriceConfigForm(document.querySelector('#config-price-form')),
-      add_movie: new MovieAddForm(document.querySelector('#add-movie-form'))
+      add_movie: new MovieAddForm(document.querySelector('#add-movie-form')),
+      add_showtime: new ShowtimeAddForm(document.querySelector('#add-showtime-form'))
       // add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       // delete_hall: new HallDeleteForm(document.querySelector('#delete-hall-form'))
     };
