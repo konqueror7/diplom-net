@@ -208,12 +208,12 @@ class SessionsGridWidget {
     `;
   }
 
-  static addSession(data) {
-    console.log(this.element);
-    this.renderSession(data.hall);
-  }
-
-  static renderSession(item) {
-    console.log(item);
-  }
+  // static addSession(data) {
+  //   console.log(this.element);
+  //   this.renderSession(data.hall);
+  // }
+  //
+  // static renderSession(item) {
+  //   console.log(item);
+  // }
 }
