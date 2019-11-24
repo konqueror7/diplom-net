@@ -212,7 +212,10 @@
           </div>
         </div>
 
+        <form action="config_session" method="post" accept-charset="utf-8" id="add-sessions-form"></form>
+
         <div class="conf-step__seances">
+
           <div class="conf-step__seances-hall">
             <h3 class="conf-step__seances-title">Зал 1</h3>
             <div class="conf-step__seances-timeline">
@@ -230,6 +233,7 @@
               </div>
             </div>
           </div>
+
           <div class="conf-step__seances-hall">
             <h3 class="conf-step__seances-title">Зал 2</h3>
             <div class="conf-step__seances-timeline">
@@ -243,13 +247,16 @@
               </div>
             </div>
           </div>
+
         </div>
 
         <fieldset class="conf-step__buttons text-center">
-          <button class="conf-step__button conf-step__button-regular">Отмена</button>
-          <input type="submit" value="Сохранить" class="conf-step__button conf-step__button-accent">
+          <button class="conf-step__button conf-step__button-regular" form="add-sessions-form">Отмена</button>
+          <input type="submit" value="Сохранить" class="conf-step__button conf-step__button-accent" form="add-sessions-form">
         </fieldset>
+
       </div>
+
     </section>
 
     <section class="conf-step">
@@ -373,7 +380,9 @@
 
         </div>
         <div class="popup__wrapper">
+
           <form action="add_showtime" method="post" accept-charset="utf-8" id="add-showtime-form">
+
             <label class="conf-step__label conf-step__label-fullsize" for="hall">
               Название зала
               <select class="conf-step__input" name="hall" required>
@@ -391,6 +400,7 @@
               <input class="conf-step__input" type="text" placeholder="Например, &laquo;Идиот&raquo;" name="name" required>
             </label>
               <input class="conf-step__input" type="hidden" name="film_id" required>
+              <input class="conf-step__input" type="hidden" name="duration_film" required>
 
             <div class="conf-step__buttons text-center">
               <input type="submit" value="Добавить" class="conf-step__button conf-step__button-accent">
@@ -435,6 +445,7 @@
   <script src="/js/api/Hall.js"></script>
   <script src="/js/api/Movie.js"></script>
   <script src="/js/api/Film.js"></script>
+  <script src="/js/api/Session.js"></script>
   <script src="/js/Admin.js"></script>
   <script src="/js/ui/forms/AsyncForm.js"></script>
   <script src="/js/ui/forms/HallAddForm.js"></script>
@@ -443,6 +454,7 @@
   <script src="/js/ui/forms/HallConfigForm.js"></script>
   <script src="/js/ui/forms/PriceConfigForm.js"></script>
   <script src="/js/ui/forms/ShowtimeAddForm.js"></script>
+  <script src="/js/ui/forms/SessionsAddForm.js"></script>
   <script src="/js/ui/widgets/HallsWidget.js"></script>
   <script src="/js/ui/widgets/HallConfigWidget.js"></script>
   <script src="/js/ui/widgets/PriceConfigWidget.js"></script>

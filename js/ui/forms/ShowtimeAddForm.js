@@ -11,9 +11,11 @@ class ShowtimeAddForm extends AsyncForm {
   renderFilmName(filmData) {
     const filmNameInput = this.element.elements.name;
     const filmIdInput = this.element.elements.film_id;
+    const filmDurationInput = this.element.elements.duration_film;
     console.log(filmData);
     filmNameInput.value = filmData.name;
     filmIdInput.value = filmData.movieId;
+    filmDurationInput.value = filmData.duration;
   }
 
   renderHallsList() {
@@ -34,11 +36,25 @@ class ShowtimeAddForm extends AsyncForm {
 
   renderFilm(item) {
     return `
-    <div class="conf-step__seances-movie" data-id="${item.film_id}">
+    <div class="conf-step__seances-movie" data-id="${item.film_id}" data-duration="${item.duration_film}" style="width: ${this.renderDuration(item.duration_film)}px; background-color: rgb(133, 255, 137); left: ${this.renderTimelinePos(item.start_time)}px;">
       <p class="conf-step__seances-movie-title">${item.name}</p>
       <p class="conf-step__seances-movie-start">${item.start_time}</p>
     </div>
     `;
+    // <div class="conf-step__seances-movie" data-id="${item.film_id}" style="${this.timelinePos(item.start_time)}">
+  }
+
+  //Вычисление значения свойства left из времени начала сеанса
+  renderTimelinePos(time) {
+    const timeStart = new Date(new Date().toDateString() + ' ' + time);
+    let timelinePos = timeStart.getHours() * 60 + timeStart.getMinutes();
+    // console.log(timeStart);
+    // console.log(timeStart.getHours());
+    return timelinePos * 0.5;
+  }
+  //Вычисление значения свойства width из продолжительности сеанса
+  renderDuration(duration) {
+    return duration*0.5;
   }
 
   onSubmit(options) {
@@ -60,6 +76,7 @@ class ShowtimeAddForm extends AsyncForm {
     // console.log(SessionsGridWidget.element);
     // SessionsGridWidget.addSession(options.data);
     // console.log(document.querySelector('.conf-step__seances-hall'));
+    this.element.reset();
     Admin.getModal('add_showtime').close();
     // return options.data;
   }

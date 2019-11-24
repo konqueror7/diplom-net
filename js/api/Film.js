@@ -12,7 +12,7 @@ class Film {
     return this.element.querySelector('.conf-step__movie-title').innerText;
   }
   getDuration() {
-    return this.element.querySelector('.conf-step__movie-duration').innerText;
+    return this.element.querySelector('.conf-step__movie-duration_value').innerText;
   }
   getMovieId() {
     return this.element.dataset.id;

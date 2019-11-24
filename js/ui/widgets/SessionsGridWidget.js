@@ -193,7 +193,7 @@ class SessionsGridWidget {
     <div class="conf-step__movie" data-id="${item.id}">
       <img class="conf-step__movie-poster" alt="poster" src="/posters/${item.poster}">
       <h3 class="conf-step__movie-title">${item.name}</h3>
-      <p class="conf-step__movie-duration">${item.duration} минут</p>
+      <p class="conf-step__movie-duration"><span class="conf-step__movie-duration_value">${item.duration}</span> минут</p>
     </div>
     `;
   }

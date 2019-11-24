@@ -1,1 +1,4 @@
-addEventListener -> data -> form -> formData -> timeline
+form="add-sessions-form"-> formData.append(sessionsArray)-> options.data -> Session.create(options.data[session])->session.php->sessions.json
+
+Продумать переход на fetch с XMLHttpRequest
+https://learn.javascript.ru/fetch

@@ -7,4 +7,4 @@ class Session extends Entity {
 
 }
 
-Hall.URL = '/session';
+Session.URL = '/session';
