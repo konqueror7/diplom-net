@@ -2,3 +2,7 @@ form="add-sessions-form"-> formData.append(sessionsArray)-> options.data -> Sess
 
 Продумать переход на fetch с XMLHttpRequest
 https://learn.javascript.ru/fetch
+
+Попробовать:
+новые сеансы - в отдельный массив объектов а потом сохранять в json.
+Удалять старые и еще несохраненные сеансы через модальную форму.

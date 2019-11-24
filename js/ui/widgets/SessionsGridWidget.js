@@ -108,7 +108,6 @@ class SessionsGridWidget {
 
       }
 
-
         //Отключение обработчиков браузера
         target.ondragstart = function() {
           return false;
@@ -153,13 +152,13 @@ class SessionsGridWidget {
   }
 
   renderMovies( movies ) {
-    for (var key in movies) {
+    for (let key in movies) {
       this.renderMoviesItem(key, movies[key]);
     }
   }
 
   renderHalls( halls ) {
-    for (var key in halls) {
+    for (let key in halls) {
       this.renderHallItem(key, halls[key]);
     }
   }
@@ -193,7 +192,11 @@ class SessionsGridWidget {
       name
     } = hall,
     id = key;
-    hallsList.innerHTML += this.getHallHTML({id, name});
+    hallsList.append(this.getHallHTML({id, name}));
+    // hallsList.insertAdjacentHTML('beforeend', this.getHallHTML({id, name}));
+    // hallsList.innerHTML += this.getHallHTML({id, name});
+    // const sessionsHall = hallsList.getElementsByClassName('conf-step__seances-hall');
+    // console.log(sessionsHall);
   }
 
   getMovieHTML(item) {
@@ -207,15 +210,45 @@ class SessionsGridWidget {
   }
 
   getHallHTML(item) {
-    return `
-      <div class="conf-step__seances-hall" data-id="${item.id}">
-        <h3 class="conf-step__seances-title">${item.name}</h3>
-        <div class="conf-step__seances-timeline">
-        </div>
-      </div>
-    `;
+    let hallItem = document.createElement('div');
+    hallItem.classList.add('conf-step__seances-hall');
+    hallItem.dataset.id = item.id;
+    hallItem.insertAdjacentHTML('beforeend', `<h3 class="conf-step__seances-title">${item.name}</h3>`);
+    hallItem.insertAdjacentHTML('beforeend', '<div class="conf-step__seances-timeline"></div>');
+    // console.log(hallItemTwo);
+    this.renderSessions(item.id, hallItem);
+    // let hallItem = `
+    //   <div class="conf-step__seances-hall" data-id="${item.id}">
+    //     <h3 class="conf-step__seances-title">${item.name}</h3>
+    //     <div class="conf-step__seances-timeline">
+    //     </div>
+    //   </div>
+    // `;
+    return hallItem;
   }
 
+  renderSessions(hall_id, hallItem) {
+    Session.list({hall_id: hall_id}, (err, response) => {
+      if (err || !response ) {
+        return undefined;
+      }
+      for (let session in response.sessions) {
+        hallItem.querySelector('.conf-step__seances-timeline').append(this.getSessionHTML(response.sessions[session], session));
+
+        // console.log(response.sessions[session]);
+      }
+      // console.log(hallItem);
+    });
+  }
+
+  getSessionHTML(item, session) {
+    let sessionItem = document.createElement('div');
+    sessionItem.dataset.sessionId = session;
+    sessionItem.classList.add('conf-step__seances-movie');
+    sessionItem.insertAdjacentHTML('beforeend', `<p class="conf-step__seances-movie-title">${item.film_id}</p>`);
+    sessionItem.insertAdjacentHTML('beforeend', `<p class="conf-step__seances-movie-start">${item.start_time}</p>`);
+    return sessionItem;
+  }
   // static addSession(data) {
   //   console.log(this.element);
   //   this.renderSession(data.hall);

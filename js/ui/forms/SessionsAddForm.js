@@ -8,10 +8,13 @@ class SessionsAddForm extends AsyncForm {
       let sessionData = {};
       console.log(sessionsArray[session].closest('.conf-step__seances-hall').dataset.id);
       console.log(sessionsArray[session].dataset.id);
-      sessionData.hall_id = sessionsArray[session].closest('.conf-step__seances-hall').dataset.id;
-      sessionData.film_id = sessionsArray[session].dataset.id;
-      sessionData.start_time = sessionsArray[session].querySelector('.conf-step__seances-movie-start').innerText;
-      data.push(sessionData);
+
+      if (!sessionsArray[session].dataset.sessionId) {
+        sessionData.hall_id = sessionsArray[session].closest('.conf-step__seances-hall').dataset.id;
+        sessionData.film_id = sessionsArray[session].dataset.id;
+        sessionData.start_time = sessionsArray[session].querySelector('.conf-step__seances-movie-start').innerText;
+        data.push(sessionData);
+      }
     }
 
     console.log(data);
