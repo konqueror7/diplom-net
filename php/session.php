@@ -15,6 +15,8 @@ if ($_POST['entity_method'] == 'CREATE') {
     // echo '<pre>';
     // var_dump($_POST);
     // echo '</pre>';
+    $createsSession = new Session();
+    $createsSession->addNewSession($_POST);
     $SessionData =  ['success' => true, 'message' => 'Запись о сеансе "'.
     $_POST['hall_id'] . ' ' . $_POST['film_id'] . ' ' .
     $_POST['start_time'] .'" создана!'];

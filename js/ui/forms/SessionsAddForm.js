@@ -29,6 +29,8 @@ class SessionsAddForm extends AsyncForm {
         }
       });
     }
+    this.element.reset();
+    Admin.update();
   }
 
 }

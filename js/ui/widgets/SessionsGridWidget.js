@@ -115,6 +115,14 @@ class SessionsGridWidget {
         };
     });
 
+    const resetButton = this.element.querySelector('.conf-step__button-regular');
+    resetButton.addEventListener('click', (event) => {
+      console.log('Reset!');
+      event.preventDefault();
+      this.element.querySelector('#add-sessions-form').reset();
+      this.update();
+      // document.forms['config-hall-form'].reset();
+    });
 
 
   }
