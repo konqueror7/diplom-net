@@ -27,6 +27,13 @@ class SessionsDeleteForm extends AsyncForm {
   onSubmit(options) {
     if (this.target.dataset.sessionId) {
       console.log(this.target.dataset.sessionId);
+      Session.remove(this.target.dataset.sessionId, options.data, (err, response) => {
+        if (response && response.success === true) {
+          Admin.getModal('delete_hall').close();
+          this.element.reset();
+          Admin.update();
+        }
+      });
     }
     this.target.remove();
     this.element.reset();

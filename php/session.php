@@ -47,3 +47,16 @@ if ($_POST['entity_method'] == 'CREATE') {
     $_POST['start_time'] .'" создана!'];
     echo json_encode($SessionData);
 }
+
+if ($_POST['entity_method'] == 'REMOVEID') {
+    $sessionGet = $sessions->newQuery()->byguid($_POST['remove_id'])->getObjs(false);
+    if (count($sessionGet) > 0) {
+        $removesSession = new Session($_POST['remove_id']);
+        $removesSession->delete();
+        $sessionData = ['success' => true, 'message' => 'Данные о сеансе с ID = "'.$_POST['remove_id'].' '.'" удалены!'];
+        echo json_encode($sessionData);
+    } else {
+        $noData = ['success' => false, 'error' => 'Нет записи о сеансе с таким ID = '.$_POST['remove_id'].'. Удалять нечего!'];
+        echo json_encode($noData);
+    }
+}

@@ -18,25 +18,10 @@
             "film_id": "o3",
             "start_time": "12:00"
         },
-        "o4": {
-            "hall_id": "o1",
-            "film_id": "o4",
-            "start_time": "15:00"
-        },
         "o5": {
             "hall_id": "o9",
             "film_id": "o3",
             "start_time": "15:00"
-        },
-        "o6": {
-            "hall_id": "o1",
-            "film_id": "o3",
-            "start_time": "05:00"
-        },
-        "o7": {
-            "hall_id": "o28",
-            "film_id": "o5",
-            "start_time": "03:00"
         }
     }
 }

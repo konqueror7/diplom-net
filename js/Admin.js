@@ -34,13 +34,13 @@ class Admin {
     this.forms = {
       add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       config_hall: new HallConfigForm(document.querySelector('#config-hall-form')),
+      delete_hall: new HallDeleteForm(document.querySelector('#delete-hall-form')),
       config_price: new PriceConfigForm(document.querySelector('#config-price-form')),
       add_movie: new MovieAddForm(document.querySelector('#add-movie-form')),
       add_showtime: new ShowtimeAddForm(document.querySelector('#add-showtime-form')),
       add_sessions: new SessionsAddForm(document.querySelector('#add-sessions-form')),
       delete_sessions: new SessionsDeleteForm(document.querySelector('#delete-sessions-form'))
       // add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
-      // delete_hall: new HallDeleteForm(document.querySelector('#delete-hall-form'))
     };
   }
 

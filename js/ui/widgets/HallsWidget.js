@@ -26,14 +26,27 @@ class HallsWidget {
 
       if (target.classList.contains('conf-step__button-trash')) {
         event.preventDefault();
-        // console.log(event.target.value);
+        console.log(event.target.closest('li').textContent);
+        const target = event.target;
         // console.log('Yes!');
+        Admin.getForm('delete_hall').renderHallName(target);
+        Admin.getForm('delete_hall').getTarget(target);
         Admin.getModal('delete_hall').open();
         // console.log(Admin.getModal('delete_hall'));
-        const removeHallForm = new HallDeleteForm(document.querySelector('#delete-hall-form'), event.target.value);
         // this.onSelectAccount(target.closest('.account'));
-        removeHallForm;
+        // removeHallForm;
       }
+
+      // if (target.classList.contains('conf-step__button-trash')) {
+      //   event.preventDefault();
+      //   console.log(event.target);
+      //   // console.log('Yes!');
+      //   Admin.getModal('delete_hall').open();
+      //   // console.log(Admin.getModal('delete_hall'));
+      //   const removeHallForm = new HallDeleteForm(document.querySelector('#delete-hall-form'), event.target.value);
+      //   // this.onSelectAccount(target.closest('.account'));
+      //   removeHallForm;
+      // }
     });
   }
 
