@@ -123,6 +123,20 @@ class SessionsGridWidget {
       // document.forms['config-hall-form'].reset();
     });
 
+    const deletableSessions = this.element.querySelector('.conf-step__seances');
+    console.log(deletableSessions);
+    deletableSessions.addEventListener('click', (event) => {
+      console.log(event.target.dataset.sessionId);
+      event.preventDefault();
+      let target = event.target;
+      if (target.classList.contains('conf-step__seances-movie') || target.closest('.conf-step__seances-movie')) {
+        console.log('Delete this!');
+        Admin.getForm('delete_sessions').renderFilmName(target.closest('.conf-step__seances-movie'));
+        Admin.getForm('delete_sessions').renderSessionId(target.closest('.conf-step__seances-movie'));
+        Admin.getForm('delete_sessions').getTarget(target.closest('.conf-step__seances-movie'));
+        Admin.getModal('delete_showtime').open();
+      }
+    });
 
   }
 
@@ -141,7 +155,7 @@ class SessionsGridWidget {
         if (err || !response ) {
           return undefined;
         }
-        console.log(response.halls);
+        // console.log(response.halls);
         this.clearHalls();
         this.renderHalls(response.halls);
         // console.log(response);
@@ -242,13 +256,42 @@ class SessionsGridWidget {
   }
 
   getSessionHTML(item, session) {
+    let movieData;
     let sessionItem = document.createElement('div');
     sessionItem.dataset.sessionId = session;
+    sessionItem.style.left = `${this.renderTimelinePos(item.start_time)}px`;
+    // sessionItem.style.left = this.renderTimelinePos(item.start_time);
     sessionItem.classList.add('conf-step__seances-movie');
-    sessionItem.insertAdjacentHTML('beforeend', `<p class="conf-step__seances-movie-title">${item.film_id}</p>`);
+    sessionItem.insertAdjacentHTML('beforeend', '<p class="conf-step__seances-movie-title"></p>');
     sessionItem.insertAdjacentHTML('beforeend', `<p class="conf-step__seances-movie-start">${item.start_time}</p>`);
+
+    Movie.get(item.film_id, {}, (err, response) => {
+      if (err || !response) {
+        return undefined;
+      }
+      movieData = response.movie;
+      // console.log(movieData);
+      sessionItem.querySelector('.conf-step__seances-movie-title').innerText += movieData.name;
+      sessionItem.style.width = `${this.renderDuration(movieData.duration)}px`;
+
+    });
+    sessionItem.style.backgroundColor = 'rgb(133, 255, 137)';
     return sessionItem;
   }
+
+  //Вычисление значения свойства left из времени начала сеанса
+  renderTimelinePos(time) {
+    const timeStart = new Date(new Date().toDateString() + ' ' + time);
+    let timelinePos = timeStart.getHours() * 60 + timeStart.getMinutes();
+    // console.log(timeStart);
+    // console.log(timeStart.getHours());
+    return timelinePos * 0.5;
+  }
+  //Вычисление значения свойства width из продолжительности сеанса
+  renderDuration(duration) {
+    return duration*0.5;
+  }
+
   // static addSession(data) {
   //   console.log(this.element);
   //   this.renderSession(data.hall);

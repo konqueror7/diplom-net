@@ -44,3 +44,23 @@ if ($_POST['entity_method'] == 'CREATE') {
     $MovieData =  ['success' => true, 'message' => 'Запись о фильме "'. $_POST['name'] .'" создана!'];
     echo json_encode($MovieData);
 }
+
+if ($_POST['entity_method'] == 'GETID') {
+    if (isset($_POST['get_id'])) {
+        $movieGet = $movies->newQuery()->byguid($_POST['get_id'])->getObjs(false);
+        if (count($movieGet) > 0) {
+            $movieGetKeys = array();
+            foreach ($movieGet[key($movieGet)] as $key => $value) {
+                $movieGetKeys[$key] = $value;
+            }
+        }
+        $movieData = ['success' => true, 'movie' => $movieGetKeys];
+        echo json_encode($movieData);
+        // print '<pre>';
+        // var_dump($hallget[key($hallget)]);
+        // print '</pre>';
+    } else {
+        $noData = ['success' => false, 'error' => 'Нет фильма с таким ID'];
+        echo json_encode($noData);
+    }
+}

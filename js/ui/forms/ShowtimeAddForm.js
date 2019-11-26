@@ -20,14 +20,14 @@ class ShowtimeAddForm extends AsyncForm {
 
   renderHallsList() {
     const selectHall = this.element.querySelector('select');
-    console.log(selectHall);
+    // console.log(selectHall);
     Hall.list({name: '.+'}, (err, response) => {
         if (err || !response.halls ) {
           return undefined;
         }
         selectHall.innerHTML = '';
         for (let optionSelect in response.halls) {
-          console.log(optionSelect);
+          // console.log(optionSelect);
           selectHall.innerHTML += `<option value="${optionSelect}">${response.halls[optionSelect].name}</option>`;
           // selectHall.innerHTML += `<option value="${optionSelect}">${optionSelect.name}</option>`;
         }
@@ -36,7 +36,7 @@ class ShowtimeAddForm extends AsyncForm {
 
   renderFilm(item) {
     return `
-    <div class="conf-step__seances-movie" data-id="${item.film_id}" data-duration="${item.duration_film}" style="width: ${this.renderDuration(item.duration_film)}px; background-color: rgb(133, 255, 137); left: ${this.renderTimelinePos(item.start_time)}px;">
+    <div class="conf-step__seances-movie" data-id="${item.film_id}" data-duration="${item.duration_film}" style="width: ${this.renderDuration(item.duration_film)}px; background-color: rgb(202, 255, 133); left: ${this.renderTimelinePos(item.start_time)}px;">
       <p class="conf-step__seances-movie-title">${item.name}</p>
       <p class="conf-step__seances-movie-start">${item.start_time}</p>
     </div>

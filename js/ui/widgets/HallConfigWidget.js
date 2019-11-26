@@ -20,7 +20,7 @@ class HallConfigWidget {
     // };
     // this.inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id')
   }
-  
+
   registerEvents() {
     // const checkedHall = this.element.getElementsByClassName('conf-step__radio');
     // console.log(inputUpdateId);
@@ -197,7 +197,7 @@ class HallConfigWidget {
   }
 
   renderPlaces(rows, places, vip, dis) {
-    console.log(rows + ' x ' + places);
+    // console.log(rows + ' x ' + places);
     const renderRows = this.element.querySelector('.conf-step__hall-wrapper');
     renderRows.innerHTML = '';
     for (let i = 1; i <= rows; i++) {
