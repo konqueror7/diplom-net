@@ -2,16 +2,19 @@ class Admin {
 
   static init() {
     this.element = document.querySelector( '.conf-steps' );
+    this.initUser();
     // this.initPages();
     this.initModals();
     this.initForms();
     this.initWidgets();
-    // this.initUser();
 
   }
 
   static initUser() {
-
+    console.log(localStorage);
+    if (!User.current()) {
+      document.location.href = 'http://diplom-net/client';
+    }
   }
 
   // static initPages() {

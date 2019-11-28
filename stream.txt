@@ -3,6 +3,20 @@ form="add-sessions-form"-> formData.append(sessionsArray)-> options.data -> Sess
 Продумать переход на fetch с XMLHttpRequest
 https://learn.javascript.ru/fetch
 
-Попробовать:
-новые сеансы - в отдельный массив объектов а потом сохранять в json.
-Удалять старые и еще несохраненные сеансы через модальную форму.
+
+Для авторизации применяется метод User.login(), он обращается к login.php, который
+1. стартует сессию session_start()
+2. Сверяет логин и пароль с информацией в users.json
+При получении response.success = true и response.user метод User.login():
+1. Запускает this.setCurrent(response.user), который создает в localStorage записи user и role.
+
+При входе на страницу /admin происходит
+1. Проверка открытия сессии session_start() и содержания в ней информации о текущем пользователе User.fetch()
+2. Если в сессии нет записи о текущем пользователе и у него role != 'admin', то редирект на страницу /client
+3. Если наоборот - происходит запуск всех js-скриптов страницы
+
+При нажатии кнопки "ОТКРЫТЬ ПРОДАЖУ БИЛЕТОВ":
+1. User.logout() должен обращаться к logout.php чтобы закрыть сессию с помощью session_destroy()
+получать response и при условии (response && response.success === true && response.user === undefined)
+удалять из localStorage запись user
+2. Переадресация на страницу /client

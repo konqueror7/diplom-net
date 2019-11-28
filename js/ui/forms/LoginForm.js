@@ -15,9 +15,14 @@ class LoginForm extends AsyncForm {
       if (response && response.success === true) {
         console.log(response.user['role']);
         this.element.reset();
-        if (response.user['role'] === 'admin') {
+        if (response.user) {
           document.location.href = 'http://diplom-net/admin';
         }
+
+        // if (response.user['role'] === 'admin') {
+        //   document.location.href = 'http://diplom-net/admin';
+        // }
+
         // } else if (response.user['role'] === 'user') {
         //   document.location.href = 'http://diplom-net/client';
         // }

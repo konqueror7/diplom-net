@@ -21,7 +21,7 @@ $users = new Users();
  * @var array - ассоциативный массив из двух ключей
  *
  */
-$noUserData = ['success' => false, 'user' => null];
+$noUserData = ['success' => false, 'user' => null, 'session_array' => null];
 
 
 /**
@@ -45,7 +45,8 @@ if (isset($_GET['mail']) && isset($_GET['pwd'])) {
         }
         // ключу 'success' присваивается значение true
         // ключу 'user' присваивается значение $findedUserKeys
-        $userData = ['success' => true, 'user' => $findedUserKeys];
+        $userData = ['success' => true, 'user' => $_SESSION['name'], 'session_array' => $_SESSION];
+        // $userData = ['success' => true, 'user' => $findedUserKeys, 'session_array' => $_SESSION];
         // вывод echo возвращается в качестве положительного ответа php-скрипта бэкенда
         // на XMLHttpRequest-запрос js-скрипта фронтэнда
         echo json_encode($userData);

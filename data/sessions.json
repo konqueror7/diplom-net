@@ -1,17 +1,12 @@
 {
     "dataTitle": {
-        "last_guid": 7
+        "last_guid": 8
     },
     "dataArray": {
         "o1": {
             "hall_id": "o1",
             "film_id": "o5",
             "start_time": "08:00"
-        },
-        "o2": {
-            "hall_id": "o2",
-            "film_id": "o3",
-            "start_time": "10:00"
         },
         "o3": {
             "hall_id": "o28",
@@ -22,6 +17,11 @@
             "hall_id": "o9",
             "film_id": "o3",
             "start_time": "15:00"
+        },
+        "o8": {
+            "hall_id": "o2",
+            "film_id": "o4",
+            "start_time": "05:00"
         }
     }
 }
