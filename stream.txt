@@ -20,3 +20,12 @@ https://learn.javascript.ru/fetch
 получать response и при условии (response && response.success === true && response.user === undefined)
 удалять из localStorage запись user
 2. Переадресация на страницу /client
+
+
+user.fetch() проверяет через php session_start() и содержимое $_SESSION
+если сессия закрыта и массив пуст - очистка страницы функцией clear(), localStorage и перенаправление на страницу /client
+иначе - инициализация страницы и ее виджетов.
+
+//Продумать размещение страницы client на той же странице
+
+Разместить форму авторизации на странице admin

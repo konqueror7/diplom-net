@@ -11,10 +11,20 @@ class Admin {
   }
 
   static initUser() {
-    console.log(localStorage);
-    if (!User.current()) {
-      document.location.href = 'http://diplom-net/client';
-    }
+    User.fetch({}, (err, response) => {
+      this.setState( User.current() ? 'user-logged' : 'init' )
+      // // console.log(response);
+      // if (response.user && response.user === User.current()) {
+      //   console.log('Yes!');
+      //   this.setState('user-logged');
+      // } else {
+      //   this.setState('init');
+      // }
+    });
+    // console.log(localStorage);
+    // if (!User.current()) {
+    //   document.location.href = 'http://diplom-net/client';
+    // }
   }
 
   // static initPages() {
@@ -84,6 +94,26 @@ class Admin {
 
   static updateForms() {
     this.getForm( 'add_showtime' ).update();
+  }
+
+  static setState( state ) {
+    if (this.state) {
+      this.element.classList.remove( `app_${this.state}` );
+    }
+    this.element.classList.add( `app_${state}` );
+    this.state = state;
+
+    if ( state === 'user-logged' ) {
+      this.update();
+    }
+    if ( state === 'init' ) {
+      this.clear();
+    }
+  }
+
+  static clear() {
+    this.element.innerHTML = '';
+    document.location.href = 'http://diplom-net/client';
   }
 
 }

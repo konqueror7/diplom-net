@@ -40,10 +40,13 @@ class User {
    * */
   static fetch( data, callback = f => f ) {
     const xhr = createRequest({
-      url: this.HOST + this.URL + '/current',
-      data: data,
+      url: this.HOST + this.URL,
+      data: Object.assign({ user_method: 'FETCH' }, data),
+      // url: this.HOST + this.URL + '/current',
+      // data: data,
       responseType: 'json',
-      method: 'GET',
+      method: 'POST',
+      // method: 'GET',
       callback: (err, response) => {
         if (response && response.success === true && response.user) {
           console.log(response);
@@ -52,7 +55,6 @@ class User {
           console.log(response);
           this.unsetCurrent();
         }
-
         callback.call(this, err, response);
       }
     });
@@ -67,11 +69,13 @@ class User {
    * */
   static login( data, callback = f => f ) {
     const xhr = createRequest({
+      url: this.HOST + this.URL,
+      data: Object.assign({ user_method: 'LOGIN' }, data),
       // url: '/php/login_submit.php',
-      url: this.HOST + this.URL + '/login_submit',
-      data: data,
+      // url: this.HOST + this.URL + '/login_submit',
+      // data: data,
       responseType: 'json',
-      method: 'GET',
+      method: 'POST',
       // method: 'POST',
       callback: (err, response) => {
         if (response && response.success === true && response.user) {
@@ -94,8 +98,10 @@ class User {
    * */
   static register( data, callback = f => f ) {
     const xhr = createRequest({
-      url: this.HOST + this.URL + '/register',
-      data: data,
+      url: this.HOST + this.URL,
+      data: Object.assign({ user_method: 'REGISTER' }, data),
+      // url: this.HOST + this.URL + '/register',
+      // data: data,
       responseType: 'json',
       method: 'POST',
       callback: (err, response) => {
@@ -116,8 +122,10 @@ class User {
    * */
   static logout( data, callback = f => f ) {
     const xhr = createRequest({
-      url: this.HOST + this.URL + '/logout',
-      data: data,
+      url: this.HOST + this.URL,
+      data: Object.assign({ user_method: 'LOGOUT' }, data),
+      // url: this.HOST + this.URL + '/logout',
+      // data: data,
       responseType: 'json',
       method: 'POST',
       callback: (err, response) => {
@@ -131,5 +139,5 @@ class User {
   }
 }
 
-User.URL = '';
+User.URL = '/user';
 User.HOST = Entity.HOST;
