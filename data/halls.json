@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 35
+        "last_guid": 36
     },
     "dataArray": {
         "o1": {
@@ -201,6 +201,29 @@
             ],
             "vip_price": 60,
             "std_price": 10
+        },
+        "o36": {
+            "name": "Зал для VIP-персон",
+            "rows": 1,
+            "places": 5,
+            "vip": [
+                [
+                    "1",
+                    "3"
+                ]
+            ],
+            "dis": [
+                [
+                    "1",
+                    "1"
+                ],
+                [
+                    "1",
+                    "5"
+                ]
+            ],
+            "vip_price": 0,
+            "std_price": 0
         }
     }
 }
