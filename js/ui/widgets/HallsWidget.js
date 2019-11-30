@@ -64,6 +64,7 @@ class HallsWidget {
       return undefined;
     }
   }
+  
   render( halls ) {
     // console.log(halls);
     for (var key in halls) {

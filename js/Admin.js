@@ -53,7 +53,8 @@ class Admin {
       add_movie: new MovieAddForm(document.querySelector('#add-movie-form')),
       add_showtime: new ShowtimeAddForm(document.querySelector('#add-showtime-form')),
       add_sessions: new SessionsAddForm(document.querySelector('#add-sessions-form')),
-      delete_sessions: new SessionsDeleteForm(document.querySelector('#delete-sessions-form'))
+      delete_sessions: new SessionsDeleteForm(document.querySelector('#delete-sessions-form')),
+      logout: new LogoutForm(document.querySelector('#logout-form'))
       // add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
     };
   }
@@ -65,7 +66,8 @@ class Admin {
       halls: new HallsWidget(document.querySelector('#halls')),
       hall_config: new HallConfigWidget(document.querySelector('#hall-config')),
       price_config: new PriceConfigWidget(document.querySelector('#price-config')),
-      sessions_grid_config: new SessionsGridWidget(document.querySelector('#sessions-grid-config'))
+      sessions_grid_config: new SessionsGridWidget(document.querySelector('#sessions-grid-config')),
+      logout: new LogoutWidget(document.querySelector('#logout'))
     };
   }
 

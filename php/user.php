@@ -69,3 +69,16 @@ if ($_POST['user_method'] == 'FETCH') {
         echo json_encode($noUserData);
     }
 }
+
+if ($_POST['user_method'] == 'LOGOUT') {
+    session_unset();
+    $userData = ['success' => true, 'user' => null];
+    echo json_encode($userData);
+    // if (isset($_SESSION['name'])) {
+    //     $userData = ['success' => true, 'user' => $_SESSION['name']];
+    //     echo json_encode($userData);
+    // } else {
+    //     $noUserData = ['success' => false, 'user' => null];
+    //     echo json_encode($noUserData);
+    // }
+}

@@ -28,7 +28,7 @@ if ($_POST['entity_method'] == 'LIST') {
               // на XMLHttpRequest-запрос js-скрипта фронтэнда
                 echo json_encode($sessionsData);
             } else {
-                $noData = ['success' => false, 'error' => 'Нет залов с такими параметрами'];
+                $noData = ['success' => false, 'error' => 'Нет сеансов с таким параметром'];
 
               // отрицательный ответ сервера, когда пользователь
               // не находится в массиве объектов из users.json

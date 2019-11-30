@@ -30,7 +30,7 @@ class LoginForm extends AsyncForm {
         //   document.location.href = 'http://diplom-net/client';
         // }
       } else {
-        // document.location.href = 'http://diplom-net/client';
+        return undefined;
       }
     });
   }
