@@ -7,14 +7,14 @@
             "name": "patronymos",
             "content": "patronymos",
             "poster": "picture_of_the_day_penguin_uv_1.jpg",
-            "duration": 0,
+            "duration": "120",
             "producer": ""
         },
         "o2": {
             "name": "Великолепный Гоша",
             "content": "Великолепный Гоша",
             "poster": "mIY2Q7ed00Y.jpg",
-            "duration": 0,
+            "duration": "100",
             "producer": ""
         },
         "o3": {

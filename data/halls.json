@@ -4,7 +4,7 @@
     },
     "dataArray": {
         "o1": {
-            "name": "Hall #1",
+            "name": "Зал 1",
             "rows": 6,
             "places": 5,
             "vip": [
@@ -34,7 +34,7 @@
             "std_price": 50
         },
         "o2": {
-            "name": "Hall #2",
+            "name": "Зал 2",
             "rows": 5,
             "places": 10,
             "vip": [
@@ -117,7 +117,7 @@
             "std_price": 0
         },
         "o9": {
-            "name": "Hall #900",
+            "name": "Зал 9",
             "rows": 4,
             "places": 8,
             "vip": [
@@ -144,7 +144,7 @@
             "std_price": 25
         },
         "o28": {
-            "name": "Зал 11D",
+            "name": "Зал 28",
             "rows": 4,
             "places": 5,
             "vip": [
@@ -203,7 +203,7 @@
             "std_price": 10
         },
         "o36": {
-            "name": "Зал для VIP-персон",
+            "name": "Зал 36",
             "rows": 1,
             "places": 5,
             "vip": [

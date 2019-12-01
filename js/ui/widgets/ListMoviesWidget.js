@@ -1,5 +1,6 @@
 class ListMoviesWidget {
-  constructor(element) {
+
+    constructor(element) {
     if (!element) {
       throw new Error('Элемент не существует');
     }
@@ -7,6 +8,7 @@ class ListMoviesWidget {
     this.registerEvents();
     this.update();
   }
+
 
   registerEvents() {
 
@@ -17,10 +19,13 @@ class ListMoviesWidget {
       if (err || !response ) {
         return undefined;
       }
+      // this.movies = response;
+      // console.log(this.movies);
       this.clearMovies();
       this.renderMovies(response.movies);
     });
   }
+
 
   clearMovies() {
     const deletableMovies = this.element;
@@ -95,12 +100,86 @@ class ListMoviesWidget {
       if (err || !response ) {
         return undefined;
       }
-      // this.clearMovies();
-      // this.renderMovies(response.movies);
-      console.log(response);
+
+      if (response.sessions) {
+        let filmSessionsList = Object.entries(response.sessions);
+        Hall.list({name: '.+'}, (err, response) => {
+          if (err || !response ) {
+            return undefined;
+          }
+          let hallsList = response.halls;
+          for (let hallKey in hallsList) {
+            let hallSessions = filmSessionsList.filter(session => session[1].hall_id === hallKey);
+            if (hallSessions.length > 0) {
+              let movieSeancesHall = document.createElement('div');
+              movieSeancesHall.classList.add('movie-seances__hall');
+              movieSeancesHall.insertAdjacentHTML('beforeend', `<h3 class="movie-seances__hall-title">${hallsList[hallKey].name}</h3>`);
+
+              let moviesHallList = document.createElement('ul');
+              moviesHallList.classList.add('movie-seances__list');
+              for (let filmSession of hallSessions) {
+                console.log(filmSession);
+                moviesHallList.insertAdjacentHTML('beforeend',
+                `
+                  <li class="movie-seances__time-block"><a class="movie-seances__time" href="#" data-session-id="${filmSession[0]}">${filmSession[1].start_time}</a></li>
+                `);
+              }
+              movieSeancesHall.append(moviesHallList);
+              movieSeances.append(movieSeancesHall);
+              // console.log(hallSessions);
+            }
+          }
+        });
+      }
+
+
     });
 
-    movieSeances.innerText = id;
+    // Hall.list({name: '.+'}, (err, response) => {
+    //   if (err || !response ) {
+    //     return undefined;
+    //   }
+    //   // console.log(hallsList);
+    //   let hallsList = response.halls;
+    //   for (let key in hallsList) {
+    //     console.log(key);
+    //     // let movieSeancesHall = document.createElement('div');
+    //     // movieSeancesHall.classList.add('movie-seances__hall');
+    //     // movieSeancesHall.dataset.hallId = key;
+    //     // movieSeancesHall.insertAdjacentHTML('beforeend', `<h3 class="movie-seances__hall-title">${response.halls[key].name}</h3>`);
+    //     // movieSeances.append(movieSeancesHall);
+    //     Session.list({hall_id: key}, (err, response) => {
+    //       if (err || !response) {
+    //         return undefined;
+    //       }
+    //       if (response.success && response.sessions) {
+    //         console.log('----');
+    //         for (let keySess in response.sessions) {
+    //           if (response.sessions[keySess].film_id === id) {
+    //             console.log(response.sessions[keySess].hall_id + ' - ' + response.sessions[keySess].film_id + ' - ' + response.sessions[keySess].start_time);
+    //           }
+    //         }
+    //       }
+    //       // console.log(response.sessions);
+    //     });
+    //   }
+    //   // console.log(response.halls);
+    //   // this.clearHalls();
+    //   // this.renderHalls(response.halls);
+    //   // console.log(response);
+    // });
+
+
+    // Session.list({film_id: id}, (err, response) => {
+    //   if (err || !response ) {
+    //     return undefined;
+    //   }
+    //   // this.clearMovies();
+    //   // this.renderMovies(response.movies);
+    //   console.log(response);
+    // });
+
+    // movieSeances.innerText = id;
     return movieSeances;
   }
 
