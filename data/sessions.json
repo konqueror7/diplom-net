@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 12
+        "last_guid": 30
     },
     "dataArray": {
         "o1": {
@@ -8,20 +8,10 @@
             "film_id": "o5",
             "start_time": "08:00"
         },
-        "o3": {
-            "hall_id": "o28",
-            "film_id": "o3",
-            "start_time": "12:00"
-        },
         "o5": {
             "hall_id": "o9",
             "film_id": "o3",
             "start_time": "15:00"
-        },
-        "o8": {
-            "hall_id": "o2",
-            "film_id": "o4",
-            "start_time": "05:00"
         },
         "o9": {
             "hall_id": "o35",
@@ -42,6 +32,86 @@
             "hall_id": "o1",
             "film_id": "o3",
             "start_time": "18:00"
+        },
+        "o13": {
+            "hall_id": "o1",
+            "film_id": "o2",
+            "start_time": "01:00"
+        },
+        "o14": {
+            "hall_id": "o1",
+            "film_id": "o2",
+            "start_time": "12:00"
+        },
+        "o15": {
+            "hall_id": "o1",
+            "film_id": "o2",
+            "start_time": "22:00"
+        },
+        "o16": {
+            "hall_id": "o2",
+            "film_id": "o5",
+            "start_time": "02:00"
+        },
+        "o17": {
+            "hall_id": "o2",
+            "film_id": "o1",
+            "start_time": "05:00"
+        },
+        "o18": {
+            "hall_id": "o2",
+            "film_id": "o5",
+            "start_time": "14:00"
+        },
+        "o19": {
+            "hall_id": "o2",
+            "film_id": "o2",
+            "start_time": "17:00"
+        },
+        "o20": {
+            "hall_id": "o2",
+            "film_id": "o1",
+            "start_time": "11:00"
+        },
+        "o21": {
+            "hall_id": "o2",
+            "film_id": "o5",
+            "start_time": "08:00"
+        },
+        "o22": {
+            "hall_id": "o2",
+            "film_id": "o2",
+            "start_time": "19:00"
+        },
+        "o23": {
+            "hall_id": "o2",
+            "film_id": "o2",
+            "start_time": "21:00"
+        },
+        "o24": {
+            "hall_id": "o9",
+            "film_id": "o3",
+            "start_time": "19:00"
+        },
+        "o25": {
+            "hall_id": "o9",
+            "film_id": "o5",
+            "start_time": "12:00"
+        },
+        "o26": {
+            "hall_id": "o9",
+            "film_id": "o5",
+            "start_time": "09:00"
+        },
+        "o28": {
+            "hall_id": "o9",
+            "film_id": "o5",
+            "start_time": "06:00"
+        },
+        "o30": {
+            "hall_id": "o9",
+            "film_id": "o3",
+            "start_time": "02:00"
         }
     }
 }

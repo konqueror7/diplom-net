@@ -103,13 +103,24 @@ class ListMoviesWidget {
 
       if (response.sessions) {
         let filmSessionsList = Object.entries(response.sessions);
+        let filmSessionsListSorted = filmSessionsList.sort(function(a, b) {
+          console.log(a[1].start_time + ' ' + b[1].start_time);
+          const timeStartA = new Date(new Date().toDateString() + ' ' + a[1].start_time);
+          const timeLinePosA = timeStartA.getHours() * 60 + timeStartA.getMinutes();
+          const timeStartB = new Date(new Date().toDateString() + ' ' + b[1].start_time);
+          const timeLinePosB = timeStartB.getHours() * 60 + timeStartB.getMinutes();
+          console.log(timeLinePosA + ' ' + timeLinePosB);
+          return timeLinePosA - timeLinePosB;
+        });
+        console.log(filmSessionsListSorted);
         Hall.list({name: '.+'}, (err, response) => {
           if (err || !response ) {
             return undefined;
           }
           let hallsList = response.halls;
           for (let hallKey in hallsList) {
-            let hallSessions = filmSessionsList.filter(session => session[1].hall_id === hallKey);
+            let hallSessions = filmSessionsListSorted.filter(session => session[1].hall_id === hallKey);
+            // let hallSessions = filmSessionsList.filter(session => session[1].hall_id === hallKey);
             if (hallSessions.length > 0) {
               let movieSeancesHall = document.createElement('div');
               movieSeancesHall.classList.add('movie-seances__hall');
