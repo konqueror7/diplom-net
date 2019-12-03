@@ -18,6 +18,28 @@
   </header>
 
 
+    <div class="login" id="user-auth">
+      <header class="login__header">
+        <h2 class="login__title">Авторизация</h2>
+      </header>
+      <div class="login__wrapper">
+        <form class="login__form" action="" method="post" accept-charset="utf-8" id="user-auth-form">
+          <label class="login__label" for="mail">
+            E-mail
+            <input class="login__input" type="mail" placeholder="example@domain.xyz" name="mail" required>
+          </label>
+          <label class="login__label" for="pwd">
+            Пароль
+            <input class="login__input" type="password" placeholder="" name="pwd" required>
+          </label>
+          <div class="text-center">
+            <input value="Авторизоваться" type="submit" class="login__button">
+          </div>
+        </form>
+      </div>
+    </div>
+
+
   <main class="conf-steps">
 
     <section class="conf-step" id="halls">
@@ -452,6 +474,7 @@
   <script src="/js/api/Session.js"></script>
   <script src="/js/Admin.js"></script>
   <script src="/js/ui/forms/AsyncForm.js"></script>
+  <script src="/js/ui/forms/LoginForm.js"></script>
   <script src="/js/ui/forms/LogoutForm.js"></script>
   <script src="/js/ui/forms/HallAddForm.js"></script>
   <script src="/js/ui/forms/MovieAddForm.js"></script>
@@ -461,6 +484,7 @@
   <script src="/js/ui/forms/ShowtimeAddForm.js"></script>
   <script src="/js/ui/forms/SessionsAddForm.js"></script>
   <script src="/js/ui/forms/SessionsDeleteForm.js"></script>
+  <script src="/js/ui/widgets/LoginWidget.js"></script>
   <script src="/js/ui/widgets/HallsWidget.js"></script>
   <script src="/js/ui/widgets/HallConfigWidget.js"></script>
   <script src="/js/ui/widgets/PriceConfigWidget.js"></script>

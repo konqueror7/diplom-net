@@ -1,6 +1,6 @@
 class ListMoviesWidget {
 
-    constructor(element) {
+  constructor(element) {
     if (!element) {
       throw new Error('Элемент не существует');
     }
@@ -9,9 +9,16 @@ class ListMoviesWidget {
     this.update();
   }
 
-
   registerEvents() {
-
+    const moviesCollection = this.element;
+    moviesCollection.addEventListener('click', () => {
+      let target = event.target;
+      if (target.classList.contains('movie-seances__time') || target.closest('.movie-seances__time')) {
+        localStorage.setItem('session_id', target.dataset.sessionId);
+        console.log(localStorage.getItem('session_id'));
+        document.location.href = 'http://diplom-net/client/hall';
+      }
+    });
   }
 
   update() {

@@ -17,13 +17,13 @@
     <span class="page-header__subtitle">Администраторррская</span>
   </header>
 
-  <aside class="auth-steps">
-    <section class="login">
+
+    <div class="login" id="user-auth">
       <header class="login__header">
         <h2 class="login__title">Авторизация</h2>
       </header>
       <div class="login__wrapper">
-        <form class="login__form" action="" method="post" accept-charset="utf-8">
+        <form class="login__form" action="" method="post" accept-charset="utf-8" id="user-auth-form">
           <label class="login__label" for="mail">
             E-mail
             <input class="login__input" type="mail" placeholder="example@domain.xyz" name="mail" required>
@@ -37,8 +37,8 @@
           </div>
         </form>
       </div>
-    </section>
-  </aside>
+    </div>
+
 
   <main class="conf-steps">
 
@@ -283,13 +283,14 @@
 
     </section>
 
-    <section class="conf-step">
+    <section class="conf-step" id="logout">
       <header class="conf-step__header conf-step__header_opened">
         <h2 class="conf-step__title">Открыть продажи</h2>
       </header>
       <div class="conf-step__wrapper text-center">
+        <form action="logout_form" method="post" accept-charset="utf-8" id="logout-form"></form>
         <p class="conf-step__paragraph">Всё готово, теперь можно:</p>
-        <button class="conf-step__button conf-step__button-accent">Открыть продажу билетов</button>
+        <button class="conf-step__button conf-step__button-accent" form="logout-form">Открыть продажу билетов</button>
       </div>
     </section>
 
@@ -473,6 +474,8 @@
   <script src="/js/api/Session.js"></script>
   <script src="/js/Admin.js"></script>
   <script src="/js/ui/forms/AsyncForm.js"></script>
+  <script src="/js/ui/forms/LoginForm.js"></script>
+  <script src="/js/ui/forms/LogoutForm.js"></script>
   <script src="/js/ui/forms/HallAddForm.js"></script>
   <script src="/js/ui/forms/MovieAddForm.js"></script>
   <script src="/js/ui/forms/HallDeleteForm.js"></script>
@@ -481,10 +484,12 @@
   <script src="/js/ui/forms/ShowtimeAddForm.js"></script>
   <script src="/js/ui/forms/SessionsAddForm.js"></script>
   <script src="/js/ui/forms/SessionsDeleteForm.js"></script>
+  <script src="/js/ui/widgets/LoginWidget.js"></script>
   <script src="/js/ui/widgets/HallsWidget.js"></script>
   <script src="/js/ui/widgets/HallConfigWidget.js"></script>
   <script src="/js/ui/widgets/PriceConfigWidget.js"></script>
   <script src="/js/ui/widgets/SessionsGridWidget.js"></script>
+  <script src="/js/ui/widgets/LogoutWidget.js"></script>
   <script src="/js/ui/Modal.js"></script>
   <script type="text/javascript">
     Admin.init();

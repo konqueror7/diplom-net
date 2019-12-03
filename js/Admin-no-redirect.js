@@ -13,7 +13,7 @@ class Admin {
   static initUser() {
     User.fetch({}, (err, response) => {
       this.setState( User.current() ? 'user-logged' : 'init' )
-      // // console.log(response);
+      // console.log(response);
       // if (response.user && response.user === User.current()) {
       //   console.log('Yes!');
       //   this.setState('user-logged');
@@ -45,6 +45,7 @@ class Admin {
 
   static initForms() {
     this.forms = {
+      user_auth: new LoginForm(document.querySelector('#user-auth-form')),
       add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       config_hall: new HallConfigForm(document.querySelector('#config-hall-form')),
       delete_hall: new HallDeleteForm(document.querySelector('#delete-hall-form')),
@@ -52,7 +53,8 @@ class Admin {
       add_movie: new MovieAddForm(document.querySelector('#add-movie-form')),
       add_showtime: new ShowtimeAddForm(document.querySelector('#add-showtime-form')),
       add_sessions: new SessionsAddForm(document.querySelector('#add-sessions-form')),
-      delete_sessions: new SessionsDeleteForm(document.querySelector('#delete-sessions-form'))
+      delete_sessions: new SessionsDeleteForm(document.querySelector('#delete-sessions-form')),
+      logout: new LogoutForm(document.querySelector('#logout-form'))
       // add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
     };
   }
@@ -60,10 +62,12 @@ class Admin {
   static initWidgets() {
     this.widgets = {
       // halls: new HallsWidget(document.querySelector('.conf-step__list'))
+      login: new LoginWidget(document.querySelector('#user-auth')),
       halls: new HallsWidget(document.querySelector('#halls')),
       hall_config: new HallConfigWidget(document.querySelector('#hall-config')),
       price_config: new PriceConfigWidget(document.querySelector('#price-config')),
-      sessions_grid_config: new SessionsGridWidget(document.querySelector('#sessions-grid-config'))
+      sessions_grid_config: new SessionsGridWidget(document.querySelector('#sessions-grid-config')),
+      logout: new LogoutWidget(document.querySelector('#logout'))
     };
   }
 
@@ -105,15 +109,17 @@ class Admin {
 
     if ( state === 'user-logged' ) {
       this.update();
+      this.getWidget('login').clear();
     }
-    if ( state === 'init' ) {
-      this.clear();
-    }
+    // if ( state === 'init' ) {
+    //   this.element.style.display = 'none';
+    //   // this.clear();
+    // }
   }
 
   static clear() {
     this.element.innerHTML = '';
-    document.location.href = 'http://diplom-net/client';
+    // document.location.href = 'http://diplom-net/client';
   }
 
 }

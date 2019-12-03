@@ -13,7 +13,7 @@ class Admin {
   static initUser() {
     User.fetch({}, (err, response) => {
       this.setState( User.current() ? 'user-logged' : 'init' )
-      // console.log(response);
+      // // console.log(response);
       // if (response.user && response.user === User.current()) {
       //   console.log('Yes!');
       //   this.setState('user-logged');
@@ -45,7 +45,6 @@ class Admin {
 
   static initForms() {
     this.forms = {
-      user_auth: new LoginForm(document.querySelector('#user-auth-form')),
       add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
       config_hall: new HallConfigForm(document.querySelector('#config-hall-form')),
       delete_hall: new HallDeleteForm(document.querySelector('#delete-hall-form')),
@@ -62,7 +61,6 @@ class Admin {
   static initWidgets() {
     this.widgets = {
       // halls: new HallsWidget(document.querySelector('.conf-step__list'))
-      login: new LoginWidget(document.querySelector('#user-auth')),
       halls: new HallsWidget(document.querySelector('#halls')),
       hall_config: new HallConfigWidget(document.querySelector('#hall-config')),
       price_config: new PriceConfigWidget(document.querySelector('#price-config')),
@@ -109,12 +107,11 @@ class Admin {
 
     if ( state === 'user-logged' ) {
       this.update();
-      this.getWidget('login').clear();
     }
-    // if ( state === 'init' ) {
-    //   this.element.style.display = 'none';
-    //   // this.clear();
-    // }
+    if ( state === 'init' ) {
+      this.clear();
+      document.location.href = 'http://diplom-net/client';
+    }
   }
 
   static clear() {
