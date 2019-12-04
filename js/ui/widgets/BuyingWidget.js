@@ -11,7 +11,16 @@ class BuyingWidget {
   }
 
   registerEvents() {
-
+    const buyingSchemeWrapper = this.element.querySelector('.buying-scheme__wrapper');
+    buyingSchemeWrapper.addEventListener('click', (event) => {
+      event.preventDefault();
+      // console.log(event.target);
+      let eventTarget = event.target;
+      if (eventTarget.classList.contains('buying-scheme__chair') && !eventTarget.classList.contains('buying-scheme__chair_disabled') && !eventTarget.classList.contains('buying-scheme__chair_taken')) {
+        console.log('Yes!');
+        eventTarget.classList.toggle('buying-scheme__chair_selected');
+      }
+    })
   }
 
   update() {

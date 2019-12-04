@@ -30,6 +30,7 @@
       </div>
       <div class="buying-scheme">
         <div class="buying-scheme__wrapper">
+          <form action="buying" method="post" accept-charset="utf-8" id="buying-form"></form>
           <div class="buying-scheme__row">
             <span class="buying-scheme__chair buying-scheme__chair_disabled"></span><span class="buying-scheme__chair buying-scheme__chair_disabled"></span>
             <span class="buying-scheme__chair buying-scheme__chair_disabled"></span><span class="buying-scheme__chair buying-scheme__chair_disabled"></span>
@@ -131,7 +132,7 @@
           </div>
         </div>
       </div>
-      <button class="acceptin-button" onclick="location.href='payment.html'" >Забронировать</button>
+      <button class="acceptin-button" onclick="location.href='payment.html'" form="buying-form" >Забронировать</button>
     </section>
   </main>
   <script src="/js/SessionHall.js"></script>
