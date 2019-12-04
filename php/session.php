@@ -60,3 +60,23 @@ if ($_POST['entity_method'] == 'REMOVEID') {
         echo json_encode($noData);
     }
 }
+
+if ($_POST['entity_method'] == 'GETID') {
+    if (isset($_POST['get_id'])) {
+        $sessionGet = $sessions->newQuery()->byguid($_POST['get_id'])->getObjs(false);
+        if (count($sessionGet) > 0) {
+            $sessionGetKeys = array();
+            foreach ($sessionGet[key($sessionGet)] as $key => $value) {
+                $sessionGetKeys[$key] = $value;
+            }
+        }
+        $sessionData = ['success' => true, 'session' => $sessionGetKeys];
+        echo json_encode($sessionData);
+        // print '<pre>';
+        // var_dump($hallget[key($hallget)]);
+        // print '</pre>';
+    } else {
+        $noData = ['success' => false, 'error' => 'Нет сеанса с таким ID'];
+        echo json_encode($noData);
+    }
+}
