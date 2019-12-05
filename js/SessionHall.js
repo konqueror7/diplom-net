@@ -15,7 +15,7 @@ class SessionHall {
 
   static initForms() {
     this.forms = {
-      buying_form: new BuyingForm(document.querySelector('#buying-form'));
+      buying_form: new BuyingForm(document.querySelector('#buying-form'))
     }
   }
 

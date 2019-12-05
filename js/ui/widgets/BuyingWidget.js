@@ -24,6 +24,9 @@ class BuyingWidget {
   }
 
   update() {
+
+    const buyingInfo = this.element.querySelector('.buying__info');
+    // console.log(buyingInfo);
     const buyingInfoTitle = this.element.querySelector('.buying__info-title');
     // console.log(buyingInfoTitle);
     const buyingInfoStart = this.element.querySelector('.buying__info-start');
@@ -43,6 +46,7 @@ class BuyingWidget {
         return undefined;
       }
       const sessionData = response.session;
+      buyingInfo.dataset.sessionId = localStorage.getItem('session_id');
       buyingInfoStart.innerText = sessionData.start_time;
       buyingInfoTitle.dataset.filmId = sessionData.film_id;
       buyingInfoHall.dataset.hallId = sessionData.hall_id;

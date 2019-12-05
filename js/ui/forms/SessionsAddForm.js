@@ -6,9 +6,8 @@ class SessionsAddForm extends AsyncForm {
     let data = [];
     for (let session in sessionsArray) {
       let sessionData = {};
-      console.log(sessionsArray[session].closest('.conf-step__seances-hall').dataset.id);
-      console.log(sessionsArray[session].dataset.id);
-
+      // console.log(sessionsArray[session].closest('.conf-step__seances-hall').dataset.id);
+      // console.log(sessionsArray[session].dataset.id);
       if (!sessionsArray[session].dataset.sessionId) {
         sessionData.hall_id = sessionsArray[session].closest('.conf-step__seances-hall').dataset.id;
         sessionData.film_id = sessionsArray[session].dataset.id;

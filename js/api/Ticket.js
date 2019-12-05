@@ -7,4 +7,4 @@ class Ticket extends Entity {
 
 }
 
-Hall.URL = '/ticket';
+Ticket.URL = '/ticket';
