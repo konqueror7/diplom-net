@@ -19,4 +19,16 @@ class SessionHall {
     }
   }
 
+  static getWidget( widgetName ) {
+    return this.widgets[ widgetName ];
+  }
+
+  static update() {
+    this.updateWidgets();
+  }
+
+  static updateWidgets() {
+    this.getWidget( 'buying_place' ).update();
+  }
+
 }

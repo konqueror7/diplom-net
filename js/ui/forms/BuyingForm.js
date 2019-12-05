@@ -32,11 +32,11 @@ class BuyingForm extends AsyncForm {
       places[namePlace]['place'] = buyingSchemeChairSelected[item].dataset.place;
       buyingSchemeChairSelected[item].classList.contains('buying-scheme__chair_vip') ? places[namePlace]['vip'] = true : places[namePlace]['vip'] = false;
 
-      if (buyingSchemeChairSelected[item].classList.contains('buying-scheme__chair_vip')) {
-        places[namePlace]['vip'] = true;
-      } else {
-        places[namePlace]['vip'] = false;
-      }
+      // if (buyingSchemeChairSelected[item].classList.contains('buying-scheme__chair_vip')) {
+      //   places[namePlace]['vip'] = true;
+      // } else {
+      //   places[namePlace]['vip'] = false;
+      // }
       // console.log(item.dataset.place);
       // console.log(item.classList);
       // data.places[] += {row: buyingSchemeChairSelected[item].dataset.row};
@@ -52,6 +52,9 @@ class BuyingForm extends AsyncForm {
     Ticket.create(options.data, (err, response) => {
       if (response && response.success === true) {
         console.log(response);
+        console.log(options.data.places);
+        SessionHall.update();
+        document.location.href = 'http://diplom-net/client/payment';
         // Admin.getModal('add_hall').close();
         // this.element.reset();
         // Admin.update();
