@@ -30,7 +30,11 @@
         <p class="ticket__info">Начало сеанса: <span class="ticket__details ticket__start">18:30</span></p>
         <p class="ticket__info">Стоимость: <span class="ticket__details ticket__cost">600</span> рублей</p>
 
-        <button class="acceptin-button" onclick="location.href='ticket.html'" >Получить код бронирования</button>
+        <form action="payment" method="post" accept-charset="utf-8" id="payment-form">
+        <button class="acceptin-button" onclick="" >Получить код бронирования</button>
+        </form>
+
+        <!-- <button class="acceptin-button" onclick="location.href='ticket.html'" >Получить код бронирования</button> -->
 
         <p class="ticket__hint">После оплаты билет будет доступен в этом окне, а также придёт вам на почту. Покажите QR-код нашему контроллёру у входа в зал.</p>
         <p class="ticket__hint">Приятного просмотра!</p>
@@ -38,9 +42,19 @@
     </section>
   </main>
 
+
+  <script src="/js/Payment.js"></script>
+  <script src="/js/api/createRequest.js"></script>
+  <script src="/js/api/Entity.js"></script>
+  <script src="/js/api/Hall.js"></script>
+  <script src="/js/api/Movie.js"></script>
+  <script src="/js/api/Session.js"></script>
+  <script src="/js/api/Ticket.js"></script>
+  <script src="/js/ui/widgets/PaymentWidget.js"></script>
+  <script src="/js/ui/forms/AsyncForm.js"></script>
+  <script src="/js/ui/forms/PaymentForm.js"></script>
   <script type="text/javascript">
-    // SessionHall.init();
-    console.log(localStorage.getItem('ticket_guid'));
+    Payment.init();
   </script>
 
 </body>

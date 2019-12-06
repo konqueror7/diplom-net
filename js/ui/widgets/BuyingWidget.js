@@ -5,7 +5,7 @@ class BuyingWidget {
       throw new Error('Элемент не существует');
     }
     this.element = element;
-    console.log(localStorage.getItem('session_id'));
+    // console.log(localStorage.getItem('session_id'));
     this.registerEvents();
     this.update();
   }

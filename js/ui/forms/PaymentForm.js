@@ -1,0 +1,3 @@
+class PaymentForm extends AsyncForm {
+
+}
