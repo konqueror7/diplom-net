@@ -1,0 +1,126 @@
+{
+    "dataTitle": {
+        "last_guid": 10
+    },
+    "dataArray": {
+        "o1": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": null,
+            "guid": "o1"
+        },
+        "o2": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": null,
+            "guid": "o2"
+        },
+        "o3": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": null,
+            "guid": "o3"
+        },
+        "o4": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "2",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": null,
+            "guid": "o4"
+        },
+        "o5": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": "o5",
+            "guid": "o5"
+        },
+        "o6": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": "o6",
+            "guid": "o6"
+        },
+        "o7": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": "o7",
+            "guid": "o7"
+        },
+        "o8": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": "o8",
+            "guid": "o8"
+        },
+        "o9": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "ticket_guid": "o9",
+            "guid": "o9"
+        },
+        "o10": {
+            "session_id": "o23",
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "guid": "o10"
+        }
+    }
+}

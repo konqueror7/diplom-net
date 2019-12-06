@@ -113,8 +113,8 @@
                     "10"
                 ]
             ],
-            "vip_price": 0,
-            "std_price": 0
+            "vip_price": 40,
+            "std_price": 20
         },
         "o9": {
             "name": "Зал 9",

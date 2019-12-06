@@ -65,18 +65,7 @@
         },
         "o6": {
             "session_id": "o23",
-            "places": {
-                "0": {
-                    "row": "2",
-                    "place": "6",
-                    "vip": true
-                },
-                "1": {
-                    "row": "2",
-                    "place": "7",
-                    "vip": true
-                }
-            }
+            "places": {}
         }
     }
 }

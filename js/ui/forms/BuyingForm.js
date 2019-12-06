@@ -53,7 +53,8 @@ class BuyingForm extends AsyncForm {
       if (response && response.success === true) {
         console.log(response);
         console.log(options.data.places);
-        SessionHall.update();
+        localStorage.setItem('ticket_guid', response.ticket);
+        // console.log(localStorage.getItem('ticket_guid'));
         document.location.href = 'http://diplom-net/client/payment';
         // Admin.getModal('add_hall').close();
         // this.element.reset();

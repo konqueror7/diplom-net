@@ -44,10 +44,14 @@ if ($_POST['entity_method'] == 'LIST') {
 
 if ($_POST['entity_method'] == 'CREATE') {
     $createsTicket = new Ticket();
-    $createsTicket->addNewTicket($_POST);
+    // $createsTicket->addNewTicket($_POST);
+    $ticket_guid = $createsTicket->addNewTicket($_POST);
     // $createsHall = new Hall();
     // $createsHall->addNewHall($_POST['name']);
-    $ticketData =  ['success' => true, 'message' => 'Запись о билете создана!'];
+    // $ticketData =  ['success' => true, 'message' => 'Запись о билете создана!'];
+    $ticketData =  ['success' => true, 'ticket' => $ticket_guid];
+    // $ticketData =  ['success' => true, 'ticket' => $createsTicket];
+    // $ticketData =  ['success' => true, 'ticket_guid' => $ticket_guid];
     // echo json_encode($hallData);
     echo json_encode($ticketData);
 }
