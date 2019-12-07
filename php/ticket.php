@@ -42,6 +42,26 @@ if ($_POST['entity_method'] == 'LIST') {
     }
 }
 
+if ($_POST['entity_method'] == 'GETID') {
+    if (isset($_POST['get_id'])) {
+        $ticketGet = $tickets->newQuery()->byguid($_POST['get_id'])->getObjs(false);
+        if (count($ticketGet) > 0) {
+            $ticketGetKeys = array();
+            foreach ($ticketGet[key($ticketGet)] as $key => $value) {
+                $ticketGetKeys[$key] = $value;
+            }
+        }
+        $ticketData = ['success' => true, 'ticket' => $ticketGetKeys];
+        echo json_encode($ticketData);
+        // print '<pre>';
+        // var_dump($ticketget[key($ticketget)]);
+        // print '</pre>';
+    } else {
+        $noData = ['success' => false, 'error' => 'Нет билета с таким ID'];
+        echo json_encode($noData);
+    }
+}
+
 if ($_POST['entity_method'] == 'CREATE') {
     $createsTicket = new Ticket();
     // $createsTicket->addNewTicket($_POST);

@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 6
+        "last_guid": 7
     },
     "dataArray": {
         "o1": {
@@ -65,7 +65,33 @@
         },
         "o6": {
             "session_id": "o23",
-            "places": {}
+            "places": {
+                "0": {
+                    "row": "3",
+                    "place": "4",
+                    "vip": true
+                },
+                "1": {
+                    "row": "3",
+                    "place": "5",
+                    "vip": true
+                }
+            }
+        },
+        "o7": {
+            "session_id": "o20",
+            "places": {
+                "0": {
+                    "row": "1",
+                    "place": "5",
+                    "vip": true
+                },
+                "1": {
+                    "row": "1",
+                    "place": "6",
+                    "vip": true
+                }
+            }
         }
     }
 }
