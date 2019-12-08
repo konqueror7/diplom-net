@@ -11,5 +11,7 @@ class Config extends Singleton
     const USER_ROLE = 'user';
     const GUEST_ROLE = 'guest';
     const POSTERS_DIRECTORY = '/posters';
+    const QRPNG_DIRECTORY = '/qrpng';
+    const PHPQRCODE_DIRECTORY = '/phpqrcode';
     // const TRANSLATION_LANG = ['ru', 'eng', 'de', 'fr', 'it', 'esp'];
 }

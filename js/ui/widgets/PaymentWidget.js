@@ -72,18 +72,20 @@ class PaymentWidget {
             return summ;
           }, 0);
           ticketCost.innerText = ticketPlacesCost;
-
+          ticketData.cost = ticketPlacesCost;
           ticketChairs.innerText = ticketPlaces.reduce(function(summString, place) {
             summString += `${place.place} (ряд ${place.row}) `;
             return summString;
           }, '');
+          ticketData.placesText = ticketChairs.innerText;
           // for (let i in ticketPlaces) {
           //   console.log(ticketPlaces[i]);
           // }
           // console.log(ticketPlacesCost);
           // console.log(ticketData);
           localStorage.setItem('ticket_data', JSON.stringify(ticketData));
-          console.log(JSON.parse(localStorage.getItem('ticket_data')));
+          console.log(localStorage.getItem('ticket_data'));
+          // console.log(JSON.parse(localStorage.getItem('ticket_data')));
         });
       });
     });

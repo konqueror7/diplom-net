@@ -9,6 +9,12 @@ require($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
  */
 require($_SERVER['DOCUMENT_ROOT'] . '/config/SystemConfig.php');
 
+/**
+* PHP QRCode library
+* @var [type]
+*/
+include($_SERVER['DOCUMENT_ROOT'] . Config::PHPQRCODE_DIRECTORY . '/' . 'qrlib.php');
+
 session_start();
 
 $ticketkeys = array("session_id", "places");
@@ -75,3 +81,20 @@ if ($_POST['entity_method'] == 'CREATE') {
     // echo json_encode($hallData);
     echo json_encode($ticketData);
 }
+
+if ($_POST['entity_method'] == 'UPDATEID') {
+    $ticketGet = $tickets->newQuery()->byguid($_POST['update_id'])->getObjs(false);
+    if (count($ticketGet) > 0) {
+        $ticketqrpng = $tickets->updateTicketFromPost($_POST);
+        $ticketData = ['success' => true, 'message' => 'Данные о билете с ID = "'.$_POST['update_id'].' '.'" обновлены!', 'qrpng' => $ticketqrpng];
+        echo json_encode($ticketData);
+    } else {
+        $noData = ['success' => false, 'error' => 'Нет записи о билете с таким ID'];
+        echo json_encode($noData);
+    }
+    // echo json_encode($_POST);
+}
+
+//
+// // outputs image directly into browser, as PNG stream
+// QRcode::png('O-la-la!', $_SERVER['DOCUMENT_ROOT'] . Config::QRPNG_DIRECTORY . '/' . 'filename.png');

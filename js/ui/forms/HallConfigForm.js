@@ -79,9 +79,9 @@ class HallConfigForm extends AsyncForm {
   }
 
   onSubmit( options ) {
-    // console.log(options.data);
     // console.log(this.element);
     Hall.update('', options.data, (err, response) => {
+      console.log(options.data);
     // Hall.update(this.update_id, options.data, (err, response) => {
       if (response && response.success === true) {
         // Admin.getModal('delete_hall').close();

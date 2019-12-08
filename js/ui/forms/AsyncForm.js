@@ -51,7 +51,7 @@ class AsyncForm {
     for (let item of entries) {
       data[`${item[0]}`] = `${item[1]}`;
     }
-    return data
+    return data;
   }
 
   onSubmit( options ) {

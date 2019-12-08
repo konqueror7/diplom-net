@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 7
+        "last_guid": 11
     },
     "dataArray": {
         "o1": {
@@ -64,34 +64,86 @@
             }
         },
         "o6": {
-            "session_id": "o23",
+            "session_id": "o1",
             "places": {
                 "0": {
-                    "row": "3",
-                    "place": "4",
-                    "vip": true
-                },
-                "1": {
-                    "row": "3",
-                    "place": "5",
+                    "row": "1",
+                    "place": "3",
                     "vip": true
                 }
-            }
+            },
+            "qrtext": "",
+            "qrimg": ""
         },
         "o7": {
+            "session_id": "o12",
+            "places": {
+                "0": {
+                    "row": "1",
+                    "place": "3",
+                    "vip": true
+                }
+            },
+            "qrtext": "",
+            "qrimg": ""
+        },
+        "o8": {
+            "session_id": "o12",
+            "places": {
+                "0": {
+                    "row": "1",
+                    "place": "4",
+                    "vip": true
+                }
+            },
+            "qrtext": "Фильм: Интерстеллар | Зал: Зал 1 | Места: 4 (ряд 1) | Начало 18:00 | Цена: 100 рублей",
+            "qrimg": ""
+        },
+        "o9": {
             "session_id": "o20",
             "places": {
                 "0": {
                     "row": "1",
-                    "place": "5",
+                    "place": "6",
                     "vip": true
                 },
                 "1": {
-                    "row": "1",
-                    "place": "6",
-                    "vip": true
+                    "row": "5",
+                    "place": "5",
+                    "vip": false
                 }
-            }
+            },
+            "qrtext": "Фильм: Патриот | Зал: Зал 2 | Места: 6 (ряд 1) 5 (ряд 5) | Начало 11:00 | Цена: 60 рублей",
+            "qrimg": ""
+        },
+        "o10": {
+            "session_id": "o20",
+            "places": {
+                "0": {
+                    "row": "2",
+                    "place": "8",
+                    "vip": false
+                }
+            },
+            "qrtext": "Фильм: Патриот | Зал: Зал 2 | Места: 8 (ряд 2) | Начало 11:00 | Цена: 20 рублей",
+            "qrimg": ""
+        },
+        "o11": {
+            "session_id": "o11",
+            "places": {
+                "0": {
+                    "row": "2",
+                    "place": "3",
+                    "vip": false
+                },
+                "1": {
+                    "row": "3",
+                    "place": "3",
+                    "vip": false
+                }
+            },
+            "qrtext": "Фильм: Интерстеллар | Зал: Зал 1 | Места: 3 (ряд 2) 3 (ряд 3) | Начало 04:00 | Цена: 100 рублей",
+            "qrimg": "b8867d848a329ef912d914ad00ceea05.png"
         }
     }
 }
