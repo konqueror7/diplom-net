@@ -19,7 +19,8 @@ class PaymentForm extends AsyncForm {
       console.log(JSON.parse(localStorage.getItem('ticket_data')));
       console.log(localStorage.getItem('ticket_guid'));
       // console.log(localStorage.getItem('qrpng'));
-      document.location.href = 'http://diplom-net/client/ticket';
+      document.location.href = Entity.HOST + '/client/ticket.html';
+      // document.location.href = 'http://diplom-net/client/ticket';
     });
   }
 }

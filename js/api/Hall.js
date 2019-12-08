@@ -7,4 +7,4 @@ class Hall extends Entity {
 
 }
 
-Hall.URL = '/hall';
+Hall.URL = '/php/hall.php';

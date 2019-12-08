@@ -7,4 +7,4 @@ class Movie extends Entity {
 
 }
 
-Movie.URL = '/movie';
+Movie.URL = '/php/movie.php';

@@ -70,3 +70,5 @@ class AsyncForm {
     });
   }
 }
+
+AsyncForm.HOST = Entity.HOST;

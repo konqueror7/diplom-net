@@ -13,7 +13,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/config/SystemConfig.php');
 * PHP QRCode library
 * @var [type]
 */
-include($_SERVER['DOCUMENT_ROOT'] . Config::PHPQRCODE_DIRECTORY . '/' . 'qrlib.php');
+include($_SERVER['DOCUMENT_ROOT'] . Config::PHPCODE_DIRECTORY . Config::PHPQRCODE_DIRECTORY . '/' . 'qrlib.php');
 
 session_start();
 

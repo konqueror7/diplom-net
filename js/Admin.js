@@ -110,7 +110,8 @@ class Admin {
     }
     if ( state === 'init' ) {
       this.clear();
-      document.location.href = 'http://diplom-net/client';
+      document.location.href = Entity.HOST + '/client';
+      // document.location.href = 'http://diplom-net/client';
     }
   }
 

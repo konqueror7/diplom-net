@@ -90,4 +90,7 @@ class Entity {
 }
 
 Entity.URL = '';
-Entity.HOST = 'http://diplom-net/php';
+Entity.HOST = 'http://diplom-net';
+// Entity.HOST = 'http://diplom-net/php';
+
+// Entity.HOST = 'http://diplom-net.000webhostapp.com';

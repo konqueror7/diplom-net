@@ -7,4 +7,4 @@ class Session extends Entity {
 
 }
 
-Session.URL = '/session';
+Session.URL = '/php/session.php';

@@ -7,4 +7,4 @@ class Ticket extends Entity {
 
 }
 
-Ticket.URL = '/ticket';
+Ticket.URL = '/php/ticket.php';

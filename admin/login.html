@@ -42,13 +42,14 @@
   </main>
 
   <script src="/js/accordeon.js"></script>
+  <script src="/js/Login.js"></script>
   <script src="/js/api/createRequest.js"></script>
   <script src="/js/api/Entity.js"></script>
   <script src="/js/api/User.js"></script>
   <script src="/js/ui/forms/AsyncForm.js"></script>
   <script src="/js/ui/forms/LoginForm.js"></script>
   <script text/javascript>
-
+    Login.init();
   /**
    * Создание объекта обработчика события ввода данных в форму класса 'login__form'
    * @type {LoginForm} - класс LoginForm управляет формой входа в портал наследуется от AsyncForm
@@ -57,11 +58,11 @@
    * @see AsyncForm - создает обработчик события отправки формы
    *
    */
-  const loginForm = new LoginForm(document.querySelector('.login__form'));
+  // const loginForm = new LoginForm(document.querySelector('.login__form'));
   /**
    * Использование объекта обработчика для отправки XMLHttpRequest-запроса в php-скрипт /php/login_submit.php
    */
-  loginForm;
+  // loginForm;
 
 
   // const login = new LoginForm(loginForm);

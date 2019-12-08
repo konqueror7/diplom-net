@@ -139,5 +139,5 @@ class User {
   }
 }
 
-User.URL = '/user';
+User.URL = '/php/user.php';
 User.HOST = Entity.HOST;

@@ -56,7 +56,9 @@ class BuyingForm extends AsyncForm {
         localStorage.setItem('ticket_guid', response.ticket);
         // console.log(localStorage.getItem('ticket_guid'));
         SessionHall.update();
-        document.location.href = 'http://diplom-net/client/payment';
+        document.location.href = Entity.HOST + '/client/payment.html';
+        // document.location.href = AsyncForm.HOST + '/client/payment';
+        // document.location.href = 'http://diplom-net/client/payment';
         // Admin.getModal('add_hall').close();
         // this.element.reset();
         // Admin.update();
