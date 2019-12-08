@@ -4,8 +4,8 @@ class Ticket extends DataRecordModel
 {
     public $session_id;
     public $places;
-    public $qrtext;
-    public $qrimg;
+    public $qrcode;
+    // public $qrimg;
     // public $ticket_guid;
     private $filename;
     private $guid;
@@ -42,8 +42,9 @@ class Ticket extends DataRecordModel
             $this->places = json_decode($post['places']);
         }
 
-        $this->qrtext = '';
-        $this->qrimg = '';
+        $this->qrcode = '';
+        // $this->qrtext = '';
+        // $this->qrimg = '';
 
         return $this->commit();
 

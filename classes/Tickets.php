@@ -21,14 +21,16 @@ class Tickets extends JsonDataArray
             $updTicket->places = $post['places'];
         }
 
-        if (isset($post['qrtext'])) {
-            $updTicket->qrtext = $post['qrtext'];
-            $mdname = md5($post['qrtext']) . '.png';
-            $qr_filename = $_SERVER['DOCUMENT_ROOT'] . Config::QRPNG_DIRECTORY . '/' . $mdname;
-            $updTicket->qrimg = $mdname;
+        if (isset($post['qrcode'])) {
+        // if (isset($post['qrtext'])) {
+            // $updTicket->qrtext = $post['qrtext'];
+            $mdname = md5($post['qrcode']) . '.png';
+            // $mdname = md5($post['qrtext']) . '.png';
+            $qrFilename = $_SERVER['DOCUMENT_ROOT'] . Config::QRPNG_DIRECTORY . '/' . $mdname;
+            $updTicket->qrcode = $mdname;
             $errorCorrectionLevel = 'H';
             $matrixPointSize = 7;
-            QRcode::png($post['qrtext'], $qr_filename, $errorCorrectionLevel, $matrixPointSize, 2);
+            QRcode::png($post['qrcode'], $qrFilename, $errorCorrectionLevel, $matrixPointSize, 2);
         }
 
         // if (isset($post['qrimg'])) {
@@ -38,6 +40,6 @@ class Tickets extends JsonDataArray
         $this->save();
 
         // return $updTicket;
-        return $updTicket->qrimg;
+        // return $updTicket->qrimg;
     }
 }

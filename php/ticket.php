@@ -85,8 +85,10 @@ if ($_POST['entity_method'] == 'CREATE') {
 if ($_POST['entity_method'] == 'UPDATEID') {
     $ticketGet = $tickets->newQuery()->byguid($_POST['update_id'])->getObjs(false);
     if (count($ticketGet) > 0) {
-        $ticketqrpng = $tickets->updateTicketFromPost($_POST);
-        $ticketData = ['success' => true, 'message' => 'Данные о билете с ID = "'.$_POST['update_id'].' '.'" обновлены!', 'qrpng' => $ticketqrpng];
+        $tickets->updateTicketFromPost($_POST);
+        // $ticketqrpng = $tickets->updateTicketFromPost($_POST);
+        $ticketData = ['success' => true, 'message' => 'Данные о билете с ID = "'.$_POST['update_id'].' '.'" обновлены!'];
+        // $ticketData = ['success' => true, 'message' => 'Данные о билете с ID = "'.$_POST['update_id'].' '.'" обновлены!', 'qrpng' => $ticketqrpng];
         echo json_encode($ticketData);
     } else {
         $noData = ['success' => false, 'error' => 'Нет записи о билете с таким ID'];

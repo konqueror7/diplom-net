@@ -1,149 +1,50 @@
 {
     "dataTitle": {
-        "last_guid": 11
+        "last_guid": 3
     },
     "dataArray": {
         "o1": {
-            "session_id": "o23",
+            "session_id": "o20",
             "places": {
                 "0": {
+                    "row": "1",
+                    "place": "6",
+                    "vip": true
+                },
+                "1": {
                     "row": "5",
-                    "place": "10",
+                    "place": "5",
                     "vip": false
                 }
-            }
+            },
+            "qrcode": "dd24916bfc01b6142380a20906654146.png"
         },
         "o2": {
-            "session_id": "o23",
+            "session_id": "o24",
             "places": {
                 "0": {
-                    "row": "3",
-                    "place": "6",
+                    "row": "1",
+                    "place": "8",
                     "vip": true
                 },
                 "1": {
-                    "row": "3",
-                    "place": "7",
-                    "vip": true
+                    "row": "4",
+                    "place": "4",
+                    "vip": false
                 }
-            }
+            },
+            "qrcode": "e0e60586c480b6a72df55296ebe06e10.png"
         },
         "o3": {
-            "session_id": "o23",
+            "session_id": "o5",
             "places": {
                 "0": {
                     "row": "1",
                     "place": "5",
-                    "vip": true
-                },
-                "1": {
-                    "row": "1",
-                    "place": "6",
-                    "vip": true
-                }
-            }
-        },
-        "o4": {
-            "session_id": "o23",
-            "places": {
-                "0": {
-                    "row": "3",
-                    "place": "8",
-                    "vip": false
-                }
-            }
-        },
-        "o5": {
-            "session_id": "o23",
-            "places": {
-                "0": {
-                    "row": "3",
-                    "place": "9",
-                    "vip": false
-                }
-            }
-        },
-        "o6": {
-            "session_id": "o1",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "3",
-                    "vip": true
-                }
-            },
-            "qrtext": "",
-            "qrimg": ""
-        },
-        "o7": {
-            "session_id": "o12",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "3",
-                    "vip": true
-                }
-            },
-            "qrtext": "",
-            "qrimg": ""
-        },
-        "o8": {
-            "session_id": "o12",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "4",
-                    "vip": true
-                }
-            },
-            "qrtext": "Фильм: Интерстеллар | Зал: Зал 1 | Места: 4 (ряд 1) | Начало 18:00 | Цена: 100 рублей",
-            "qrimg": ""
-        },
-        "o9": {
-            "session_id": "o20",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "6",
-                    "vip": true
-                },
-                "1": {
-                    "row": "5",
-                    "place": "5",
                     "vip": false
                 }
             },
-            "qrtext": "Фильм: Патриот | Зал: Зал 2 | Места: 6 (ряд 1) 5 (ряд 5) | Начало 11:00 | Цена: 60 рублей",
-            "qrimg": ""
-        },
-        "o10": {
-            "session_id": "o20",
-            "places": {
-                "0": {
-                    "row": "2",
-                    "place": "8",
-                    "vip": false
-                }
-            },
-            "qrtext": "Фильм: Патриот | Зал: Зал 2 | Места: 8 (ряд 2) | Начало 11:00 | Цена: 20 рублей",
-            "qrimg": ""
-        },
-        "o11": {
-            "session_id": "o11",
-            "places": {
-                "0": {
-                    "row": "2",
-                    "place": "3",
-                    "vip": false
-                },
-                "1": {
-                    "row": "3",
-                    "place": "3",
-                    "vip": false
-                }
-            },
-            "qrtext": "Фильм: Интерстеллар | Зал: Зал 1 | Места: 3 (ряд 2) 3 (ряд 3) | Начало 04:00 | Цена: 100 рублей",
-            "qrimg": "b8867d848a329ef912d914ad00ceea05.png"
+            "qrcode": "4472d409d433c7ad723d1c40aec6e29b.png"
         }
     }
 }
