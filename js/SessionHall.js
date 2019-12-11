@@ -19,6 +19,10 @@ class SessionHall {
     }
   }
 
+  static getForm( formName ) {
+    return this.forms[ formName ];
+  }
+  
   static getWidget( widgetName ) {
     return this.widgets[ widgetName ];
   }

@@ -1,12 +1,18 @@
 class BuyingForm extends AsyncForm {
 
   registerEvents() {
+    const submitButton = this.element.querySelector('.acceptin-button');
+    submitButton.addEventListener('click', (event) => {
+      console.log(event);
+      // event.preventDefault();
+    });
+
     this.element.addEventListener('submit', event => {
       console.log(event);
-      if (this.element.checkValidity() === false) {
-        this.element.reset();
-        return;
-      }
+      // if (this.element.checkValidity() === false) {
+      //   this.element.reset();
+      //   return;
+      // }
       // console.log(this.getData().places);
       // if (Object.keys(this.getData().places === {})) {
       //   alert('Выберите место!');
@@ -16,9 +22,30 @@ class BuyingForm extends AsyncForm {
       // else {
       // }
       event.preventDefault();
-      this.submit();
+      const formData = new FormData(this.element);
+      // const formDataEntries = Object.entries(formData);
+      console.log(formData.get('some_selected'));
+      if (formData.get('some_selected') != 'true') {
+        // alert('Выберите хотя бы одно место');
+        this.element.reset();
+        let buyingFormHintDel = this.element.querySelector('.buying__form-hint');
+        if (buyingFormHintDel) {
+          buyingFormHintDel.remove();
+        }
+        let buyingFormHintAdd = document.createElement('div');
+        buyingFormHintAdd.classList.add('buying__form-hint');
+        buyingFormHintAdd.innerHTML = '<p>Пожалуйста, выберите хотя бы одно место</p>';
+        this.element.insertAdjacentElement('afterbegin', buyingFormHintAdd);
+      } else {
+        this.submit();
+      }
       // console.log('Yes');
     });
+  }
+
+  placeSomeSelected() {
+    const someSelected = this.element.elements.some_selected;
+    someSelected.value = true;
   }
 
   getData() {
@@ -61,14 +88,13 @@ class BuyingForm extends AsyncForm {
 
   onSubmit( options ) {
     console.log(options.data);
-
-
     Ticket.create(options.data, (err, response) => {
       if (response && response.success === true) {
         console.log(response);
         localStorage.setItem('ticket_guid', response.ticket);
         // console.log(localStorage.getItem('ticket_guid'));
         SessionHall.update();
+
         document.location.href = Entity.HOST + '/client/payment.html';
 
         // document.location.href = AsyncForm.HOST + '/client/payment';

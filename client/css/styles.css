@@ -430,3 +430,12 @@ body {
     display: none;
   }
 }
+
+
+.buying__form-hint {
+  position: relative;
+  font-weight: 300;
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 3rem;
+}
