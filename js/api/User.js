@@ -42,11 +42,8 @@ class User {
     const xhr = createRequest({
       url: this.HOST + this.URL,
       data: Object.assign({ user_method: 'FETCH' }, data),
-      // url: this.HOST + this.URL + '/current',
-      // data: data,
       responseType: 'json',
       method: 'POST',
-      // method: 'GET',
       callback: (err, response) => {
         if (response && response.success === true && response.user) {
           console.log(response);
@@ -71,18 +68,13 @@ class User {
     const xhr = createRequest({
       url: this.HOST + this.URL,
       data: Object.assign({ user_method: 'LOGIN' }, data),
-      // url: '/php/login_submit.php',
-      // url: this.HOST + this.URL + '/login_submit',
-      // data: data,
       responseType: 'json',
       method: 'POST',
-      // method: 'POST',
       callback: (err, response) => {
         if (response && response.success === true && response.user) {
           this.setCurrent(response.user);
         } else if (response && response.success === false && response.user === null) {
           console.log(response);
-          //alert('Проверьте правильность ввода');
         }
         callback.call(this, err, response);
       }
@@ -100,8 +92,6 @@ class User {
     const xhr = createRequest({
       url: this.HOST + this.URL,
       data: Object.assign({ user_method: 'REGISTER' }, data),
-      // url: this.HOST + this.URL + '/register',
-      // data: data,
       responseType: 'json',
       method: 'POST',
       callback: (err, response) => {
@@ -124,8 +114,6 @@ class User {
     const xhr = createRequest({
       url: this.HOST + this.URL,
       data: Object.assign({ user_method: 'LOGOUT' }, data),
-      // url: this.HOST + this.URL + '/logout',
-      // data: data,
       responseType: 'json',
       method: 'POST',
       callback: (err, response) => {

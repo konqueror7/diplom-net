@@ -7,9 +7,17 @@ class BuyingForm extends AsyncForm {
         this.element.reset();
         return;
       }
+      // console.log(this.getData().places);
+      // if (Object.keys(this.getData().places === {})) {
+      //   alert('Выберите место!');
+      //   this.element.reset();
+      //   return;
+      // }
+      // else {
+      // }
       event.preventDefault();
-      // console.log('Yes');
       this.submit();
+      // console.log('Yes');
     });
   }
 
@@ -19,6 +27,7 @@ class BuyingForm extends AsyncForm {
     // console.log(buyingSchemeChairSelected);
     const data = {};
     data.session_id = localStorage.getItem('session_id');
+    // let places;
     let places = {};
     for (let item in buyingSchemeChairSelected) {
       // console.log(item);
@@ -42,21 +51,26 @@ class BuyingForm extends AsyncForm {
       // data.places[] += {row: buyingSchemeChairSelected[item].dataset.row};
       // data.places[] += {place: buyingSchemeChairSelected[item].dataset.place};
     }
+
     data.places = JSON.stringify(places);
+
     // data['session_id'] = localStorage.getItem('session_id');
     console.log(data);
     return data;
   }
 
   onSubmit( options ) {
+    console.log(options.data);
+
+
     Ticket.create(options.data, (err, response) => {
       if (response && response.success === true) {
         console.log(response);
-        console.log(options.data.places);
         localStorage.setItem('ticket_guid', response.ticket);
         // console.log(localStorage.getItem('ticket_guid'));
         SessionHall.update();
         document.location.href = Entity.HOST + '/client/payment.html';
+
         // document.location.href = AsyncForm.HOST + '/client/payment';
         // document.location.href = 'http://diplom-net/client/payment';
         // Admin.getModal('add_hall').close();

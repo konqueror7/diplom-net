@@ -1,124 +1,18 @@
 {
     "dataTitle": {
-        "last_guid": 7
+        "last_guid": 10
     },
     "dataArray": {
-        "o1": {
-            "session_id": "o20",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "6",
-                    "vip": true
-                },
-                "1": {
-                    "row": "5",
-                    "place": "5",
-                    "vip": false
-                }
-            },
-            "qrcode": "dd24916bfc01b6142380a20906654146.png"
-        },
-        "o2": {
-            "session_id": "o24",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "8",
-                    "vip": true
-                },
-                "1": {
-                    "row": "4",
-                    "place": "4",
-                    "vip": false
-                }
-            },
-            "qrcode": "e0e60586c480b6a72df55296ebe06e10.png"
-        },
-        "o3": {
-            "session_id": "o5",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "5",
-                    "vip": false
-                }
-            },
-            "qrcode": "4472d409d433c7ad723d1c40aec6e29b.png"
-        },
-        "o4": {
-            "session_id": "o5",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "1",
-                    "vip": true
-                },
-                "1": {
-                    "row": "1",
-                    "place": "8",
-                    "vip": true
-                }
-            },
-            "qrcode": "26c04a80db5d7d4a9af7ab17f3a00145.png"
-        },
-        "o5": {
-            "session_id": "o13",
-            "places": {
-                "0": {
-                    "row": "2",
-                    "place": "3",
-                    "vip": false
-                }
-            },
-            "qrcode": ""
-        },
-        "o6": {
-            "session_id": "o23",
-            "places": {
-                "0": {
-                    "row": "1",
-                    "place": "5",
-                    "vip": true
-                },
-                "1": {
-                    "row": "1",
-                    "place": "6",
-                    "vip": true
-                },
-                "2": {
-                    "row": "5",
-                    "place": "6",
-                    "vip": false
-                }
-            },
-            "qrcode": "a1a0582fbe6aafb408551d686cbb47ba.png"
-        },
-        "o7": {
-            "session_id": "o36",
+        "o10": {
+            "session_id": "o40",
             "places": {
                 "0": {
                     "row": "1",
                     "place": "3",
                     "vip": true
-                },
-                "1": {
-                    "row": "2",
-                    "place": "2",
-                    "vip": true
-                },
-                "2": {
-                    "row": "2",
-                    "place": "3",
-                    "vip": true
-                },
-                "3": {
-                    "row": "2",
-                    "place": "4",
-                    "vip": true
                 }
             },
-            "qrcode": "6a3a2b97044ffe86c42d1cf01a9e8837.png"
+            "qrcode": "f44b9d4c51b3d28f199082feb85cd71d.png"
         }
     }
 }

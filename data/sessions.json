@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 36
+        "last_guid": 40
     },
     "dataArray": {
         "o1": {
@@ -137,6 +137,11 @@
             "hall_id": "o28",
             "film_id": "o4",
             "start_time": "12:00"
+        },
+        "o40": {
+            "hall_id": "o28",
+            "film_id": "o7",
+            "start_time": "14:00"
         }
     }
 }
