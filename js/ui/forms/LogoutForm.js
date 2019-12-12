@@ -4,11 +4,8 @@ class LogoutForm extends AsyncForm{
       if (err || !response.success) {
         return undefined;
       }
-      // console.log(response);
       User.unsetCurrent();
-      // console.log(localStorage);
       document.location.href = Entity.HOST + '/client';
-      // document.location.href = 'http://diplom-net/client';
     });
   }
 }

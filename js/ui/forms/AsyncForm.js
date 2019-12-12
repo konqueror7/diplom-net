@@ -17,7 +17,6 @@ class AsyncForm {
       throw new Error('Элемент не существует');
     }
     this.element = element;
-    // console.log(this.element);
     this.registerEvents();
   }
 

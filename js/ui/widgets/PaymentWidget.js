@@ -5,8 +5,6 @@ class PaymentWidget {
       throw new Error('Элемент не существует');
     }
     this.element = element;
-    console.log(this.element);
-    // console.log(localStorage.getItem('session_id'));
     this.registerEvents();
     this.update();
   }
@@ -32,8 +30,6 @@ class PaymentWidget {
       for (let place in response.ticket.places) {
         ticketData.places.push(response.ticket.places[place]);
       }
-      // console.log(ticketData.places);
-      // console.log(response.ticket.places);
       Session.get(response.ticket.session_id, {}, (err, response) => {
         if (err || !response) {
           return undefined;
@@ -59,16 +55,13 @@ class PaymentWidget {
           ticketHall.innerText = ticketData.hall;
           ticketStart.innerText = ticketData.start_time;
 
-          // console.log(ticketData.vip_price);
           const ticketPlaces = ticketData.places;
           let ticketPlacesCost = ticketPlaces.reduce(function(summ, place) {
-            // console.log(place);
             if (place.vip === true) {
               summ += ticketData.vip_price;
             } else {
               summ += ticketData.std_price;
             }
-            // console.log(summ);
             return summ;
           }, 0);
           ticketCost.innerText = ticketPlacesCost;
@@ -78,17 +71,10 @@ class PaymentWidget {
             return summString;
           }, '');
           ticketData.placesText = ticketChairs.innerText;
-          // for (let i in ticketPlaces) {
-          //   console.log(ticketPlaces[i]);
-          // }
-          // console.log(ticketPlacesCost);
-          // console.log(ticketData);
           localStorage.setItem('ticket_data', JSON.stringify(ticketData));
           console.log(localStorage.getItem('ticket_data'));
-          // console.log(JSON.parse(localStorage.getItem('ticket_data')));
         });
       });
     });
   }
-
 }

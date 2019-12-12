@@ -2,8 +2,6 @@ class TicketPrint {
 
   static init() {
     this.element = document.querySelector( '.ticket' );
-    // console.log(this.element);
-    // console.log(localStorage.getItem('ticket_guid'));
     this.initWidgets();
   }
 

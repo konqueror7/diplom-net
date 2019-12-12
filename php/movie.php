@@ -56,9 +56,6 @@ if ($_POST['entity_method'] == 'GETID') {
         }
         $movieData = ['success' => true, 'movie' => $movieGetKeys];
         echo json_encode($movieData);
-        // print '<pre>';
-        // var_dump($hallget[key($hallget)]);
-        // print '</pre>';
     } else {
         $noData = ['success' => false, 'error' => 'Нет фильма с таким ID'];
         echo json_encode($noData);

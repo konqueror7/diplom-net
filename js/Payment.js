@@ -2,7 +2,6 @@ class Payment {
 
   static init() {
     this.element = document.querySelector( '.ticket' );
-    // console.log(this.element);
     this.initWidgets();
     this.initForms();
   }

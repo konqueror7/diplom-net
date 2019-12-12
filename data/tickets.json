@@ -15,20 +15,15 @@
             "qrcode": "f44b9d4c51b3d28f199082feb85cd71d.png"
         },
         "o11": {
-            "session_id": "o17",
+            "session_id": "o54",
             "places": {
                 "0": {
                     "row": "1",
-                    "place": "5",
-                    "vip": true
-                },
-                "1": {
-                    "row": "1",
-                    "place": "6",
+                    "place": "3",
                     "vip": true
                 }
             },
-            "qrcode": "f86d7e366f7ff524c0ca04f8a98d9bc7.png"
+            "qrcode": "bf8d529ad6475ff27c9e6b44f77ed554.png"
         }
     }
 }

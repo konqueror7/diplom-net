@@ -6,8 +6,6 @@ class Modal {
     }
     this.element = element;
     this.registerEvents();
-    // console.log(this);
-    // console.log(this.element);
   }
 
   registerEvents() {

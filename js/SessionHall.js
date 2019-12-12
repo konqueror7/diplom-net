@@ -2,7 +2,6 @@ class SessionHall {
 
   static init() {
     this.element = document.querySelector( '.buying' );
-    // console.log(this.element);
     this.initWidgets();
     this.initForms();
   }
@@ -22,7 +21,7 @@ class SessionHall {
   static getForm( formName ) {
     return this.forms[ formName ];
   }
-  
+
   static getWidget( widgetName ) {
     return this.widgets[ widgetName ];
   }

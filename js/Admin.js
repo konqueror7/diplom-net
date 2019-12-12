@@ -3,7 +3,6 @@ class Admin {
   static init() {
     this.element = document.querySelector( '.conf-steps' );
     this.initUser();
-    // this.initPages();
     this.initModals();
     this.initForms();
     this.initWidgets();
@@ -13,25 +12,8 @@ class Admin {
   static initUser() {
     User.fetch({}, (err, response) => {
       this.setState( User.current() ? 'user-logged' : 'init' )
-      // // console.log(response);
-      // if (response.user && response.user === User.current()) {
-      //   console.log('Yes!');
-      //   this.setState('user-logged');
-      // } else {
-      //   this.setState('init');
-      // }
     });
-    // console.log(localStorage);
-    // if (!User.current()) {
-    //   document.location.href = 'http://diplom-net/client';
-    // }
   }
-
-  // static initPages() {
-  //
-  // }
-
-
 
   static initModals() {
     this.modals = {
@@ -54,13 +36,11 @@ class Admin {
       add_sessions: new SessionsAddForm(document.querySelector('#add-sessions-form')),
       delete_sessions: new SessionsDeleteForm(document.querySelector('#delete-sessions-form')),
       logout: new LogoutForm(document.querySelector('#logout-form'))
-      // add_hall: new HallAddForm(document.querySelector('#add-hall-form')),
     };
   }
 
   static initWidgets() {
     this.widgets = {
-      // halls: new HallsWidget(document.querySelector('.conf-step__list'))
       halls: new HallsWidget(document.querySelector('#halls')),
       hall_config: new HallConfigWidget(document.querySelector('#hall-config')),
       price_config: new PriceConfigWidget(document.querySelector('#price-config')),
@@ -83,7 +63,6 @@ class Admin {
 
   static update() {
     this.updateWidgets();
-    // this.updatePages();
     this.updateForms();
   }
 
@@ -111,13 +90,11 @@ class Admin {
     if ( state === 'init' ) {
       this.clear();
       document.location.href = Entity.HOST + '/client';
-      // document.location.href = 'http://diplom-net/client';
     }
   }
 
   static clear() {
     this.element.innerHTML = '';
-    // document.location.href = 'http://diplom-net/client';
   }
 
 }

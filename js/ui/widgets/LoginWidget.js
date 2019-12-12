@@ -8,7 +8,4 @@ class LoginWidget {
   clear() {
     this.element.innerHTML = ''
   }
-  // close() {
-  //   this.element.classList.add('auth-user');
-  // }
 }

@@ -33,15 +33,10 @@ class SessionsGridWidget {
         document.body.append(filmDragg);
 
         moveAt(event.pageX, event.pageY);
-
-        // document.addEventListener('mousemove', onMouseMove);
         this.element.addEventListener('mousemove', onMouseMove);
-        console.log(this.element);
 
         filmDragg.addEventListener('mouseup', (event) => {
           event.preventDefault();
-          console.log(event);
-          // document.removeEventListener('mousemove', onMouseMove);
           this.element.removeEventListener('mousemove', onMouseMove);
           filmDragg.remove();
           filmDragg.onmouseup = null;
@@ -54,7 +49,6 @@ class SessionsGridWidget {
         }
 
         function onMouseMove(event) {
-          // console.log(this);
           moveAt(event.pageX, event.pageY);
           // внутри обработчика события мыши прячем переносимый элемент
           filmDragg.style.display = 'none';
@@ -83,29 +77,17 @@ class SessionsGridWidget {
             currentDroppable = droppableBelow;
 
             if (currentDroppable) {
-              // console.log(this.element);
               enterDroppable(this);
-              // Admin.getModal('add_showtime').open();
-              // document.removeEventListener('mousemove', onMouseMove);
               filmDragg.remove();
-              console.log('Gool!');
             }
-
           }
-
         }
 
         function enterDroppable(element) {
-          // console.log(element);
           element.removeEventListener('mousemove', onMouseMove);
-          // this.element.removeEventListener('mousemove', onMouseMove);
-          // document.forms.add_movie.elements.name.value = filmData.name;
-          // document.forms.add_movie.elements.movie_id.value = filmData.movieId;
-          // document.querySelector('.popup').classList.add('active');
           Admin.getForm('add_showtime').renderFilmName(filmData);
           Admin.getModal('add_showtime').open();
         }
-
       }
 
         //Отключение обработчиков браузера
@@ -120,7 +102,6 @@ class SessionsGridWidget {
       event.preventDefault();
       this.element.querySelector('#add-sessions-form').reset();
       this.update();
-      // document.forms['config-hall-form'].reset();
     });
 
     const deletableSessions = this.element.querySelector('.conf-step__seances');
@@ -148,17 +129,14 @@ class SessionsGridWidget {
         }
         this.clearMovies();
         this.renderMovies(response.movies);
-        // console.log(response);
       });
 
       Hall.list({name: '.+'}, (err, response) => {
         if (err || !response ) {
           return undefined;
         }
-        // console.log(response.halls);
         this.clearHalls();
         this.renderHalls(response.halls);
-        // console.log(response);
       });
     } else if (!User.current()) {
       return undefined;
@@ -188,7 +166,6 @@ class SessionsGridWidget {
   }
 
   renderMoviesItem( key, movie ) {
-    // console.log(hall);
     const moviesList = this.element.querySelector('.conf-step__movies');
     let {
       name,
@@ -200,17 +177,12 @@ class SessionsGridWidget {
   }
 
   renderHallItem( key, hall ) {
-    // console.log(hall);
     const hallsList = this.element.querySelector('.conf-step__seances');
     let {
       name
     } = hall,
     id = key;
     hallsList.append(this.getHallHTML({id, name}));
-    // hallsList.insertAdjacentHTML('beforeend', this.getHallHTML({id, name}));
-    // hallsList.innerHTML += this.getHallHTML({id, name});
-    // const sessionsHall = hallsList.getElementsByClassName('conf-step__seances-hall');
-    // console.log(sessionsHall);
   }
 
   getMovieHTML(item) {
@@ -229,15 +201,7 @@ class SessionsGridWidget {
     hallItem.dataset.id = item.id;
     hallItem.insertAdjacentHTML('beforeend', `<h3 class="conf-step__seances-title">${item.name}</h3>`);
     hallItem.insertAdjacentHTML('beforeend', '<div class="conf-step__seances-timeline"></div>');
-    // console.log(hallItemTwo);
     this.renderSessions(item.id, hallItem);
-    // let hallItem = `
-    //   <div class="conf-step__seances-hall" data-id="${item.id}">
-    //     <h3 class="conf-step__seances-title">${item.name}</h3>
-    //     <div class="conf-step__seances-timeline">
-    //     </div>
-    //   </div>
-    // `;
     return hallItem;
   }
 
@@ -248,10 +212,7 @@ class SessionsGridWidget {
       }
       for (let session in response.sessions) {
         hallItem.querySelector('.conf-step__seances-timeline').append(this.getSessionHTML(response.sessions[session], session));
-
-        // console.log(response.sessions[session]);
       }
-      // console.log(hallItem);
     });
   }
 
@@ -260,7 +221,6 @@ class SessionsGridWidget {
     let sessionItem = document.createElement('div');
     sessionItem.dataset.sessionId = session;
     sessionItem.style.left = `${this.renderTimelinePos(item.start_time)}px`;
-    // sessionItem.style.left = this.renderTimelinePos(item.start_time);
     sessionItem.classList.add('conf-step__seances-movie');
     sessionItem.insertAdjacentHTML('beforeend', '<p class="conf-step__seances-movie-title"></p>');
     sessionItem.insertAdjacentHTML('beforeend', `<p class="conf-step__seances-movie-start">${item.start_time}</p>`);
@@ -270,7 +230,6 @@ class SessionsGridWidget {
         return undefined;
       }
       movieData = response.movie;
-      // console.log(movieData);
       sessionItem.querySelector('.conf-step__seances-movie-title').innerText += movieData.name;
       sessionItem.style.width = `${this.renderDuration(movieData.duration)}px`;
 
@@ -283,21 +242,10 @@ class SessionsGridWidget {
   renderTimelinePos(time) {
     const timeStart = new Date(new Date().toDateString() + ' ' + time);
     let timelinePos = timeStart.getHours() * 60 + timeStart.getMinutes();
-    // console.log(timeStart);
-    // console.log(timeStart.getHours());
     return timelinePos * 0.5;
   }
   //Вычисление значения свойства width из продолжительности сеанса
   renderDuration(duration) {
     return duration*0.5;
   }
-
-  // static addSession(data) {
-  //   console.log(this.element);
-  //   this.renderSession(data.hall);
-  // }
-  //
-  // static renderSession(item) {
-  //   console.log(item);
-  // }
 }

@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 40
+        "last_guid": 55
     },
     "dataArray": {
         "o1": {
@@ -138,10 +138,65 @@
             "film_id": "o4",
             "start_time": "12:00"
         },
-        "o40": {
-            "hall_id": "o28",
+        "o44": {
+            "hall_id": "o41",
+            "film_id": "o7",
+            "start_time": "04:00"
+        },
+        "o45": {
+            "hall_id": "o41",
+            "film_id": "o7",
+            "start_time": "06:30"
+        },
+        "o46": {
+            "hall_id": "o41",
+            "film_id": "o7",
+            "start_time": "09:00"
+        },
+        "o47": {
+            "hall_id": "o41",
+            "film_id": "o7",
+            "start_time": "11:30"
+        },
+        "o48": {
+            "hall_id": "o41",
             "film_id": "o7",
             "start_time": "14:00"
+        },
+        "o49": {
+            "hall_id": "o41",
+            "film_id": "o7",
+            "start_time": "16:30"
+        },
+        "o50": {
+            "hall_id": "o41",
+            "film_id": "o7",
+            "start_time": "19:00"
+        },
+        "o51": {
+            "hall_id": "o28",
+            "film_id": "o8",
+            "start_time": "14:00"
+        },
+        "o52": {
+            "hall_id": "o28",
+            "film_id": "o8",
+            "start_time": "16:30"
+        },
+        "o53": {
+            "hall_id": "o28",
+            "film_id": "o8",
+            "start_time": "19:00"
+        },
+        "o54": {
+            "hall_id": "o28",
+            "film_id": "o8",
+            "start_time": "21:30"
+        },
+        "o55": {
+            "hall_id": "o28",
+            "film_id": "o8",
+            "start_time": "01:30"
         }
     }
 }

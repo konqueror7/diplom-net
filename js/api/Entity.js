@@ -22,7 +22,6 @@ class Entity {
       url: this.HOST + this.URL,
       method: 'POST',
       data: Object.assign({ entity_method: 'LIST' }, data),
-      responseType: 'json',
       callback: callback
     });
     return xhr;
@@ -38,7 +37,6 @@ class Entity {
       url: this.HOST + this.URL,
       method: 'POST',
       data: Object.assign({ entity_method: 'CREATE' }, data),
-      responseType: 'json',
       callback: callback
     });
     return xhr;
@@ -52,7 +50,6 @@ class Entity {
       url: this.HOST + this.URL,
       method: 'POST',
       data: Object.assign({ get_id: id, entity_method: 'GETID' }, data),
-      responseType: 'json',
       callback: callback
     });
     return xhr;
@@ -66,7 +63,6 @@ class Entity {
       url: this.HOST + this.URL,
       method: 'POST',
       data: Object.assign({ update_id: id, entity_method: 'UPDATEID' }, data),
-      responseType: 'json',
       callback: callback
     });
     return xhr;
@@ -79,10 +75,8 @@ class Entity {
   static remove(id = '', data, callback = f => f) {
     const xhr = createRequest({
       url: this.HOST + this.URL,
-      // url: this.HOST + this.URL + '/' + id,
       method: 'POST',
       data: Object.assign({ remove_id: id, entity_method: 'REMOVEID' }, data),
-      responseType: 'json',
       callback: callback
     });
     return xhr;
@@ -91,6 +85,3 @@ class Entity {
 
 Entity.URL = '';
 Entity.HOST = 'http://diplom-net';
-// Entity.HOST = 'http://diplom-net/php';
-
-// Entity.HOST = 'http://diplom-net.000webhostapp.com';

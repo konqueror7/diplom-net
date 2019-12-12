@@ -47,8 +47,6 @@ if ($_POST['user_method'] == 'LOGIN') {
             // ключу 'success' присваивается значение true
             // ключу 'user' присваивается значение $findedUserKeys
             $userData = ['success' => true, 'user' => $_SESSION['name']];
-            // $userData = ['success' => true, 'user' => $_SESSION['name'], 'session_array' => $_SESSION];
-            // $userData = ['success' => true, 'user' => $findedUserKeys, 'session_array' => $_SESSION];
             // вывод echo возвращается в качестве положительного ответа php-скрипта бэкенда
             // на XMLHttpRequest-запрос js-скрипта фронтэнда
             echo json_encode($userData);
@@ -74,11 +72,4 @@ if ($_POST['user_method'] == 'LOGOUT') {
     session_unset();
     $userData = ['success' => true, 'user' => null];
     echo json_encode($userData);
-    // if (isset($_SESSION['name'])) {
-    //     $userData = ['success' => true, 'user' => $_SESSION['name']];
-    //     echo json_encode($userData);
-    // } else {
-    //     $noUserData = ['success' => false, 'user' => null];
-    //     echo json_encode($noUserData);
-    // }
 }

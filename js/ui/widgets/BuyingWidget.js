@@ -15,10 +15,8 @@ class BuyingWidget {
     buyingSchemeWrapper.addEventListener('click', (event) => {
       event.preventDefault();
       SessionHall.getForm('buying_form').placeSomeSelected();
-      // console.log(event.target);
       let eventTarget = event.target;
       if (eventTarget.classList.contains('buying-scheme__chair') && !eventTarget.classList.contains('buying-scheme__chair_disabled') && !eventTarget.classList.contains('buying-scheme__chair_taken')) {
-        console.log('Yes!');
         eventTarget.classList.toggle('buying-scheme__chair_selected');
       }
     })
@@ -27,19 +25,11 @@ class BuyingWidget {
   update() {
 
     const buyingInfo = this.element.querySelector('.buying__info');
-    // console.log(buyingInfo);
     const buyingInfoTitle = this.element.querySelector('.buying__info-title');
-    // console.log(buyingInfoTitle);
     const buyingInfoStart = this.element.querySelector('.buying__info-start');
-    // console.log(buyingInfoStart);
     const buyingInfoHall = this.element.querySelector('.buying__info-hall');
-    // console.log(buyingInfoHall);
-    // const buyingSchemeWrapper = this.element.querySelector('.buying-scheme__wrapper');
-    // console.log(buyingSchemeWrapper);
     const buyingSchemeLegendValueStdPrice = this.element.querySelector('.buying-scheme__legend-value.std-price');
-    console.log(buyingSchemeLegendValueStdPrice);
     const buyingSchemeLegendValueVipPrice = this.element.querySelector('.buying-scheme__legend-value.vip-price');
-    console.log(buyingSchemeLegendValueVipPrice);
     const sessionId = localStorage.getItem('session_id');
 
     Session.get(sessionId, {}, (err, response) => {
@@ -70,13 +60,10 @@ class BuyingWidget {
         buyingInfoHall.innerText = hallData.name;
         buyingSchemeLegendValueStdPrice.innerText = hallData.std_price + ' ';
         buyingSchemeLegendValueVipPrice.innerText = hallData.vip_price + ' ';
-        // console.log(hallData.vip);
-        // console.log(hallData.dis);
         Ticket.list({session_id: sessionId}, (err, response) => {
           if (err || !response ) {
             return undefined;
           }
-          // console.log(response);
           const hallDatawithTick = Object.assign({ tickets: response.tickets }, hallData)
           this.renderPlaces(hallDatawithTick);
         });
@@ -90,20 +77,12 @@ class BuyingWidget {
     for (let ticket in tickets) {
       let placesInTicket = tickets[ticket]['places'];
       for (let place in placesInTicket) {
-        // console.log(placesInTicket[place]);
         takenArray.push(placesInTicket[place])
       }
-      // console.log(placesInTicket);
-      // console.log(tickets[ticket]['places']);
-      // takenArray.push(tickets[ticket].places);
-      // takenArray = [...Object.values(tickets[ticket].places)];
-      // takenArray.push(Object.values(tickets[ticket].places));
     }
     for (let i in takenArray) {
-    // for (var i = 0; i < takenArray.length; i++) {
       console.log(takenArray[i].row + ' ' + takenArray[i].place);
     }
-    // console.log(tickets);
 
     const renderRows = this.element.querySelector('.buying-scheme__wrapper');
     renderRows.innerHTML = '';
@@ -130,22 +109,16 @@ class BuyingWidget {
       renderRows.appendChild(rendRow);
     }
 
-    // console.log(renderRows);
     const renderRowsPLacesArray = Array.from(renderRows.getElementsByClassName('buying-scheme__chair'));
-    // console.log(renderRowsPLacesArray);
     for (let i in takenArray) {
-    // for (var i = 0; i < takenArray.length; i++) {
-      // console.log(takenArray[i].row + ' ' + takenArray[i].place);
       let takenPlace = renderRowsPLacesArray.find((element) => {
         if (element.dataset.row === takenArray[i].row && element.dataset.place === takenArray[i].place) {
           console.log(element);
           return element;
         }
       });
-      // console.log(takenPlace);
       takenPlace.classList.remove('buying-scheme__chair_vip');
       takenPlace.classList.remove('buying-scheme__chair_standart');
-      // takenPlace.classList.remove('buying-scheme__chair_disabled');
       takenPlace.classList.add('buying-scheme__chair_taken');
     }
 
@@ -161,7 +134,6 @@ class BuyingWidget {
   getPlaceHTML(row, place) {
     let placeHTML = document.createElement('span');
     placeHTML.classList.add('buying-scheme__chair', 'buying-scheme__chair_standart');
-    // placeHTML.classList.add('conf-step__chair', 'conf-step__chair_standart');
     placeHTML.dataset.row=`${row}`;
     placeHTML.dataset.place=`${place}`;
     return placeHTML;

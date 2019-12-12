@@ -20,16 +20,13 @@ class ShowtimeAddForm extends AsyncForm {
 
   renderHallsList() {
     const selectHall = this.element.querySelector('select');
-    // console.log(selectHall);
     Hall.list({name: '.+'}, (err, response) => {
         if (err || !response.halls ) {
           return undefined;
         }
         selectHall.innerHTML = '';
         for (let optionSelect in response.halls) {
-          // console.log(optionSelect);
           selectHall.innerHTML += `<option value="${optionSelect}">${response.halls[optionSelect].name}</option>`;
-          // selectHall.innerHTML += `<option value="${optionSelect}">${optionSelect.name}</option>`;
         }
     });
   }
@@ -41,15 +38,12 @@ class ShowtimeAddForm extends AsyncForm {
       <p class="conf-step__seances-movie-start">${item.start_time}</p>
     </div>
     `;
-    // <div class="conf-step__seances-movie" data-id="${item.film_id}" style="${this.timelinePos(item.start_time)}">
   }
 
   //Вычисление значения свойства left из времени начала сеанса
   renderTimelinePos(time) {
     const timeStart = new Date(new Date().toDateString() + ' ' + time);
     let timelinePos = timeStart.getHours() * 60 + timeStart.getMinutes();
-    // console.log(timeStart);
-    // console.log(timeStart.getHours());
     return timelinePos * 0.5;
   }
   //Вычисление значения свойства width из продолжительности сеанса
@@ -66,18 +60,10 @@ class ShowtimeAddForm extends AsyncForm {
         return item;
       }
     });
-    // console.log(hall);
     const timeline = hall.querySelector('.conf-step__seances-timeline');
     console.log(timeline);
     timeline.innerHTML += this.renderFilm(options.data);
-    // const film = document.createElement('div');
-    // film.classList.add('');
-
-    // console.log(SessionsGridWidget.element);
-    // SessionsGridWidget.addSession(options.data);
-    // console.log(document.querySelector('.conf-step__seances-hall'));
     this.element.reset();
     Admin.getModal('add_showtime').close();
-    // return options.data;
   }
 }
