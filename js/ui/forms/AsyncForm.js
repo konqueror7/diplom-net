@@ -21,12 +21,18 @@ class AsyncForm {
   }
 
   /**
-   * Необходимо запретить отправку форму и в момент отправки
-   * вызывает метод submit()
+   * Метод устанавливает обработчики событий для html-элемента,
+   * указанного в this.element. Запрещает стандартное поведение -
+   * отправку данных формы и вызвает метод submit()
    * */
   registerEvents() {
     this.element.addEventListener('submit', event => {
       console.log(event);
+      /**
+       * Условие проверяющее правильность ввода данных в поля формы
+       * скорее всего оно не работает и бесполезно, так как проверку
+       * форм не делает
+       */
       if (this.element.checkValidity() === false) {
         this.element.reset();
         return;
@@ -42,6 +48,7 @@ class AsyncForm {
    *  'название поля формы 1': 'значение поля формы 1',
    *  'название поля формы 2': 'значение поля формы 2'
    * }
+   * и возвращает его
    * */
   getData() {
     let formData = new FormData(this.element);
@@ -53,6 +60,12 @@ class AsyncForm {
     return data;
   }
 
+  /**
+   * "Пустой метод", который имеет разную реализацию
+   * в классах для форм, используемых в проекте. Он использует классы
+   * User, Hall, Movie, Session, Ticket основанные на Entity
+   * @param  {Object} options параметр, содержащий параметры fetch-запроса
+   */
   onSubmit( options ) {
 
   }
@@ -70,4 +83,7 @@ class AsyncForm {
   }
 }
 
+/**
+ * Хост для запросов устанавливается равным Entity.HOST
+ */
 AsyncForm.HOST = Entity.HOST;

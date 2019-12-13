@@ -105,13 +105,10 @@ class SessionsGridWidget {
     });
 
     const deletableSessions = this.element.querySelector('.conf-step__seances');
-    console.log(deletableSessions);
     deletableSessions.addEventListener('click', (event) => {
-      console.log(event.target.dataset.sessionId);
       event.preventDefault();
       let target = event.target;
       if (target.classList.contains('conf-step__seances-movie') || target.closest('.conf-step__seances-movie')) {
-        console.log('Delete this!');
         Admin.getForm('delete_sessions').renderFilmName(target.closest('.conf-step__seances-movie'));
         Admin.getForm('delete_sessions').renderSessionId(target.closest('.conf-step__seances-movie'));
         Admin.getForm('delete_sessions').getTarget(target.closest('.conf-step__seances-movie'));

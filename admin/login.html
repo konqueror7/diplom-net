@@ -50,67 +50,6 @@
   <script src="/js/ui/forms/LoginForm.js"></script>
   <script text/javascript>
     Login.init();
-  /**
-   * Создание объекта обработчика события ввода данных в форму класса 'login__form'
-   * @type {LoginForm} - класс LoginForm управляет формой входа в портал наследуется от AsyncForm
-   * @see LoginForm - в случае положительного ответа php-скрипта /php/login_submit.php
-   * на сервере производит редирект согласно роли пользователя
-   * @see AsyncForm - создает обработчик события отправки формы
-   *
-   */
-  // const loginForm = new LoginForm(document.querySelector('.login__form'));
-  /**
-   * Использование объекта обработчика для отправки XMLHttpRequest-запроса в php-скрипт /php/login_submit.php
-   */
-  // loginForm;
-
-
-  // const login = new LoginForm(loginForm);
-
-  // const allForms = document.forms;
-    // console.log(document.querySelector('.login__form'));
-  // console.log(allForms);
-  // console.log(loginForm);
-    // loginForm.addEventListener('submit', event => {
-    //   event.preventDefault();
-    //   console.log(event.target[0].value);
-    // });
-
-    // Проверка работы createRequest
-    // const xhr = createRequest({
-    //   url: '/php/login_submit.php',
-    //   method: 'GET',
-    //   // method: 'GET',
-    //   responseType: 'json',
-    //   data: {
-    //     email: 'testor@testor.ru',
-    //     pwd: 'testortestor'
-    //   },
-    //   callback: (error, response) => {
-    //     if (error === null) {
-    //       console.log(response);
-    //     }
-    //     else {
-    //       console.log(error);
-    //     }
-    //   }
-    // });
-
-    // Проверка работы User.login
-    // const data = {
-    //   email: 'testor@testor.ru',
-    //   pwd: 'testortestor'
-    // };
-    //
-    // User.login(data, (err, response) => {
-    //   if (response && response.success === true) {
-    //     console.log(response);
-    //     //this.element.reset();
-    //     // App.setState('user-logged');
-    //     // App.getModal('login').close();
-    //   }
-    // });
-
   </script>
 </body>
 </html>

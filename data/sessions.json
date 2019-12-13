@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 55
+        "last_guid": 60
     },
     "dataArray": {
         "o1": {
@@ -168,11 +168,6 @@
             "film_id": "o7",
             "start_time": "16:30"
         },
-        "o50": {
-            "hall_id": "o41",
-            "film_id": "o7",
-            "start_time": "19:00"
-        },
         "o51": {
             "hall_id": "o28",
             "film_id": "o8",
@@ -197,6 +192,26 @@
             "hall_id": "o28",
             "film_id": "o8",
             "start_time": "01:30"
+        },
+        "o56": {
+            "hall_id": "o41",
+            "film_id": "o6",
+            "start_time": "02:00"
+        },
+        "o57": {
+            "hall_id": "o41",
+            "film_id": "o6",
+            "start_time": "19:00"
+        },
+        "o58": {
+            "hall_id": "o41",
+            "film_id": "o6",
+            "start_time": "22:00"
+        },
+        "o60": {
+            "hall_id": "o2",
+            "film_id": "o2",
+            "start_time": "00:00"
         }
     }
 }

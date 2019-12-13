@@ -1,3 +1,10 @@
+/**
+ * Создание записи о новом кинозале -
+ * закрывает модальное окно формы
+ * создания зала, сбрасывает значения полей формы
+ * обновляет страницу Admin
+ * @extends AsyncForm
+ */
 class HallAddForm extends AsyncForm {
 
   onSubmit( options ) {

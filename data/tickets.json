@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 11
+        "last_guid": 14
     },
     "dataArray": {
         "o10": {
@@ -24,6 +24,39 @@
                 }
             },
             "qrcode": "bf8d529ad6475ff27c9e6b44f77ed554.png"
+        },
+        "o12": {
+            "session_id": "o58",
+            "places": {
+                "0": {
+                    "row": "1",
+                    "place": "1",
+                    "vip": true
+                }
+            },
+            "qrcode": ""
+        },
+        "o13": {
+            "session_id": "o58",
+            "places": {
+                "0": {
+                    "row": "1",
+                    "place": "2",
+                    "vip": true
+                }
+            },
+            "qrcode": "d240e56951903bc4754618c6e8b6942f.png"
+        },
+        "o14": {
+            "session_id": "o56",
+            "places": {
+                "0": {
+                    "row": "1",
+                    "place": "1",
+                    "vip": true
+                }
+            },
+            "qrcode": "d9813c7419034d3c0a34afbb69db2cec.png"
         }
     }
 }
