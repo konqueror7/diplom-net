@@ -36,7 +36,7 @@ class HallConfigForm extends AsyncForm {
       data[`${item[0]}`] = `${item[1]}`;
     }
     console.log(data);
-    return data
+    return data;
   }
 
   /**
@@ -44,10 +44,13 @@ class HallConfigForm extends AsyncForm {
    * обновляет содержимое страницы admin
    */
   onSubmit( options ) {
-    Hall.update('', options.data, (err, response) => {
+    Hall.update(localStorage.getItem('hallconfig_update_id'), options.data, (err, response) => {
+    // Hall.update('', options.data, (err, response) => {
       console.log(options.data);
       if (response && response.success === true) {
-        Admin.update();
+        Admin.getWidget('hall_config').renderHall(localStorage.getItem('hallconfig_update_id'));
+        // Admin.getWidget('hall_config').renderHall(options.data.update_id);
+        // Admin.getWidget('hall_config').update();
       }
     });
   }

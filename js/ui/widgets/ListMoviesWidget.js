@@ -1,3 +1,9 @@
+/**
+ * Вывод списка фильмов с описанием и постерами
+ * вывод списка сеансов, сортированного по времени
+ * и сгруппированого по залам.
+ * Выбор сеанса осуществляется кликом по кнопке с указанием его времени
+ */
 class ListMoviesWidget {
 
   constructor(element) {
@@ -9,8 +15,15 @@ class ListMoviesWidget {
     this.update();
   }
 
+  /**
+   * Реестр обработчиков событий
+   */
   registerEvents() {
     const moviesCollection = this.element;
+
+    /**
+     * Клик по времени сеанса копирует ID сеанса в запись 'session_id' localStorage и переход на страницу cient/hall.html
+     */
     moviesCollection.addEventListener('click', () => {
       let target = event.target;
       if (target.classList.contains('movie-seances__time') || target.closest('.movie-seances__time')) {
@@ -21,6 +34,9 @@ class ListMoviesWidget {
     });
   }
 
+  /**
+   * Обновление списка фильмов на странице
+   */
   update() {
     Movie.list({name: '.+'}, (err, response) => {
       if (err || !response ) {
@@ -31,19 +47,34 @@ class ListMoviesWidget {
     });
   }
 
-
+  /**
+   * Удаление списка фильмов перед обновлением страницы
+   */
   clearMovies() {
     const deletableMovies = this.element;
     deletableMovies.innerHTML = '';
   }
 
+  /**
+   * Отрисовка списка фильмов с помощью метода
+   * renderMoviesItem() по параметру
+   * @param  {Object} movies - объект, содержащий
+   * информацию по каждому из фильмов
+   * методом renderMoviesItem()
+   */
   renderMovies( movies ) {
     for (let key in movies) {
-      console.log(key);
       this.renderMoviesItem(key, movies[key]);
     }
   }
 
+  /**
+   * Отрисовка отдельного фильма с помощью
+   * this.getMovieHTML() по двум параметрам
+   * @param  {String} key   ID фильма
+   * @param  {Object} movie - объект с информацией о фильме
+   * с последующим добавлением в конец списка фильмов
+   */
   renderMoviesItem( key, movie ) {
     const moviesList = this.element;
     let {
@@ -57,6 +88,15 @@ class ListMoviesWidget {
     moviesList.append(this.getMovieHTML({id, name, content, poster, duration, producer}));
   }
 
+  /**
+   * Отрисовка html-элемента 'section'
+   * с шаблоном, содержащим информацию о фильме
+   * по параметру
+   * @param  {Object} item - объект содержащий ID,
+   * название, содержание, продолжительность, производителя фильма
+   * и имя файла изображения постера
+   * сеансы отрисовываются методом this.renderSessionsList()
+   */
   getMovieHTML(item) {
     let movieItem = document.createElement('section');
     movieItem.classList.add('movie');
@@ -91,6 +131,13 @@ class ListMoviesWidget {
     return movieItem;
   }
 
+  /**
+   * Извлечение записей о сеансах из файла sessions.json
+   * по одинаковому ID фильма и его отрисовка в html-разметку
+   * @param  {String} id - ID фильма в файле 'data/movies.json'
+   * @return {Object}    новый узел DOM виде элемента 'div',
+   * содержащего сеансы фильма
+   */
   renderSessionsList(id) {
     let movieSeances = document.createElement('div');
     movieSeances.classList.add('movie-seances');

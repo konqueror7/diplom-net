@@ -44,8 +44,7 @@ class Admin {
       halls: new HallsWidget(document.querySelector('#halls')),
       hall_config: new HallConfigWidget(document.querySelector('#hall-config')),
       price_config: new PriceConfigWidget(document.querySelector('#price-config')),
-      sessions_grid_config: new SessionsGridWidget(document.querySelector('#sessions-grid-config')),
-      logout: new LogoutWidget(document.querySelector('#logout'))
+      sessions_grid_config: new SessionsGridWidget(document.querySelector('#sessions-grid-config'))
     };
   }
 

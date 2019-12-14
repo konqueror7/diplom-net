@@ -1,5 +1,14 @@
+/**
+ * Обслуживает форму с css-селектором '#add-sessions-form'
+ * сохраняющую сетку сеансов в файл 'sessions.json'
+ * @extends AsyncForm
+ */
 class SessionsAddForm extends AsyncForm {
 
+  /**
+   * Сохраняет и возвращает в объекте data информацию о сеансах по залам
+   * @return {[type]} [description]
+   */
   getData() {
     const sessionsArray = Array.from(document.getElementsByClassName('conf-step__seances-movie'));
     let data = [];
@@ -15,8 +24,12 @@ class SessionsAddForm extends AsyncForm {
     return data;
   }
 
+  /**
+   *   Сохраняет каждый из сеансов в виде записи в sessions.json,
+   *   обновляет содержимое виджета 'Сетка сеансов' на странице 'admin'.
+   */
   onSubmit(options) {
-    for (var index in options.data) {
+    for (let index in options.data) {
       Session.create(options.data[index], (err, response) => {
         if (response && response.success === true) {
           console.log(response);
@@ -24,7 +37,7 @@ class SessionsAddForm extends AsyncForm {
       });
     }
     this.element.reset();
-    Admin.update();
+    Admin.getWidget('sessions_grid_config').updateConfStepSeances();
   }
 
 }

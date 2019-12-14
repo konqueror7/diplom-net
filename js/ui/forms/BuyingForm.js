@@ -22,7 +22,7 @@ class BuyingForm extends AsyncForm {
        * @type {FormData}
        */
       const formData = new FormData(this.element);
-      console.log(formData.get('some_selected'));
+
       /**
        * Проверяет выбор хотя бы одного места в зале
        * отменяет отправку формы и вставляет в макет формы
@@ -30,7 +30,8 @@ class BuyingForm extends AsyncForm {
        * Если места выбраны, то происходит отправка формы
        * @param  {FormData} formData [description]
        */
-      if (formData.get('some_selected') != 'true') {
+      if (localStorage.getItem('some_selected') != 'true') {
+      // if (formData.get('some_selected') != 'true') {
         this.element.reset();
         let buyingFormHintDel = this.element.querySelector('.buying__form-hint');
         if (buyingFormHintDel) {
@@ -49,11 +50,18 @@ class BuyingForm extends AsyncForm {
   /**
    * Метод, который устанавливает параметр value
    * скрытого поля 'some_selected' формы 'buying-form'
-   * Используется в классе BuyingWidget
+   * в состояние 'true' или 'false', если есть хотя бы одного
+   * выбранное место в кинозале
+   * Используется в реестре событий класса BuyingWidget
    */
-  placeSomeSelected() {
-    const someSelected = this.element.elements.some_selected;
-    someSelected.value = true;
+  placeSomeSelected(chairsWrapper) {
+    const chairsArr = Array.from(chairsWrapper.getElementsByClassName('buying-scheme__chair'));
+    // console.log(chairsArr);
+    // const someSelected = this.element.elements.some_selected;
+    localStorage.setItem('some_selected', false);
+    console.log(localStorage.getItem('some_selected'));
+    const selectedChairs = (chair) => chair.classList.contains('buying-scheme__chair_selected');
+    chairsArr.some(selectedChairs) ? localStorage.setItem('some_selected', true) : localStorage.setItem('some_selected', false);
   }
 
   /**
@@ -80,7 +88,7 @@ class BuyingForm extends AsyncForm {
   /**
    * Отправка данных формы для создания записи о билете на сеанс,
    * сохрарение в локальное хранилище localStorage ID билета,
-   * обновление содержимого страницы 'hall'
+   * обновление содержимого страницы 'client/hall'
    * @param  {Object} options настройки для запроса
    */
   onSubmit( options ) {

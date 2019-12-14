@@ -140,6 +140,26 @@ class SessionsGridWidget {
     }
   }
 
+  updateConfStepMovies() {
+    Movie.list({name: '.+'}, (err, response) => {
+      if (err || !response ) {
+        return undefined;
+      }
+      this.clearMovies();
+      this.renderMovies(response.movies);
+    });
+  }
+
+  updateConfStepSeances() {
+    Hall.list({name: '.+'}, (err, response) => {
+      if (err || !response ) {
+        return undefined;
+      }
+      this.clearHalls();
+      this.renderHalls(response.halls);
+    });
+  }
+
   renderMovies( movies ) {
     for (let key in movies) {
       this.renderMoviesItem(key, movies[key]);

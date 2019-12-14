@@ -7,8 +7,8 @@ class LoginForm extends AsyncForm {
   /**
    * Производит авторизацию с помощью User.login
    * После успешной авторизации, сбрасывает форму,
-   *
-   *
+   * и совершает переход на страницу 'admin'
+   * при неудаче - на страницу 'client'
    * */
   onSubmit( options ) {
     User.login(options.data, (err, response) => {

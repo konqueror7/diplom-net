@@ -14,22 +14,52 @@ class HallConfigWidget {
     this.update();
   }
 
+  /**
+   * Реестр обработчиков событий
+   */
   registerEvents() {
+    /**
+     * Обработчик события ввода в поле ввода типа 'radio'
+     * который соответствует отдельному кинозалу
+     * вызывает метод renderHall(), который отображает
+     * настройки конфигурации зала
+     */
     this.element.addEventListener('input', (event) => {
       event.preventDefault();
-      console.log(event);
       let target = event.target;
       if (target.classList.contains('conf-step__radio')) {
         this.renderHall(target.dataset.id);
       }
     });
 
+    /**
+     * Клик по кнопке 'Отмена' виджета 'Конфигурация залов'
+     * сбрасывает введенные значения и обновляет содержимое виджета
+     */
     const resetButton = this.element.querySelector('.conf-step__button-regular');
     resetButton.addEventListener('click', (event) => {
       event.preventDefault();
       this.element.querySelector('#config-hall-form').reset();
-      this.update();
+
+      // const selectedHall = this.element.querySelector('#config-hall-form').elements.update_id.value;
+
+      const selectedHall = localStorage.getItem('hallconfig_update_id');
+      console.log(selectedHall);
+
+      const hallButtonsArr = Array.from(this.element.getElementsByClassName('conf-step__radio'));
+      const selectedHallButton = hallButtonsArr.find((hallButton) => hallButton.dataset.id === selectedHall);
+      selectedHallButton.checked = true;
+      this.renderHall(selectedHall);
+      // this.update();
     });
+
+    /**
+     * Обработчик кликов по элементам, обозначающим места в кинозале
+     * производит переключение состояния мест в одно из трех значений
+     * стандартное - 'conf-step__chair_standart'
+     * VIP - 'conf-step__chair_vip'
+     * недоступное - 'conf-step__chair_disabled'
+     */
     const chairs = this.element.querySelector('.conf-step__hall-wrapper');
     chairs.addEventListener('click', (event) => {
       event.preventDefault();
@@ -48,6 +78,12 @@ class HallConfigWidget {
     });
   }
 
+  /**
+   * Обновление содержимого виджета
+   * используется в конструкторе этого класса
+   * а так же в Admin.updateWidgets()
+   * Запрос данные о зале возможен при наличии авторизации
+   */
   update() {
     if (User.current()) {
       Hall.list({name: '.+'}, (err, response) => {
@@ -62,24 +98,42 @@ class HallConfigWidget {
     }
   }
 
+  /**
+   * Вывод горизонтального ряда кнопок,
+   * переключающих на определнные залы
+   * и вызывающих загрузку в окне конфигурации
+   * информацию о зале
+   * Переключение на первый - "нулевой" зал
+   * отрисовка в окне виджета конфигурации первого зала
+   */
   render(halls) {
     for (var key in halls) {
       this.renderItem(key, halls[key]);
     }
     const firstRadiocheck = this.element.getElementsByClassName('conf-step__radio').item('0');
     firstRadiocheck.checked = 'checked';
-    let inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id');
-    inputUpdateId.value = firstRadiocheck.getAttribute('data-id');
+
+    // let inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id');
+    // inputUpdateId.value = firstRadiocheck.getAttribute('data-id');
+
     this.renderHall(firstRadiocheck.getAttribute('data-id'));
   }
 
+  /**
+   * Отрисовка информации о зале согласно его ID, переданному в метод
+   */
   renderHall(hall_id) {
     Hall.get(hall_id, {}, (err, response) => {
       if (err || !response) {
         return undefined;
       }
-      let inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id');
-      inputUpdateId.value = hall_id;
+
+      localStorage.setItem('hallconfig_update_id', hall_id);
+      console.log(localStorage.getItem('hallconfig_update_id'));
+
+      // let inputUpdateId = this.element.getElementsByTagName('input').namedItem('update_id');
+      // inputUpdateId.value = hall_id;
+
       const rowsHall = this.element.querySelector('.conf-step__input-rows');
       const placesHall = this.element.querySelector('.conf-step__input-places');
       rowsHall.value = response.hall['rows'];
@@ -88,6 +142,13 @@ class HallConfigWidget {
     });
   }
 
+  /**
+   * Отрисовка мест согласно переданным параметрам
+   * @param  {integer} rows   - количество рядов
+   * @param  {integer} places - количество мест в ряду
+   * @param  {array} vip - число VIP-мест
+   * @param  {[type]} dis - число недоступных мест
+   */
   renderPlaces(rows, places, vip, dis) {
     const renderRows = this.element.querySelector('.conf-step__hall-wrapper');
     renderRows.innerHTML = '';
@@ -115,12 +176,18 @@ class HallConfigWidget {
     }
   }
 
+  /**
+   * Отрисовка ряда
+   */
   getRowHTML() {
     let rowHTML = document.createElement('div');
     rowHTML.classList.add('conf-step__row');
     return rowHTML;
   }
 
+  /**
+   * Отрисовка мест в ряду
+   */
   getPlaceHTML(row, place) {
     let placeHTML = document.createElement('span');
     placeHTML.classList.add('conf-step__chair', 'conf-step__chair_standart');
@@ -130,6 +197,9 @@ class HallConfigWidget {
 
   }
 
+  /**
+   * Очистка содержимого виджета перед наполнением обновленной информацией
+   */
   clear() {
     const deletableHalls = this.element.querySelector('ul.conf-step__selectors-box');
     deletableHalls.innerHTML = '';
@@ -137,6 +207,12 @@ class HallConfigWidget {
     deletableRows.innerHTML = '';
   }
 
+  /**
+   * Добавление "кнопки перключения " на конфигурацию зала,
+   * указанного в ее названии
+   * @param  {String} key  - ID зала
+   * @param  {Object} hall - сведения о зале
+   */
   renderItem( key, hall ) {
     const hallsList = this.element.querySelector('.conf-step__selectors-box');
     let {
@@ -146,6 +222,11 @@ class HallConfigWidget {
     hallsList.innerHTML += this.getHalltHTML({id, name});
   }
 
+  /**
+   * Шаблон кнопки
+   * @param  {Object} item - объект, содержащий ID и название зала.
+   * @return {String} возвращает html-разметку с данными
+   */
   getHalltHTML( item ) {
     return `
     <li>

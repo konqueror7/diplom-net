@@ -1,3 +1,8 @@
+/**
+ * Используется классом SessionHall
+ * для управления виджетом выбора мест
+ * в кинозале
+ */
 class BuyingWidget {
 
   constructor(element) {
@@ -5,38 +10,57 @@ class BuyingWidget {
       throw new Error('Элемент не существует');
     }
     this.element = element;
-    // console.log(localStorage.getItem('session_id'));
     this.registerEvents();
     this.update();
   }
 
+  /**
+   * создает обработчики событий для виджета
+   * @return {[type]} [description]
+   */
   registerEvents() {
     const buyingSchemeWrapper = this.element.querySelector('.buying-scheme__wrapper');
+    /**
+     * Обработчик клика по элементу класса 'buying-scheme__chair',
+     * который добавляет/удаляет ему класс 'buying-scheme__chair_selected'
+     * клики возможны только по элементам не имеющим классов 'buying-scheme__chair_disabled' и 'buying-scheme__chair_taken'
+     */
     buyingSchemeWrapper.addEventListener('click', (event) => {
       event.preventDefault();
-      SessionHall.getForm('buying_form').placeSomeSelected();
       let eventTarget = event.target;
       if (eventTarget.classList.contains('buying-scheme__chair') && !eventTarget.classList.contains('buying-scheme__chair_disabled') && !eventTarget.classList.contains('buying-scheme__chair_taken')) {
         eventTarget.classList.toggle('buying-scheme__chair_selected');
       }
+      SessionHall.getForm('buying_form').placeSomeSelected(buyingSchemeWrapper);
     })
   }
 
+  /**
+   * обновление содержимого виджета выбора мест в зале
+   */
   update() {
-
+    // Вsбор элементов DOM в которых будет отображаться информация о сеансе
     const buyingInfo = this.element.querySelector('.buying__info');
     const buyingInfoTitle = this.element.querySelector('.buying__info-title');
     const buyingInfoStart = this.element.querySelector('.buying__info-start');
     const buyingInfoHall = this.element.querySelector('.buying__info-hall');
+
+    // ВЫбор элментов для отображения цен на стандартные и VIP-места
     const buyingSchemeLegendValueStdPrice = this.element.querySelector('.buying-scheme__legend-value.std-price');
     const buyingSchemeLegendValueVipPrice = this.element.querySelector('.buying-scheme__legend-value.vip-price');
     const sessionId = localStorage.getItem('session_id');
 
+    /**
+     * Получение информации о сеансе из файлов sessions.json,
+     * movies.json, halls.json, tickets.json
+     */
     Session.get(sessionId, {}, (err, response) => {
       if (err || !response) {
         return undefined;
       }
       const sessionData = response.session;
+
+      //Вывод информации о сеансе в ранее выбранные элементы
       buyingInfo.dataset.sessionId = localStorage.getItem('session_id');
       buyingInfoStart.innerText = sessionData.start_time;
       buyingInfoTitle.dataset.filmId = sessionData.film_id;
@@ -47,7 +71,8 @@ class BuyingWidget {
           return undefined;
         }
         const movieData = response.movie;
-        console.log(movieData);
+
+        // Вывод названия фильма
         buyingInfoTitle.innerText = movieData.name;
       });
 
@@ -57,6 +82,8 @@ class BuyingWidget {
         }
         console.log(response);
         const hallData = response.hall;
+
+        // Вывод информации о зале
         buyingInfoHall.innerText = hallData.name;
         buyingSchemeLegendValueStdPrice.innerText = hallData.std_price + ' ';
         buyingSchemeLegendValueVipPrice.innerText = hallData.vip_price + ' ';
@@ -64,13 +91,18 @@ class BuyingWidget {
           if (err || !response ) {
             return undefined;
           }
+          // Создание объекта, содержащего данные о зале и билетах
           const hallDatawithTick = Object.assign({ tickets: response.tickets }, hallData)
+          // Вывод расположения свободных, занятых и заблокированных мест
           this.renderPlaces(hallDatawithTick);
         });
       });
     });
   }
 
+  /**
+   * Отрисовка схемы зала со всеми типами мест
+   */
   renderPlaces(hallDatawithTick) {
     let { rows, places, vip, dis, tickets } = hallDatawithTick;
     let takenArray = [];
@@ -79,9 +111,6 @@ class BuyingWidget {
       for (let place in placesInTicket) {
         takenArray.push(placesInTicket[place])
       }
-    }
-    for (let i in takenArray) {
-      console.log(takenArray[i].row + ' ' + takenArray[i].place);
     }
 
     const renderRows = this.element.querySelector('.buying-scheme__wrapper');
@@ -125,12 +154,18 @@ class BuyingWidget {
     return renderRows;
   }
 
+  /**
+   * Создание и возвращение элемента ряда в зале
+   */
   getRowHTML() {
     let rowHTML = document.createElement('div');
     rowHTML.classList.add('buying-scheme__row');
     return rowHTML;
   }
 
+  /**
+  * Создание и возвращение элемента места в зале
+  */
   getPlaceHTML(row, place) {
     let placeHTML = document.createElement('span');
     placeHTML.classList.add('buying-scheme__chair', 'buying-scheme__chair_standart');

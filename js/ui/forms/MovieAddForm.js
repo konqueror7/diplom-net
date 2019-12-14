@@ -1,5 +1,17 @@
+/**
+ * Форма добавления фильма в список фильмов в виджете
+ * 'Сетка сеансов'
+ * @extends AsyncForm
+ */
 class MovieAddForm extends AsyncForm {
 
+  /**
+   * Устанавливает два обработчика
+   * события отправки формы
+   * и клика по кнопке 'Отмена' -
+   * класс 'conf-step__button-regular'
+   * @return {[type]} [description]
+   */
   registerEvents() {
     this.element.addEventListener('submit', event => {
       console.log(event);
@@ -16,6 +28,11 @@ class MovieAddForm extends AsyncForm {
     });
   }
 
+  /**
+   * Подготавливает объект, содержащий информацию о фильме
+   * подготавливает изображение постера для отправки в виде объекта класса File
+   * @return {[type]} [description]
+   */
   getData() {
     let formData = new FormData(this.element);
     let image = this.element.getElementsByTagName('input').namedItem('poster').files[0];
@@ -35,12 +52,18 @@ class MovieAddForm extends AsyncForm {
     return data
   }
 
+  /**
+   * Отправляет запрос на создание записи о фильме
+   * закрывает модальное окно формы
+   * сбрасывает значения полей
+   * и обновляет виджет сетки сеансов на странице 'admin'
+   */
   onSubmit( options ) {
     Movie.create(options.data, (err, response) => {
       if (response && response.success === true) {
         Admin.getModal('add_movie').close();
         this.element.reset();
-        Admin.update();
+        Admin.getWidget('sessions_grid_config').updateConfStepMovies();
       }
     });
   }

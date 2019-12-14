@@ -14,14 +14,23 @@ class HallsWidget {
     this.update();
   }
 
+  /**
+   * Реестр ообработчиков событий
+   */
   registerEvents() {
+
     this.element.addEventListener('click', (event) => {
       event.preventDefault();
       let target = event.target;
+
+      // Клик по элементу "Создать зал" вызывает
+      // открытие модального окна для формы добавления зала
       if (target.classList.contains('conf-step__button-accent')) {
         Admin.getModal('add_hall').open();
       }
 
+      // Клик по элементу, содержащему значок в виде мусорной корзины
+      // открытие модального окна для формы удаления зала
       if (target.classList.contains('conf-step__button-trash')) {
         event.preventDefault();
         console.log(event.target.closest('li').textContent);
@@ -33,6 +42,10 @@ class HallsWidget {
     });
   }
 
+
+  /**
+   * Обновление содержимого виджета "Управление залами"
+   */
   update() {
     if (User.current()) {
       Hall.list({name: '.+'}, (err, response) => {
@@ -47,17 +60,27 @@ class HallsWidget {
     }
   }
 
+  /**
+   * Отрисовка списка залов
+   */
   render( halls ) {
     for (var key in halls) {
       this.renderItem(key, halls[key]);
     }
   }
 
+  /**
+   * Очистка содержимого виджета перед его обновлением
+   */
   clear() {
     const deletableHalls = this.element.querySelector('ul.conf-step__list');
     deletableHalls.innerHTML = '';
   }
-
+  /**
+   * Отрисовка каждого пункта списка залов по двум параметрам
+   * @param  {String} key - ID зала
+   * @param  {Object} hall - сведения о зале
+   */
   renderItem( key, hall ) {
     const hallsList = this.element.querySelector('.conf-step__list');
     let {
@@ -67,6 +90,9 @@ class HallsWidget {
     hallsList.innerHTML += this.getHalltHTML({id, name});
   }
 
+  /**
+   * Шаблон записи в HTML-списке о зале по параметрам из объекта, содержащего ID и имя зала
+   */
   getHalltHTML( item ) {
     return `
     <li>${item.name}
