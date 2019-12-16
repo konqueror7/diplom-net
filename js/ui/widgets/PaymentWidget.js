@@ -105,10 +105,19 @@ class PaymentWidget {
             return summ;
           }, 0);
 
+          /**
+           * Вывод стоимости билета на странице
+           */
           ticketCost.innerText = ticketPlacesCost;
 
           ticketData.cost = ticketPlacesCost;
 
+          /**
+           * Вывод выкупленных мест на странице
+           * @param  {String} summString [description]
+           * @param  {Object} place      [description]
+           * @return {String}            описание выкупленных мест
+           */
           ticketChairs.innerText = ticketPlaces.reduce(function(summString, place) {
             summString += `${place.place} (ряд ${place.row}) `;
             return summString;
@@ -116,6 +125,11 @@ class PaymentWidget {
 
           ticketData.placesText = ticketChairs.innerText;
 
+          /**
+           * Сохарение объекта ticketData в виде строки формата JSON
+           * в элемент 'ticket_data' localStorage
+           * Для использования на слеующей странице - 'client/ticket.html'
+           */
           localStorage.setItem('ticket_data', JSON.stringify(ticketData));
           console.log(localStorage.getItem('ticket_data'));
         });

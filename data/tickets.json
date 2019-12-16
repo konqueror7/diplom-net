@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 14
+        "last_guid": 15
     },
     "dataArray": {
         "o10": {
@@ -57,6 +57,17 @@
                 }
             },
             "qrcode": "d9813c7419034d3c0a34afbb69db2cec.png"
+        },
+        "o15": {
+            "session_id": "o20",
+            "places": {
+                "0": {
+                    "row": "5",
+                    "place": "10",
+                    "vip": false
+                }
+            },
+            "qrcode": "80ce5a1026f076d585a991fa363aaece.png"
         }
     }
 }

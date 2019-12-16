@@ -142,6 +142,10 @@ class ListMoviesWidget {
     let movieSeances = document.createElement('div');
     movieSeances.classList.add('movie-seances');
 
+    /**
+     * Извлечение списка сеансов с одинаковым ID фильма
+     * и сортировка по времени начала показа
+     */
     Session.list({film_id: id}, (err, response) => {
       if (err || !response ) {
         return undefined;
@@ -157,14 +161,40 @@ class ListMoviesWidget {
           const timeLinePosB = timeStartB.getHours() * 60 + timeStartB.getMinutes();
           return timeLinePosA - timeLinePosB;
         });
+
+        /**
+         * Извлечение списка залов кинотеатра
+         * и вывод в информации о фильме только тех
+         * где будут его сеансы
+         */
         Hall.list({name: '.+'}, (err, response) => {
           if (err || !response ) {
             return undefined;
           }
+
+          /**
+           * Информация о залах из hall.json
+           * @type {Object}
+           */
           let hallsList = response.halls;
+
+          /**
+           * ВЫвод списка сеансов одного фильма для кажого из залов
+           */
           for (let hallKey in hallsList) {
+            /**
+             * Отфильтровывание сорттированого списка сеансов
+             * в отдельный массив по ID зала
+             */
             let hallSessions = filmSessionsListSorted.filter(session => session[1].hall_id === hallKey);
+            /**
+             * Если массив имеет хотя бы один элемент
+             * то есть в этом зале проходит хотя бы один сеанс
+             * этого фильма, то создается новый элемент DOM,
+             * в котором выводятся сеансы фильма в виде кликабельных ссылок.
+             */
             if (hallSessions.length > 0) {
+
               let movieSeancesHall = document.createElement('div');
               movieSeancesHall.classList.add('movie-seances__hall');
               movieSeancesHall.insertAdjacentHTML('beforeend', `<h3 class="movie-seances__hall-title">${hallsList[hallKey].name}</h3>`);

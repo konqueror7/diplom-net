@@ -1,3 +1,10 @@
+/**
+ * Выводит информацию о билете:
+ * название фильма, места, зал,
+ * время начала сеанса.
+ * а также выводит на экран QR-код,
+ * созданный на странице 'client/payment.html'
+ */
 class TicketPrintWidget {
 
   constructor(element) {
@@ -13,6 +20,10 @@ class TicketPrintWidget {
 
   }
 
+  /**
+   * Обновляет содержимое страницы
+   * 'client/payment.html'
+   */
   update() {
     const ticketData = JSON.parse(localStorage.getItem('ticket_data'));
     const ticketTitle = this.element.querySelector('.ticket__title').innerText = ticketData.film;
