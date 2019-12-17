@@ -43,11 +43,6 @@
             "film_id": "o2",
             "start_time": "12:00"
         },
-        "o15": {
-            "hall_id": "o1",
-            "film_id": "o2",
-            "start_time": "22:00"
-        },
         "o16": {
             "hall_id": "o2",
             "film_id": "o5",
@@ -207,11 +202,6 @@
             "hall_id": "o41",
             "film_id": "o6",
             "start_time": "22:00"
-        },
-        "o60": {
-            "hall_id": "o2",
-            "film_id": "o2",
-            "start_time": "00:00"
         }
     }
 }

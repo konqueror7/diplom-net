@@ -1,4 +1,9 @@
 <?php
+/**
+ * Скрипт предназначен для извлечения
+ * и записи информации в файл halls.json
+ * по запросам, сделанным из js-скриптов
+ */
 
 /**
  * Автозагрузка класссов
@@ -16,6 +21,10 @@ $halls = new Halls();
 
 $hallkeys = array("name", "rows", "places", "vip", "dis", "vip_price", "std_price");
 
+/**
+ * Извлечение списка объектов по значению одного из свойств,
+ * указанных в массиве $hallkeys
+ */
 if ($_POST['entity_method'] == 'LIST') {
     foreach ($_POST as $post_key => $post_value) {
         if (in_array($post_key, $hallkeys)) {
@@ -27,10 +36,10 @@ if ($_POST['entity_method'] == 'LIST') {
                     $hallsListKeys[$key] = $value;
                 }
               // ключу 'success' присваивается значение true
-              // ключу 'user' присваивается значение $findedUserKeys
+              // ключу 'halls' присваивается значение $hallsListKeys
                 $hallsData = ['success' => true, 'halls' => $hallsListKeys];
-              // вывод echo возвращается в качестве положительного ответа php-скрипта бэкенда
-              // на XMLHttpRequest-запрос js-скрипта фронтэнда
+              // вывод echo возвращается в качестве положительного
+              // ответа php-скрипта бэкенда на fetch-запрос js-скрипта фронтэнда
                 echo json_encode($hallsData);
             } else {
                 $noData = ['success' => false, 'error' => 'Нет залов с такими параметрами'];
@@ -43,6 +52,9 @@ if ($_POST['entity_method'] == 'LIST') {
     }
 }
 
+/**
+ * Извлечение одного объекта по его ID
+ */
 if ($_POST['entity_method'] == 'GETID') {
     if (isset($_POST['get_id'])) {
         $hallGet = $halls->newQuery()->byguid($_POST['get_id'])->getObjs(false);
@@ -60,6 +72,10 @@ if ($_POST['entity_method'] == 'GETID') {
     }
 }
 
+/**
+ * Создание объекта нового зала и ответ
+ * об успешном выполнении запроса
+ */
 if ($_POST['entity_method'] == 'CREATE') {
     $createsHall = new Hall();
     $createsHall->addNewHall($_POST['name']);
@@ -67,6 +83,10 @@ if ($_POST['entity_method'] == 'CREATE') {
     echo json_encode($hallData);
 }
 
+/**
+ * Добавление и изменение информации
+ * в объекте зала по его ID
+ */
 if ($_POST['entity_method'] == 'UPDATEID') {
     $hallGet = $halls->newQuery()->byguid($_POST['update_id'])->getObjs(false);
     if (count($hallGet) > 0) {
@@ -79,6 +99,9 @@ if ($_POST['entity_method'] == 'UPDATEID') {
     }
 }
 
+/**
+ * Удаление объекта зала по его ID
+ */
 if ($_POST['entity_method'] == 'REMOVEID') {
     $hallGet = $halls->newQuery()->byguid($_POST['remove_id'])->getObjs(false);
     if (count($hallGet) > 0) {

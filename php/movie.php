@@ -11,6 +11,10 @@ $moviekeys = array("name", "content", "image", "duration", "producer");
 
 $movies = new Movies();
 
+/**
+ * Извлечение списка объектов по значению одного из свойств,
+ * указанных в массиве $moviekeys
+ */
 if ($_POST['entity_method'] == 'LIST') {
     foreach ($_POST as $post_key => $post_value) {
         if (in_array($post_key, $moviekeys)) {
@@ -22,7 +26,7 @@ if ($_POST['entity_method'] == 'LIST') {
                     $moviesListKeys[$key] = $value;
                 }
               // ключу 'success' присваивается значение true
-              // ключу 'user' присваивается значение $findedUserKeys
+              // ключу 'movies' присваивается значение $moviesListKeys
                 $moviesData = ['success' => true, 'movies' => $moviesListKeys];
               // вывод echo возвращается в качестве положительного ответа php-скрипта бэкенда
               // на XMLHttpRequest-запрос js-скрипта фронтэнда
@@ -38,6 +42,10 @@ if ($_POST['entity_method'] == 'LIST') {
     }
 }
 
+/**
+ * Создание объекта нового зала и ответ
+ * об успешном выполнении запроса
+ */
 if ($_POST['entity_method'] == 'CREATE') {
     $createsMovie = new Movie();
     $createsMovie->addNewMovie($_POST);
@@ -45,6 +53,9 @@ if ($_POST['entity_method'] == 'CREATE') {
     echo json_encode($MovieData);
 }
 
+/**
+ * Извлечение объекта фильма по его ID
+ */
 if ($_POST['entity_method'] == 'GETID') {
     if (isset($_POST['get_id'])) {
         $movieGet = $movies->newQuery()->byguid($_POST['get_id'])->getObjs(false);

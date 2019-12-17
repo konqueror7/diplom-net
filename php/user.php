@@ -25,8 +25,12 @@ $noUserData = ['success' => false, 'user' => null, 'session_array' => null];
 
 
 /**
- * Условие проверки наличия ключей 'mail' и 'pwd' в массиве $_GET
- * @var [type]
+ * Для авторизации пользователя
+ * методом User.login(), вызванного
+ * из js-скрипта, производится
+ * проверка наличия значении переменных
+ * 'mail' и 'pwd' из массива $_POST
+ * в файле users.json
  */
 if ($_POST['user_method'] == 'LOGIN') {
     if (isset($_POST['mail']) && isset($_POST['pwd'])) {
@@ -58,6 +62,13 @@ if ($_POST['user_method'] == 'LOGIN') {
     }
 }
 
+/**
+ * Проверка наличия переменной $_SESSION['name']
+ * вывод ее значения в виде json-строки
+ * для передачи в метод User.fetch(),
+ * вызванного js-скриптом
+ * @var [type]
+ */
 if ($_POST['user_method'] == 'FETCH') {
     if (isset($_SESSION['name'])) {
         $userData = ['success' => true, 'user' => $_SESSION['name']];
@@ -68,6 +79,10 @@ if ($_POST['user_method'] == 'FETCH') {
     }
 }
 
+/**
+ * Для отмены авторизации пользователя
+ * уничтожаются все переменные в $_SESSION
+ */
 if ($_POST['user_method'] == 'LOGOUT') {
     session_unset();
     $userData = ['success' => true, 'user' => null];
