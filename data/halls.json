@@ -204,7 +204,7 @@
             ],
             "vip_price": 60,
             "std_price": 30,
-            "active": false
+            "active": true
         },
         "o41": {
             "name": "Зал 41",
@@ -247,7 +247,7 @@
             "dis": [],
             "vip_price": 350,
             "std_price": 150,
-            "active": false
+            "active": true
         }
     }
 }

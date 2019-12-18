@@ -5,5 +5,5 @@
  */
 class Movies extends JsonDataArray
 {
-  
+
 }

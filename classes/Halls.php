@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Класс для работы с записями из файла halls.json
+ * Класс для изменения записей из файла halls.json
  */
 class Halls extends JsonDataArray
 {
@@ -48,34 +48,4 @@ class Halls extends JsonDataArray
         }
         $this->save();
     }
-    // public function updateHallFromPost($id)
-    // {
-    //     if (isset($_POST['name'])) {
-    //         $this->getHall($id)->name = $_POST['name'];
-    //     }
-    //
-    //     if (isset($_POST['rows'])) {
-    //         $this->getHall($id)->rows = intval($_POST['rows']);
-    //     }
-    //
-    //     if (isset($_POST['places'])) {
-    //         $this->getHall($id)->places = intval($_POST['places']);
-    //     }
-    //
-    //     if (isset($_POST['vip'])) {
-    //         $this->getHall($id)->vip = json_decode($_POST['vip']);
-    //     }
-    //
-    //     if (isset($_POST['dis'])) {
-    //         $this->getHall($id)->dis = json_decode($_POST['dis']);
-    //     }
-    //
-    //     if (isset($_POST['vip_price'])) {
-    //         $this->getHall($id)->vip_price = json_decode($_POST['vip_price']);
-    //     }
-    //
-    //     if (isset($_POST['std_price'])) {
-    //         $this->getHall($id)->std_price = json_decode($_POST['std_price']);
-    //     }
-    // }
 }

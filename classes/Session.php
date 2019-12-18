@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Класс Movie создает определяет свойства и методы
+ * экземпляра класса для сущности "сеанс"
+ */
 class Session extends DataRecordModel
 {
     public $hall_id;

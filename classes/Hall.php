@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Класс отвечает за создание новой записи о зале в halls.json
+ */
 class Hall extends DataRecordModel
 {
     public $name;

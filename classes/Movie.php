@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Класс Movie создает определяет свойства и методы
+ * экземпляра класса для сущности "фильм"
+ */
 class Movie extends DataRecordModel
 {
     public $name;
@@ -8,6 +11,9 @@ class Movie extends DataRecordModel
     public $duration;
     public $producer;
 
+    /**
+    * Создание новой записи о фильме в файле movies.json
+    */
     public function addNewMovie($post)
     {
         if (isset($post['name'])) {
@@ -21,9 +27,11 @@ class Movie extends DataRecordModel
         } else {
             $this->content = 'No content';
         }
-
+        /**
+         * Сохранение файла с изображением постера фильма
+         * в папку указаную в переменной Config::POSTERS_DIRECTORY
+         */
         if (isset($_FILES['poster'])) {
-            // $this->image = $_POST['image_name'];
             $this->poster = $_FILES['poster']['name'];
             move_uploaded_file($_FILES['poster']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . Config::POSTERS_DIRECTORY .
             '/' . $_FILES['poster']['name']);
@@ -31,19 +39,8 @@ class Movie extends DataRecordModel
             $this->poster = 'No image in $_FILES!';
         }
 
-        // if (isset($_FILES['image'])) {
-        //     $this->image = $_POST['image_name'];
-        //     // $this->image = $_FILES['image']['name'];
-        //     move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . Config::POSTERS_DIRECTORY . '/' . $_POST['image_name']);
-        // } else {
-        //     $this->image = 'No image in $_FILES!';
-        // }
-
-
-        // $this->image = 'i/poster.png';
         if (isset($post['duration'])) {
             $this->duration = $post['duration'];
-          // code...
         } else {
             $this->duration = 0;
         }

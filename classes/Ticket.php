@@ -1,12 +1,14 @@
 <?php
 
+/**
+ * Класс Ticket создает определяет свойства и методы
+ * экземпляра класса для сущности "билет"
+ */
 class Ticket extends DataRecordModel
 {
     public $session_id;
     public $places;
     public $qrcode;
-    // public $qrimg;
-    // public $ticket_guid;
     private $filename;
     private $guid;
 
@@ -28,7 +30,6 @@ class Ticket extends DataRecordModel
 
         $data->save();
 
-        // return $this->guid;
         return $ticket_guid;
     }
 
@@ -43,15 +44,7 @@ class Ticket extends DataRecordModel
         }
 
         $this->qrcode = '';
-        // $this->qrtext = '';
-        // $this->qrimg = '';
 
         return $this->commit();
-
-        // return $this->commit();
-
-        // $this->ticket_guid = $this->guid;
-        //
-        // return $this->ticket_guid;
     }
 }

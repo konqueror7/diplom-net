@@ -1,5 +1,9 @@
 <?php
 
+
+/**
+ * Класс для работы с записями из файла tickets.json
+ */
 class Tickets extends JsonDataArray
 {
 
@@ -21,11 +25,11 @@ class Tickets extends JsonDataArray
             $updTicket->places = $post['places'];
         }
 
+        /**
+         * Создание QR-кода с помощью библиотеки 'PHP QR Code'
+         */
         if (isset($post['qrcode'])) {
-        // if (isset($post['qrtext'])) {
-            // $updTicket->qrtext = $post['qrtext'];
             $mdname = md5($post['qrcode']) . '.png';
-            // $mdname = md5($post['qrtext']) . '.png';
             $qrFilename = $_SERVER['DOCUMENT_ROOT'] . Config::QRPNG_DIRECTORY . '/' . $mdname;
             $updTicket->qrcode = $mdname;
             $errorCorrectionLevel = 'H';
@@ -33,13 +37,6 @@ class Tickets extends JsonDataArray
             QRcode::png($post['qrcode'], $qrFilename, $errorCorrectionLevel, $matrixPointSize, 2);
         }
 
-        // if (isset($post['qrimg'])) {
-        //     $updTicket->qrimg = $post['qrimg'];
-        // }
-
         $this->save();
-
-        // return $updTicket;
-        // return $updTicket->qrimg;
     }
 }
