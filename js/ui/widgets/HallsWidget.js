@@ -52,6 +52,23 @@ class HallsWidget {
         if (err || !response ) {
           return undefined;
         }
+
+        /**
+         * Создание массива ключей объектов неактивных залов
+         * @type {Array}
+         */
+        let inactiveHallsKeys = [];
+        for (let key in response.halls) {
+          if (response.halls[key].active != true) {
+            inactiveHallsKeys.push(key);
+          }
+        }
+        /**
+         * Запись этого массива в виде json-строки в localStorage.inactive_halls_keys
+         * для последующего использования в форме LogoutForm на последнем этапе
+         */
+        localStorage.setItem('inactive_halls_keys', JSON.stringify(inactiveHallsKeys));
+
         this.clear();
         this.render(response.halls);
       });

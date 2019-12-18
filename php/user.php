@@ -67,7 +67,6 @@ if ($_POST['user_method'] == 'LOGIN') {
  * вывод ее значения в виде json-строки
  * для передачи в метод User.fetch(),
  * вызванного js-скриптом
- * @var [type]
  */
 if ($_POST['user_method'] == 'FETCH') {
     if (isset($_SESSION['name'])) {

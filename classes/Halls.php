@@ -42,6 +42,10 @@ class Halls extends JsonDataArray
         if (isset($post['std_price'])) {
             $updHall->std_price = json_decode($post['std_price']);
         }
+
+        if (isset($post['active'])) {
+            $updHall->active = json_decode($post['active']);
+        }
         $this->save();
     }
     // public function updateHallFromPost($id)

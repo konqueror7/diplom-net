@@ -22,14 +22,20 @@ class ListMoviesWidget {
     const moviesCollection = this.element;
 
     /**
-     * Клик по времени сеанса копирует ID сеанса в запись 'session_id' localStorage и переход на страницу cient/hall.html
+     * Клик по времени сеанса копирует ID сеанса в запись 'session_id' localStorage
+     * и совершает переход на страницу cient/hall.html если продажи открыты, в противном случае
+     * выкидывается окно с предупреждением о временной блокировке продажи билетов в зал
      */
     moviesCollection.addEventListener('click', () => {
       let target = event.target;
       if (target.classList.contains('movie-seances__time') || target.closest('.movie-seances__time')) {
-        localStorage.setItem('session_id', target.dataset.sessionId);
-        console.log(localStorage.getItem('session_id'));
-        document.location.href = Entity.HOST + '/client/hall.html';
+        if (target.closest('.inactive')) {
+          alert('Продажа билетов временно заблокирована');
+        } else {
+          localStorage.setItem('session_id', target.dataset.sessionId);
+          console.log(localStorage.getItem('session_id'));
+          document.location.href = Entity.HOST + '/client/hall.html';
+        }
       }
     });
   }
@@ -197,6 +203,10 @@ class ListMoviesWidget {
 
               let movieSeancesHall = document.createElement('div');
               movieSeancesHall.classList.add('movie-seances__hall');
+              if (hallsList[hallKey].active === false) {
+                movieSeancesHall.classList.add('inactive');
+              }
+              // hallsList[hallKey].active === false ? movieSeancesHall.classList.add('movie-seances__hall') : movieSeancesHall.classList.add('movie-seances__hall inactive');
               movieSeancesHall.insertAdjacentHTML('beforeend', `<h3 class="movie-seances__hall-title">${hallsList[hallKey].name}</h3>`);
 
               let moviesHallList = document.createElement('ul');

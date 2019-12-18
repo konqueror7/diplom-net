@@ -1,6 +1,6 @@
 {
     "dataTitle": {
-        "last_guid": 42
+        "last_guid": 44
     },
     "dataArray": {
         "o1": {
@@ -31,7 +31,8 @@
             ],
             "dis": [],
             "vip_price": 100,
-            "std_price": 52
+            "std_price": 52,
+            "active": true
         },
         "o2": {
             "name": "Зал 2",
@@ -114,7 +115,8 @@
                 ]
             ],
             "vip_price": 40,
-            "std_price": 20
+            "std_price": 20,
+            "active": true
         },
         "o9": {
             "name": "Зал 9",
@@ -141,7 +143,8 @@
                 ]
             ],
             "vip_price": 60,
-            "std_price": 20
+            "std_price": 20,
+            "active": true
         },
         "o28": {
             "name": "Зал 28",
@@ -200,7 +203,8 @@
                 ]
             ],
             "vip_price": 60,
-            "std_price": 30
+            "std_price": 30,
+            "active": false
         },
         "o41": {
             "name": "Зал 41",
@@ -242,58 +246,8 @@
             ],
             "dis": [],
             "vip_price": 350,
-            "std_price": 150
-        },
-        "o42": {
-            "name": "Зал 42",
-            "rows": 3,
-            "places": 10,
-            "vip": [
-                [
-                    "1",
-                    "1"
-                ],
-                [
-                    "1",
-                    "2"
-                ],
-                [
-                    "1",
-                    "3"
-                ],
-                [
-                    "1",
-                    "4"
-                ],
-                [
-                    "1",
-                    "5"
-                ],
-                [
-                    "1",
-                    "6"
-                ]
-            ],
-            "dis": [
-                [
-                    "1",
-                    "7"
-                ],
-                [
-                    "1",
-                    "8"
-                ],
-                [
-                    "1",
-                    "9"
-                ],
-                [
-                    "1",
-                    "10"
-                ]
-            ],
-            "vip_price": 65,
-            "std_price": 35
+            "std_price": 150,
+            "active": false
         }
     }
 }

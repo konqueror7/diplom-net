@@ -197,6 +197,7 @@ class SessionsGridWidget {
         if (err || !response ) {
           return undefined;
         }
+
         this.clearHalls();
         this.renderHalls(response.halls);
       });
